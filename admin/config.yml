@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Misbah-uddin-emran/my-bolg
+  repo: Misbah-uddin-emran/my-blog
   branch: main
 
 media_folder: "assets/images"
