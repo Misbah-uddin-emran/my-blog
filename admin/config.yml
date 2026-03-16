@@ -2,6 +2,7 @@ backend:
   name: github
   repo: Misbah-uddin-emran/my-blog
   branch: main
+  base_url: decap-auth-ictguide.emrancsecu14701069.workers.dev
 
 media_folder: "assets/images"
 public_folder: "/assets/images"
