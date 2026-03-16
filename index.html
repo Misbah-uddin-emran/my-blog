@@ -9,9 +9,11 @@
     content="BCS, Bank, HSC চাকরির পরীক্ষার কম্পিউটার, গণিত ও বিজ্ঞান প্রস্তুতি। প্রশ্ন সমাধান, ব্লগ এবং সম্পূর্ণ গাইডলাইন।"
   />
 
-  <!-- Google Fonts -->
+  <!-- =========================
+       01. Fonts
+  ========================== -->
   <link
-    href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
     rel="stylesheet"
   />
 
@@ -22,31 +24,14 @@
   />
 
   <style>
+    /* =========================
+       02. Reset
+    ========================== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-    }
-
-    :root {
-      --navy-blue: #133458;
-      --navy-deep: #0d2743;
-      --teal: #3ecfbe;
-      --teal-dark: #22b8a8;
-      --teal-soft: #dffaf6;
-      --light-blue: #edf7ff;
-      --white: #ffffff;
-      --text-dark: #243444;
-      --text-gray: #66788a;
-      --border-gray: #d9e3ee;
-      --bg-light: #f7fbff;
-      --shadow-sm: 0 6px 20px rgba(12, 37, 64, 0.08);
-      --shadow-md: 0 14px 40px rgba(12, 37, 64, 0.12);
-      --shadow-lg: 0 24px 55px rgba(12, 37, 64, 0.16);
-      --radius: 18px;
-
-      --font-bangla: "Hind Siliguri", sans-serif;
-      --font-english: "Inter", sans-serif;
+      min-width: 0;
     }
 
     html {
@@ -54,14 +39,14 @@
     }
 
     body {
-      font-family: var(--font-bangla);
-      background:
-        radial-gradient(circle at top left, rgba(62, 207, 190, 0.07), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(19, 52, 88, 0.08), transparent 25%),
-        var(--bg-light);
-      color: var(--text-dark);
-      line-height: 1.6;
       overflow-x: hidden;
+      font-family: "Nikosh", "SutonnyMJ", "SolaimanLipi", "Noto Serif Bengali", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(62, 207, 190, 0.06), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(19, 52, 88, 0.08), transparent 24%),
+        #f7fbff;
+      color: #243444;
+      line-height: 1.7;
     }
 
     a {
@@ -75,34 +60,78 @@
       display: block;
     }
 
-    .container {
+    /* =========================
+       03. Variables
+    ========================== */
+    :root {
+      --navy-blue: #133458;
+      --navy-deep: #0d2743;
+      --teal: #38d6c1;
+      --teal-dark: #1ea996;
+      --teal-soft: #e6fbf7;
+      --light-blue: #edf7ff;
+      --white: #ffffff;
+      --text-dark: #243444;
+      --text-gray: #66788a;
+      --border-gray: #d9e3ee;
+      --bg-light: #f7fbff;
+      --shadow-sm: 0 8px 24px rgba(12, 37, 64, 0.08);
+      --shadow-md: 0 16px 42px rgba(12, 37, 64, 0.12);
+      --shadow-lg: 0 24px 55px rgba(12, 37, 64, 0.16);
+      --radius: 18px;
+      --font-english: "Inter", sans-serif;
+    }
+
+    /* =========================
+       04. Reusable Classes
+    ========================== */
+    .container,
+    .nav-container,
+    .hero-inner,
+    .stats-grid,
+    .categories,
+    .topics-grid,
+    .features-grid,
+    .footer-content {
       width: min(1200px, calc(100% - 32px));
       margin: 0 auto;
     }
 
     .section-title {
       text-align: center;
-      font-size: clamp(30px, 4vw, 42px);
+      font-size: clamp(28px, 4vw, 42px);
       color: var(--navy-blue);
       font-weight: 800;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
+      line-height: 1.25;
     }
 
     .section-subtitle {
       text-align: center;
       font-size: 17px;
       color: var(--text-gray);
-      max-width: 720px;
-      margin: 0 auto 50px;
+      max-width: 760px;
+      margin: 0 auto 48px;
     }
 
-    /* Decorative background */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: all 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     .bg-orb {
       position: absolute;
       border-radius: 50%;
       filter: blur(60px);
       z-index: -1;
       opacity: 0.45;
+      pointer-events: none;
     }
 
     .orb-1 {
@@ -117,11 +146,13 @@
       width: 260px;
       height: 260px;
       background: rgba(19, 52, 88, 0.14);
-      top: 700px;
+      top: 780px;
       right: -60px;
     }
 
-    /* Navbar */
+    /* =========================
+       05. Navbar
+    ========================== */
     .navbar {
       position: sticky;
       top: 0;
@@ -139,8 +170,6 @@
     }
 
     .nav-container {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
       padding: 15px 0;
       display: flex;
       justify-content: space-between;
@@ -156,10 +185,11 @@
       font-weight: 700;
       color: var(--teal);
       white-space: nowrap;
+      font-family: var(--font-english);
     }
 
     .logo i {
-      font-size: 30px;
+      font-size: 28px;
       background: rgba(255, 255, 255, 0.08);
       width: 46px;
       height: 46px;
@@ -172,32 +202,21 @@
       display: flex;
       align-items: center;
       list-style: none;
-      gap: 14px;
+      gap: 12px;
     }
 
     .nav-links a {
       font-size: 15px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--white);
       padding: 10px 14px;
       border-radius: 10px;
+      display: inline-block;
     }
 
     .nav-links a:hover {
       color: var(--teal);
       background: rgba(255, 255, 255, 0.05);
-    }
-
-    .btn-login {
-      background: linear-gradient(135deg, var(--teal), #6ee7d7);
-      color: var(--navy-blue) !important;
-      font-weight: 700 !important;
-      box-shadow: 0 8px 18px rgba(62, 207, 190, 0.25);
-    }
-
-    .btn-login:hover {
-      transform: translateY(-2px);
-      background: linear-gradient(135deg, #53dacb, #86f0e4);
     }
 
     .mobile-toggle {
@@ -209,30 +228,63 @@
       cursor: pointer;
     }
 
-    /* Hero */
+    .auth-nav-item {
+      list-style: none;
+    }
+
+    .btn-auth {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: 0.3s ease;
+      font-family: inherit;
+    }
+
+    .login-btn {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .login-btn:hover {
+      background: #ffffff;
+      color: #1e3a8a;
+      transform: translateY(-2px);
+    }
+
+    .register-btn {
+      background: linear-gradient(135deg, #3b82f6, #2563eb);
+      color: #fff !important;
+      box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .register-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
+      color: #fff !important;
+    }
+
+    /* =========================
+       06. Hero Section
+    ========================== */
     .hero {
       position: relative;
       overflow: hidden;
       background:
-        linear-gradient(rgba(19, 52, 88, 0.83), rgba(13, 39, 67, 0.88)),
+        linear-gradient(rgba(19, 52, 88, 0.84), rgba(13, 39, 67, 0.9)),
         url("https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
         center/cover no-repeat;
       color: var(--white);
-      padding: 105px 0 90px;
+      padding: 100px 0 88px;
     }
 
     .hero-inner {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
       gap: 40px;
       align-items: center;
-    }
-
-    .hero-text {
-      position: relative;
-      z-index: 2;
     }
 
     .hero-badge {
@@ -253,15 +305,15 @@
     }
 
     .hero h1 {
-      font-size: clamp(34px, 5vw, 56px);
-      line-height: 1.15;
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1.18;
       font-weight: 800;
       margin-bottom: 18px;
     }
 
     .hero p {
       font-size: 18px;
-      color: rgba(255, 255, 255, 0.9);
+      color: rgba(255, 255, 255, 0.92);
       max-width: 680px;
       margin-bottom: 28px;
     }
@@ -274,19 +326,27 @@
     }
 
     .hero-btn,
-    .hero-btn-outline {
+    .hero-btn-outline,
+    .btn-primary,
+    .btn-secondary,
+    .btn-outline {
       display: inline-flex;
       align-items: center;
       gap: 10px;
+      justify-content: center;
+      transition: 0.3s ease;
+      font-weight: 700;
+    }
+
+    .hero-btn,
+    .hero-btn-outline {
       padding: 14px 24px;
       border-radius: 12px;
       font-size: 16px;
-      font-weight: 700;
-      transition: 0.3s ease;
     }
 
     .hero-btn {
-      background: linear-gradient(135deg, var(--teal), #70ecdd);
+      background: linear-gradient(135deg, var(--teal), #74ebde);
       color: var(--navy-blue);
       box-shadow: 0 12px 24px rgba(62, 207, 190, 0.28);
     }
@@ -315,7 +375,7 @@
 
     .hero-point {
       background: rgba(255, 255, 255, 0.1);
-      color: rgba(255, 255, 255, 0.95);
+      color: rgba(255, 255, 255, 0.96);
       border: 1px solid rgba(255, 255, 255, 0.12);
       padding: 10px 14px;
       border-radius: 999px;
@@ -327,6 +387,7 @@
       display: flex;
       justify-content: center;
       position: relative;
+      width: 100%;
     }
 
     .hero-card {
@@ -346,12 +407,18 @@
       font-size: 22px;
       margin-bottom: 16px;
       color: #fff;
+      font-family: var(--font-english);
     }
 
     .hero-mini-list {
       display: grid;
       gap: 14px;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .hero-mini-link {
+      display: block;
+      color: inherit;
     }
 
     .hero-mini-item {
@@ -361,6 +428,12 @@
       background: rgba(255, 255, 255, 0.08);
       padding: 14px;
       border-radius: 16px;
+      transition: 0.3s ease;
+    }
+
+    .hero-mini-link:hover .hero-mini-item {
+      background: rgba(255, 255, 255, 0.14);
+      transform: translateY(-2px);
     }
 
     .hero-mini-item i {
@@ -383,7 +456,7 @@
 
     .hero-mini-item span {
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.82);
     }
 
     .floating-badge {
@@ -391,10 +464,11 @@
       background: var(--white);
       color: var(--navy-blue);
       border-radius: 14px;
-      padding: 12px 16px;
+      padding: 11px 16px;
       box-shadow: var(--shadow-md);
       font-size: 14px;
       font-weight: 700;
+      font-family: var(--font-english);
     }
 
     .badge-top {
@@ -404,19 +478,17 @@
 
     .badge-bottom {
       left: -14px;
-      bottom: 18px;
+      bottom: 16px;
     }
 
     @keyframes floatY {
-      0%, 100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
 
-    /* About Section */
+    /* =========================
+       07. About Section
+    ========================== */
     .about-section {
       position: relative;
       padding: 85px 0 35px;
@@ -431,7 +503,7 @@
 
     .about-card,
     .about-side {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid rgba(19, 52, 88, 0.08);
       border-radius: 24px;
       padding: 34px;
@@ -488,13 +560,18 @@
     }
 
     .chip {
-      padding: 9px 14px;
+      padding: 10px 15px;
       border-radius: 999px;
       background: var(--teal-soft);
       color: var(--navy-blue);
       border: 1px solid rgba(62, 207, 190, 0.18);
       font-size: 14px;
       font-weight: 600;
+    }
+
+    .chip:hover {
+      background: #d4f8f1;
+      transform: translateY(-2px);
     }
 
     .about-actions {
@@ -505,12 +582,8 @@
 
     .btn-primary,
     .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       padding: 13px 20px;
       border-radius: 12px;
-      font-weight: 700;
       font-size: 15px;
     }
 
@@ -577,7 +650,9 @@
       color: var(--text-gray);
     }
 
-    /* Stats */
+    /* =========================
+       08. Stats Section
+    ========================== */
     .stats-section {
       background: linear-gradient(135deg, var(--navy-blue), var(--navy-deep));
       color: var(--white);
@@ -598,8 +673,6 @@
     }
 
     .stats-grid {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 22px;
@@ -622,6 +695,7 @@
       font-weight: 800;
       color: var(--teal);
       margin-bottom: 10px;
+      font-family: var(--font-english);
     }
 
     .stat-label {
@@ -629,29 +703,35 @@
       color: rgba(255, 255, 255, 0.92);
     }
 
-    /* Categories */
+    /* =========================
+       09. Exam Categories
+    ========================== */
     .section-block {
       padding: 20px 0 0;
     }
 
     .categories {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 26px;
+      gap: 24px;
+    }
+
+    .exam-card-link {
+      display: block;
+      color: inherit;
     }
 
     .exam-card {
-      background: var(--white);
-      padding: 32px 24px;
+      position: relative;
+      background: #ffffff;
+      padding: 30px 24px;
       border-radius: 22px;
       text-align: center;
       box-shadow: var(--shadow-sm);
       transition: 0.35s ease;
       border: 1px solid rgba(19, 52, 88, 0.08);
-      position: relative;
       overflow: hidden;
+      height: 100%;
     }
 
     .exam-card::before {
@@ -661,6 +741,7 @@
       background: linear-gradient(135deg, transparent 0%, rgba(62, 207, 190, 0.08) 100%);
       opacity: 0;
       transition: 0.35s ease;
+      pointer-events: none;
     }
 
     .exam-card:hover {
@@ -683,40 +764,46 @@
       color: var(--teal-dark);
       font-size: 34px;
       box-shadow: inset 0 0 0 1px rgba(62, 207, 190, 0.12);
+      position: relative;
+      z-index: 2;
     }
 
     .exam-card h3 {
       margin-bottom: 12px;
       color: var(--navy-blue);
-      font-size: 23px;
+      font-size: 22px;
       font-weight: 700;
+      position: relative;
+      z-index: 2;
     }
 
     .exam-card p {
       font-size: 15px;
       color: var(--text-gray);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       line-height: 1.7;
+      position: relative;
+      z-index: 2;
     }
 
     .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
       border: 2px solid var(--navy-blue);
       padding: 10px 20px;
       border-radius: 12px;
       color: var(--navy-blue);
-      font-weight: 700;
       background: transparent;
+      position: relative;
+      z-index: 2;
     }
 
-    .btn-outline:hover {
+    .exam-card:hover .btn-outline {
       background: var(--navy-blue);
       color: var(--white);
     }
 
-    /* Topics */
+    /* =========================
+       10. Topics Section
+    ========================== */
     .topics-section {
       padding: 70px 0;
       background: var(--white);
@@ -724,8 +811,6 @@
     }
 
     .topics-grid {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 22px;
@@ -764,15 +849,15 @@
       font-size: 14px;
     }
 
-    /* Blog & Solutions */
+    /* =========================
+       11. Blog + Solutions Section
+    ========================== */
     .features-section {
       background: linear-gradient(180deg, var(--light-blue), #f8fcff);
       padding: 70px 0;
     }
 
     .features-grid {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 26px;
@@ -781,9 +866,10 @@
     .feature-box {
       background: var(--white);
       border: 1px solid rgba(19, 52, 88, 0.08);
-      padding: 32px;
+      padding: 30px;
       border-radius: 22px;
       box-shadow: var(--shadow-sm);
+      height: 100%;
     }
 
     .feature-box h2 {
@@ -793,7 +879,115 @@
       border-bottom: 3px solid var(--teal);
       display: inline-block;
       padding-bottom: 8px;
-      font-weight: 700;
+      font-family: var(--font-english);
+    }
+
+    .premium-topic-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .premium-item {
+      margin: 0;
+    }
+
+    .premium-link {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #123153, #1c5b9a, #2b7bd8);
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: all 0.35s ease;
+    }
+
+    .premium-link::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -120%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.18),
+        transparent
+      );
+      transition: 0.7s;
+    }
+
+    .premium-link:hover::before {
+      left: 130%;
+    }
+
+    .premium-link:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 35px rgba(37, 99, 235, 0.28);
+    }
+
+    .premium-icon {
+      width: 56px;
+      height: 56px;
+      min-width: 56px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.16);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.08);
+    }
+
+    .premium-content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .premium-badge {
+      display: inline-block;
+      width: fit-content;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      background: #facc15;
+      color: #111827;
+      padding: 4px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+      font-family: var(--font-english);
+    }
+
+    .premium-title {
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 4px;
+    }
+
+    .premium-subtitle {
+      font-size: 13px;
+      color: #dbeafe;
+      line-height: 1.5;
+    }
+
+    .premium-arrow {
+      font-size: 17px;
+      opacity: 0.95;
+      transition: transform 0.3s ease;
+    }
+
+    .premium-link:hover .premium-arrow {
+      transform: translateX(6px);
     }
 
     .list-item {
@@ -841,7 +1035,9 @@
       color: var(--teal-dark);
     }
 
-    /* CTA strip */
+    /* =========================
+       12. CTA Strip
+    ========================== */
     .cta-strip {
       width: min(1200px, calc(100% - 32px));
       margin: 0 auto 70px;
@@ -867,17 +1063,14 @@
       max-width: 720px;
     }
 
-    /* Footer */
+    /* =========================
+       13. Footer
+    ========================== */
     footer {
       background: linear-gradient(135deg, var(--navy-blue), var(--navy-deep));
       color: var(--white);
       padding: 55px 0 26px;
       margin-top: 20px;
-    }
-
-    .footer-content {
-      width: min(1200px, calc(100% - 32px));
-      margin: 0 auto;
     }
 
     .footer-grid {
@@ -950,19 +1143,9 @@
       font-size: 14px;
     }
 
-    /* Animation */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: all 0.7s ease;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Responsive */
+    /* =========================
+       14. Responsive
+    ========================== */
     @media (max-width: 1100px) {
       .hero-inner,
       .about-wrapper,
@@ -993,6 +1176,18 @@
     }
 
     @media (max-width: 768px) {
+      .container,
+      .nav-container,
+      .hero-inner,
+      .stats-grid,
+      .categories,
+      .topics-grid,
+      .features-grid,
+      .footer-content,
+      .cta-strip {
+        width: min(1200px, calc(100% - 20px));
+      }
+
       .mobile-toggle {
         display: block;
       }
@@ -1000,8 +1195,9 @@
       .nav-links {
         position: fixed;
         top: 74px;
-        left: 16px;
-        right: 16px;
+        left: 10px;
+        right: 10px;
+        width: auto;
         flex-direction: column;
         align-items: stretch;
         background: rgba(13, 39, 67, 0.98);
@@ -1026,15 +1222,24 @@
         width: 100%;
       }
 
-      .nav-links a {
+      .nav-links a,
+      .btn-auth {
         width: 100%;
         display: block;
         text-align: center;
-        border-radius: 12px;
+        margin-left: 0;
       }
 
       .hero {
-        padding: 84px 0 65px;
+        padding: 82px 0 62px;
+      }
+
+      .hero h1 {
+        font-size: 32px;
+      }
+
+      .hero p {
+        font-size: 16px;
       }
 
       .hero-card {
@@ -1090,13 +1295,33 @@
       }
 
       .hero-card-wrap {
-        margin-top: 10px;
+        margin-top: 8px;
+      }
+
+      .premium-link {
+        padding: 16px;
+        gap: 12px;
+      }
+
+      .premium-icon {
+        width: 50px;
+        height: 50px;
+        min-width: 50px;
+        font-size: 20px;
+      }
+
+      .premium-title {
+        font-size: 16px;
+      }
+
+      .premium-subtitle {
+        font-size: 12px;
       }
     }
 
     @media (max-width: 480px) {
       .logo {
-        font-size: 20px;
+        font-size: 19px;
       }
 
       .logo i {
@@ -1115,7 +1340,6 @@
       .btn-primary,
       .btn-secondary {
         width: 100%;
-        justify-content: center;
       }
 
       .about-top {
@@ -1132,269 +1356,9 @@
         font-size: 28px;
       }
 
-      .hero-mini-link{
-  display: block;
-  text-decoration: none;
-  color: inherit;
-}
-
-.hero-mini-link:hover{
-  text-decoration: none;
-  color: inherit;
-}
-      .btn-outline{
-  position: relative;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-      .categories{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:24px;
-}
-
-.exam-card-link{
-  display:block;
-  text-decoration:none;
-  color:inherit;
-}
-
-.exam-card{
-  position:relative;
-  background:#fffdf8;
-  border:1px solid #e5d3aa;
-  border-radius:20px;
-  padding:28px 22px;
-  box-shadow:0 10px 26px rgba(0,0,0,0.08);
-  transition:0.3s ease;
-}
-
-.exam-card:hover{
-  transform:translateY(-5px);
-}
-
-.exam-card-link:hover{
-  text-decoration:none;
-  color:inherit;
-}
-
-.exam-card *{
-  position:relative;
-  z-index:2;
-}
-
-.exam-card::before,
-.exam-card::after{
-  pointer-events:none;
-}
-
-.exam-icon{
-  width:62px;
-  height:62px;
-  border-radius:16px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:16px;
-  background:linear-gradient(135deg,#f4ddb0,#d6a94f);
-  color:#4a3300;
-  font-size:24px;
-}
-
-.exam-card h3{
-  font-size:24px;
-  color:#1f2937;
-  margin-bottom:12px;
-}
-
-.exam-card p{
-  font-size:17px;
-  line-height:1.8;
-  color:#374151;
-  margin-bottom:18px;
-}
-
-.btn-outline{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:12px 18px;
-  border-radius:999px;
-  border:2px solid #d6a94f;
-  background:#fff;
-  color:#7a5200;
-  font-weight:700;
-}
-
-.auth-nav-item {
-  list-style: none;
-}
-
-.btn-auth {
-  display: inline-block;
-  text-decoration: none;
-  padding: 10px 18px;
-  border-radius: 30px;
-  font-weight: 600;
-  font-size: 15px;
-  transition: all 0.3s ease;
-  margin-left: 10px;
-}
-
-.login-btn {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.login-btn:hover {
-  background: #ffffff;
-  color: #1e3a8a;
-  transform: translateY(-2px);
-}
-
-.register-btn {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
-  color: #fff;
-  border: none;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
-}
-
-.register-btn:hover {
-  transform: translateY(-2px) scale(1.03);
-  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
-}
-.premium-topic-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-top: 18px;
-}
-
-.premium-item {
-  margin: 0;
-}
-
-.premium-link {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  text-decoration: none;
-  padding: 18px 20px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, #0f172a, #1e40af, #2563eb);
-  color: #ffffff;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.18);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: all 0.35s ease;
-}
-
-.premium-link::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -120%;
-  width: 80%;
-  height: 100%;
-  background: linear-gradient(
-    120deg,
-    transparent,
-    rgba(255, 255, 255, 0.18),
-    transparent
-  );
-  transition: 0.7s;
-}
-
-.premium-link:hover::before {
-  left: 130%;
-}
-
-.premium-link:hover {
-  transform: translateY(-5px) scale(1.01);
-  box-shadow: 0 16px 35px rgba(37, 99, 235, 0.30);
-}
-
-.premium-icon {
-  width: 56px;
-  height: 56px;
-  min-width: 56px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.16);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.08);
-}
-
-.premium-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-
-.premium-badge {
-  display: inline-block;
-  width: fit-content;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-  background: #facc15;
-  color: #111827;
-  padding: 4px 9px;
-  border-radius: 999px;
-  margin-bottom: 8px;
-}
-
-.premium-title {
-  font-size: 19px;
-  font-weight: 800;
-  line-height: 1.3;
-  margin-bottom: 4px;
-}
-
-.premium-subtitle {
-  font-size: 13px;
-  color: #dbeafe;
-  line-height: 1.5;
-}
-
-.premium-arrow {
-  font-size: 17px;
-  opacity: 0.95;
-  transition: transform 0.3s ease;
-}
-
-.premium-link:hover .premium-arrow {
-  transform: translateX(6px);
-}
-
-@media (max-width: 768px) {
-  .premium-link {
-    padding: 16px;
-    gap: 12px;
-  }
-
-  .premium-icon {
-    width: 50px;
-    height: 50px;
-    min-width: 50px;
-    font-size: 20px;
-  }
-
-  .premium-title {
-    font-size: 16px;
-  }
-
-  .premium-subtitle {
-    font-size: 12px;
-  }
-}
-
+      .hero-mini-item {
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
@@ -1402,7 +1366,9 @@
   <div class="bg-orb orb-1"></div>
   <div class="bg-orb orb-2"></div>
 
-  <!-- Navbar -->
+  <!-- =========================
+       15. Navbar
+  ========================== -->
   <nav class="navbar">
     <div class="nav-container">
       <a href="#home" class="logo">
@@ -1416,25 +1382,26 @@
 
       <ul class="nav-links" id="navLinks">
         <li><a href="#home">হোম</a></li>
-
         <li><a href="#exams">পরীক্ষা</a></li>
         <li><a href="#blog">ব্লগ</a></li>
         <li><a href="#solutions">প্রশ্ন সমাধান</a></li>
 
-<li class="auth-nav-item">
-  <a href="login.html" class="btn-auth login-btn">লগইন</a>
-</li>
-<li class="auth-nav-item">
-  <a href="registration.html" class="btn-auth register-btn">রেজিস্টার</a>
-</li>
-<li><a href="about.html">আমার সম্পর্কে </a>
-</li>
+        <li class="auth-nav-item">
+          <a href="login.html" class="btn-auth login-btn">লগইন</a>
+        </li>
 
+        <li class="auth-nav-item">
+          <a href="registration.html" class="btn-auth register-btn">রেজিস্টার</a>
+        </li>
+
+        <li><a href="about.html">আমার সম্পর্কে</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero -->
+  <!-- =========================
+       16. Hero Section
+  ========================== -->
   <section class="hero" id="home">
     <div class="hero-inner">
       <div class="hero-text fade-in">
@@ -1444,6 +1411,7 @@
         </div>
 
         <h1>চাকরির পরীক্ষায় কম্পিউটারে দক্ষ হন</h1>
+
         <p>
           BCS, Bank, HSC, NTRCA এবং বিভিন্ন চাকরির পরীক্ষার জন্য কম্পিউটার,
           গণিত, বিজ্ঞান ও IT related smart preparation — সবকিছু এক প্ল্যাটফর্মে।
@@ -1453,6 +1421,7 @@
           <a href="#exams" class="hero-btn">
             <i class="fas fa-rocket"></i> প্রস্তুতি শুরু করুন
           </a>
+
           <a href="about.html" class="hero-btn-outline">
             <i class="fas fa-user"></i> About Me দেখুন
           </a>
@@ -1472,38 +1441,36 @@
           <h3>আজকের Highlights</h3>
 
           <div class="hero-mini-list">
+            <a href="bcs-ict.html" class="hero-mini-link">
+              <div class="hero-mini-item">
+                <i class="fas fa-landmark"></i>
+                <div>
+                  <strong>BCS ICT প্রস্তুতি</strong>
+                  <span>প্রিলি + রিটেন + previous question analysis</span>
+                </div>
+              </div>
+            </a>
 
-  <a href="bcs-ict.html" class="hero-mini-link">
-    <div class="hero-mini-item">
-      <i class="fas fa-landmark"></i>
-      <div>
-        <strong>BCS ICT প্রস্তুতি</strong>
-        <span>প্রিলি + রিটেন + previous question analysis</span>
-      </div>
-    </div>
-  </a>
+            <a href="bank-it.html" class="hero-mini-link">
+              <div class="hero-mini-item">
+                <i class="fas fa-university"></i>
+                <div>
+                  <strong>Bank IT প্রস্তুতি</strong>
+                  <span>বাংলাদেশ ব্যাংক ও commercial bank exams</span>
+                </div>
+              </div>
+            </a>
 
-  <a href="bank-it.html" class="hero-mini-link">
-    <div class="hero-mini-item">
-      <i class="fas fa-university"></i>
-      <div>
-        <strong>Bank IT প্রস্তুতি</strong>
-        <span>বাংলাদেশ ব্যাংক ও commercial bank exams</span>
-      </div>
-    </div>
-  </a>
-
-  <a href="hsc-ict.html" class="hero-mini-link">
-    <div class="hero-mini-item">
-      <i class="fas fa-code"></i>
-      <div>
-        <strong>HSC ICT & Programming</strong>
-        <span>C, HTML, Web basics, board question solution</span>
-      </div>
-    </div>
-  </a>
-
-</div>
+            <a href="hsc-ict.html" class="hero-mini-link">
+              <div class="hero-mini-item">
+                <i class="fas fa-code"></i>
+                <div>
+                  <strong>HSC ICT & Programming</strong>
+                  <span>C, HTML, Web basics, board question solution</span>
+                </div>
+              </div>
+            </a>
+          </div>
 
           <div class="floating-badge badge-bottom">✅ 500+ Solutions</div>
         </div>
@@ -1511,7 +1478,9 @@
     </div>
   </section>
 
-  <!-- About Me -->
+  <!-- =========================
+       17. About Section
+  ========================== -->
   <section class="about-section" id="about">
     <div class="container">
       <div class="about-wrapper">
@@ -1521,7 +1490,7 @@
               <i class="fas fa-user"></i>
             </div>
             <div>
-              <h2>আমি <span> মিজবাহ উদ্দিন ইমরান </span></h2>
+              <h2>আমি <span>মিজবাহ উদ্দিন ইমরান</span></h2>
               <p class="about-role">IT Instructor • Exam Mentor • Content Creator</p>
             </div>
           </div>
@@ -1533,14 +1502,14 @@
             করে সবার কাছে পৌঁছে দেওয়া।
           </p>
 
-        <div class="chip-list">
-  <a class="chip" href="bcs-ict.html">BCS ICT</a>
-  <a class="chip" href="bank-exam-it.html">Bank Exam IT</a>
-  <a class="chip" href="hsc-ict.html">HSC ICT</a>
-  <a class="chip" href="programming-basics.html">Programming Basics</a>
-  <a class="chip" href="question-solution.html">Question Solution</a>
-  <a class="chip" href="bangla-explain.html">বাংলা Explain</a>
-</div>
+          <div class="chip-list">
+            <a class="chip" href="bcs-ict.html">BCS ICT</a>
+            <a class="chip" href="bank-it.html">Bank Exam IT</a>
+            <a class="chip" href="hsc-ict.html">HSC ICT</a>
+            <a class="chip" href="programming-basics.html">Programming Basics</a>
+            <a class="chip" href="question-solution.html">Question Solution</a>
+            <a class="chip" href="bangla-explain.html">বাংলা Explain</a>
+          </div>
 
           <div class="about-actions">
             <a href="#blog" class="btn-primary">
@@ -1581,21 +1550,26 @@
     </div>
   </section>
 
-  <!-- Stats -->
+  <!-- =========================
+       18. Stats Section
+  ========================== -->
   <section class="stats-section">
     <div class="stats-grid">
       <div class="stat-item fade-in">
         <span class="stat-number counter" data-target="500">0</span>
         <span class="stat-label">প্রশ্ন সমাধান</span>
       </div>
+
       <div class="stat-item fade-in">
         <span class="stat-number counter" data-target="150">0</span>
         <span class="stat-label">IT ব্লগ</span>
       </div>
+
       <div class="stat-item fade-in">
         <span class="stat-number counter" data-target="10000">0</span>
         <span class="stat-label">শিক্ষার্থী</span>
       </div>
+
       <div class="stat-item fade-in">
         <span class="stat-number counter" data-target="6">0</span>
         <span class="stat-label">পরীক্ষা ক্যাটাগরি</span>
@@ -1603,75 +1577,81 @@
     </div>
   </section>
 
-  <!-- Exam Categories -->
-<section class="section-block" id="exams">
-  <h2 class="section-title">আপনার প্রস্তুতি বেছে নিন</h2>
-  <p class="section-subtitle">
-    লক্ষ্য অনুযায়ী পরীক্ষা নির্বাচন করুন এবং structured প্রস্তুতি শুরু করুন
-  </p>
+  <!-- =========================
+       19. Exam Categories
+  ========================== -->
+  <section class="section-block" id="exams">
+    <h2 class="section-title">আপনার প্রস্তুতি বেছে নিন</h2>
+    <p class="section-subtitle">
+      লক্ষ্য অনুযায়ী পরীক্ষা নির্বাচন করুন এবং structured প্রস্তুতি শুরু করুন
+    </p>
 
-  <div class="categories">
-
-    <a href="./bcs-ict.html" class="exam-card-link">
-      <div class="exam-card fade-in">
-        <div class="exam-icon">
-          <i class="fas fa-landmark"></i>
+    <div class="categories">
+      <a href="bcs-ict.html" class="exam-card-link">
+        <div class="exam-card fade-in">
+          <div class="exam-icon">
+            <i class="fas fa-landmark"></i>
+          </div>
+          <h3>BCS Computer & Information</h3>
+          <p>
+            সম্পূর্ণ সিলেবাস, previous year question solution, ICT note এবং mock test।
+          </p>
+          <span class="btn-outline">
+            BCS part দেখুন <i class="fas fa-arrow-right"></i>
+          </span>
         </div>
-        <h3>BCS Computer & Information</h3>
-        <p>
-          সম্পূর্ণ সিলেবাস, previous year question solution, ICT note এবং mock test।
-        </p>
-        <span class="btn-outline">
-          BCS part দেখুন <i class="fas fa-arrow-right"></i>
-        </span>
-      </div>
-    </a>
+      </a>
 
-    <div class="exam-card fade-in">
-      <div class="exam-icon">
-        <i class="fas fa-university"></i>
-      </div>
-      <h3>Bank Exams</h3>
-      <p>
-        বাংলাদেশ ব্যাংক ও অন্যান্য commercial bank exam-এর জন্য computer ও IT প্রস্তুতি।
-      </p>
-      <span class="btn-outline">
-        Bank part দেখুন <i class="fas fa-arrow-right"></i>
-      </span>
-    </div>
-
-    <a href="./hsc-ict.html" class="exam-card-link">
-      <div class="exam-card fade-in">
-        <div class="exam-icon">
-          <i class="fas fa-graduation-cap"></i>
+      <a href="bank-it.html" class="exam-card-link">
+        <div class="exam-card fade-in">
+          <div class="exam-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <h3>Bank Exams</h3>
+          <p>
+            বাংলাদেশ ব্যাংক ও অন্যান্য commercial bank exam-এর জন্য computer ও IT প্রস্তুতি।
+          </p>
+          <span class="btn-outline">
+            Bank part দেখুন <i class="fas fa-arrow-right"></i>
+          </span>
         </div>
-        <h3>HSC ICT</h3>
-        <p>
-          অধ্যায়ভিত্তিক আলোচনা, C programming, HTML, board question এবং CQ/MCQ solution।
-        </p>
-        <span class="btn-outline">
-          HSC part দেখুন <i class="fas fa-arrow-right"></i>
-        </span>
-      </div>
-    </a>
+      </a>
 
-    <div class="exam-card fade-in">
-      <div class="exam-icon">
-        <i class="fas fa-briefcase"></i>
-      </div>
-      <h3>Others / IT Basics</h3>
-      <p>
-        NTRCA, primary, corporate চাকরি ও সাধারণ IT interview preparation-এর জন্য basic guide।
-      </p>
-      <span class="btn-outline">
-        Others দেখুন <i class="fas fa-arrow-right"></i>
-      </span>
+      <a href="hsc-ict.html" class="exam-card-link">
+        <div class="exam-card fade-in">
+          <div class="exam-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3>HSC ICT</h3>
+          <p>
+            অধ্যায়ভিত্তিক আলোচনা, C programming, HTML, board question এবং CQ/MCQ solution।
+          </p>
+          <span class="btn-outline">
+            HSC part দেখুন <i class="fas fa-arrow-right"></i>
+          </span>
+        </div>
+      </a>
+
+      <a href="others.html" class="exam-card-link">
+        <div class="exam-card fade-in">
+          <div class="exam-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3>Others / IT Basics</h3>
+          <p>
+            NTRCA, primary, corporate চাকরি ও সাধারণ IT interview preparation-এর জন্য basic guide।
+          </p>
+          <span class="btn-outline">
+            Others দেখুন <i class="fas fa-arrow-right"></i>
+          </span>
+        </div>
+      </a>
     </div>
+  </section>
 
-  </div>
-</section>
-
-  <!-- Topics -->
+  <!-- =========================
+       20. Topics Section
+  ========================== -->
   <section class="topics-section">
     <h2 class="section-title">বিষয়ভিত্তিক প্রস্তুতি</h2>
     <p class="section-subtitle">
@@ -1711,114 +1691,120 @@
     </div>
   </section>
 
-  <!-- Blog & Solutions -->
+  <!-- =========================
+       21. Blog + Solutions
+  ========================== -->
   <section class="features-section" id="blog">
     <h2 class="section-title">ব্লগ ও প্রশ্ন সমাধান</h2>
     <p class="section-subtitle">
       নিয়মিত আপডেট হওয়া IT ব্লগ, model solution এবং পরীক্ষাভিত্তিক প্রস্তুতি
     </p>
 
-    <div class="premium-topic-list">
+    <div class="features-grid">
+      <!-- Blog Box -->
+      <div class="feature-box fade-in">
+        <h2>Featured Blog</h2>
 
-  <div class="list-item premium-item">
-    <a href="blog/cloud-computing.html" class="premium-link">
-      <span class="premium-icon">
-        <i class="fas fa-cloud"></i>
-      </span>
-      <span class="premium-content">
-        <span class="premium-badge">HOT TOPIC</span>
-        <span class="premium-title">ক্লাউড কম্পিউটিং বিস্তারিত</span>
-        <span class="premium-subtitle">BCS + Bank পরীক্ষার জন্য গুরুত্বপূর্ণ টপিক</span>
-      </span>
-      <span class="premium-arrow">
-        <i class="fas fa-chevron-right"></i>
-      </span>
-    </a>
-  </div>
+        <div class="premium-topic-list">
+          <div class="premium-item">
+            <a href="blog/cloud-computing.html" class="premium-link">
+              <span class="premium-icon">
+                <i class="fas fa-cloud"></i>
+              </span>
+              <span class="premium-content">
+                <span class="premium-badge">HOT TOPIC</span>
+                <span class="premium-title">ক্লাউড কম্পিউটিং বিস্তারিত</span>
+                <span class="premium-subtitle">BCS + Bank পরীক্ষার জন্য গুরুত্বপূর্ণ টপিক</span>
+              </span>
+              <span class="premium-arrow">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </a>
+          </div>
 
-  <div class="list-item premium-item">
-    <a href="blog/artificial-intelligence.html" class="premium-link">
-      <span class="premium-icon">
-        <i class="fas fa-robot"></i>
-      </span>
-      <span class="premium-content">
-        <span class="premium-badge">TRENDING</span>
-        <span class="premium-title">Artificial Intelligence বিস্তারিত</span>
-        <span class="premium-subtitle">BCS + Bank + Viva প্রস্তুতির জন্য দরকারি</span>
-      </span>
-      <span class="premium-arrow">
-        <i class="fas fa-chevron-right"></i>
-      </span>
-    </a>
-  </div>
+          <div class="premium-item">
+            <a href="blog/artificial-intelligence.html" class="premium-link">
+              <span class="premium-icon">
+                <i class="fas fa-robot"></i>
+              </span>
+              <span class="premium-content">
+                <span class="premium-badge">TRENDING</span>
+                <span class="premium-title">Artificial Intelligence বিস্তারিত</span>
+                <span class="premium-subtitle">BCS + Bank + Viva প্রস্তুতির জন্য দরকারি</span>
+              </span>
+              <span class="premium-arrow">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </a>
+          </div>
 
-  <div class="list-item premium-item">
-    <a href="blog/cyber-security.html" class="premium-link">
-      <span class="premium-icon">
-        <i class="fas fa-shield-alt"></i>
-      </span>
-      <span class="premium-content">
-        <span class="premium-badge">IMPORTANT</span>
-        <span class="premium-title">Cyber Security বিস্তারিত</span>
-        <span class="premium-subtitle">ব্যাংক ও BCS পরীক্ষার জন্য খুবই গুরুত্বপূর্ণ</span>
-      </span>
-      <span class="premium-arrow">
-        <i class="fas fa-chevron-right"></i>
-      </span>
-    </a>
-  </div>
+          <div class="premium-item">
+            <a href="blog/cyber-security.html" class="premium-link">
+              <span class="premium-icon">
+                <i class="fas fa-shield-alt"></i>
+              </span>
+              <span class="premium-content">
+                <span class="premium-badge">IMPORTANT</span>
+                <span class="premium-title">Cyber Security বিস্তারিত</span>
+                <span class="premium-subtitle">ব্যাংক ও BCS পরীক্ষার জন্য খুবই গুরুত্বপূর্ণ</span>
+              </span>
+              <span class="premium-arrow">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </a>
+          </div>
 
-  <div class="list-item premium-item">
-    <a href="blog/database.html" class="premium-link">
-      <span class="premium-icon">
-        <i class="fas fa-database"></i>
-      </span>
-      <span class="premium-content">
-        <span class="premium-badge">TOP PICK</span>
-        <span class="premium-title">Database বিস্তারিত</span>
-        <span class="premium-subtitle">প্রিলিমিনারি ও লিখিত পরীক্ষার জন্য সাজানো নোট</span>
-      </span>
-      <span class="premium-arrow">
-        <i class="fas fa-chevron-right"></i>
-      </span>
-    </a>
-  </div>
+          <div class="premium-item">
+            <a href="blog/database.html" class="premium-link">
+              <span class="premium-icon">
+                <i class="fas fa-database"></i>
+              </span>
+              <span class="premium-content">
+                <span class="premium-badge">TOP PICK</span>
+                <span class="premium-title">Database বিস্তারিত</span>
+                <span class="premium-subtitle">প্রিলিমিনারি ও লিখিত পরীক্ষার জন্য সাজানো নোট</span>
+              </span>
+              <span class="premium-arrow">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </a>
+          </div>
 
-  <div class="list-item premium-item">
-    <a href="blog/network-topology.html" class="premium-link">
-      <span class="premium-icon">
-        <i class="fas fa-network-wired"></i>
-      </span>
-      <span class="premium-content">
-        <span class="premium-badge">BCS READY</span>
-        <span class="premium-title">নেটওয়ার্ক টপোলজি বিস্তারিত</span>
-        <span class="premium-subtitle">BCS সিলেবাস ও ব্যাংক পরীক্ষার জন্য ব্যাখ্যাসহ</span>
-      </span>
-      <span class="premium-arrow">
-        <i class="fas fa-chevron-right"></i>
-      </span>
-    </a>
-  </div>
+          <div class="premium-item">
+            <a href="blog/network-topology.html" class="premium-link">
+              <span class="premium-icon">
+                <i class="fas fa-network-wired"></i>
+              </span>
+              <span class="premium-content">
+                <span class="premium-badge">BCS READY</span>
+                <span class="premium-title">নেটওয়ার্ক টপোলজি বিস্তারিত</span>
+                <span class="premium-subtitle">BCS সিলেবাস ও ব্যাংক পরীক্ষার জন্য ব্যাখ্যাসহ</span>
+              </span>
+              <span class="premium-arrow">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </a>
+          </div>
 
-  <div class="list-item premium-item">
-    <a href="blog/operating-system.html" class="premium-link">
-      <span class="premium-icon">
-        <i class="fas fa-desktop"></i>
-      </span>
-      <span class="premium-content">
-        <span class="premium-badge">EXAM BOOST</span>
-        <span class="premium-title">Operating System বিস্তারিত</span>
-        <span class="premium-subtitle">BCS + Bank পরীক্ষার common topic গুলো একসাথে</span>
-      </span>
-      <span class="premium-arrow">
-        <i class="fas fa-chevron-right"></i>
-      </span>
-    </a>
-  </div>
+          <div class="premium-item">
+            <a href="blog/operating-system.html" class="premium-link">
+              <span class="premium-icon">
+                <i class="fas fa-desktop"></i>
+              </span>
+              <span class="premium-content">
+                <span class="premium-badge">EXAM BOOST</span>
+                <span class="premium-title">Operating System বিস্তারিত</span>
+                <span class="premium-subtitle">BCS + Bank পরীক্ষার common topic গুলো একসাথে</span>
+              </span>
+              <span class="premium-arrow">
+                <i class="fas fa-chevron-right"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
 
-</div>
-
-      <!-- Recent Solutions -->
+      <!-- Solutions Box -->
       <div class="feature-box fade-in" id="solutions">
         <h2>সাম্প্রতিক প্রশ্ন সমাধান</h2>
 
@@ -1864,7 +1850,9 @@
     </div>
   </section>
 
-  <!-- CTA Strip -->
+  <!-- =========================
+       22. CTA Section
+  ========================== -->
   <section class="cta-strip fade-in">
     <div>
       <h3>প্রস্তুতি শুরু করতে আর দেরি কেন?</h3>
@@ -1873,12 +1861,15 @@
         আজই topic-wise learning শুরু করো।
       </p>
     </div>
+
     <a href="#exams" class="hero-btn">
       <i class="fas fa-book"></i> এখনই শুরু করুন
     </a>
   </section>
 
-  <!-- Footer -->
+  <!-- =========================
+       23. Footer
+  ========================== -->
   <footer>
     <div class="footer-content">
       <div class="footer-grid">
@@ -1912,7 +1903,7 @@
           <h3>পরীক্ষা ক্যাটাগরি</h3>
           <ul>
             <li><a href="bcs-ict.html">BCS Computer</a></li>
-            <li><a href="bank.html">Bank Exams</a></li>
+            <li><a href="bank-it.html">Bank Exams</a></li>
             <li><a href="hsc-ict.html">HSC ICT</a></li>
             <li><a href="others.html">Others / IT Basics</a></li>
           </ul>
@@ -1923,7 +1914,7 @@
           <ul>
             <li><i class="fas fa-map-marker-alt"></i> চট্টগ্রাম, বাংলাদেশ</li>
             <li><i class="fas fa-envelope"></i> info@ictguide.com</li>
-            <li><i class="fas fa-phone"></i> +8801839228160 what'sapp only.</li>
+            <li><i class="fas fa-phone"></i> +8801839228160 WhatsApp only</li>
             <li><i class="fas fa-clock"></i> ২৪/৭ সাপোর্ট</li>
           </ul>
         </div>
@@ -1935,6 +1926,9 @@
     </div>
   </footer>
 
+  <!-- =========================
+       24. JavaScript
+  ========================== -->
   <script>
     // Mobile Menu Toggle
     const mobileToggle = document.getElementById("mobileToggle");
@@ -2027,6 +2021,7 @@
 
         const updateCounter = () => {
           current += increment;
+
           if (current < target) {
             if (target >= 1000) {
               counter.innerText = Math.floor(current).toLocaleString() + "+";
