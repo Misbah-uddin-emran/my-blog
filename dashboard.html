@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT Guide - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #0d3b66;
+            --secondary: #145da0;
+            --accent: #f4b400;
+            --light: #f8fbff;
+            --dark: #0a2435;
+            --success: #28a745;
+            --danger: #dc3545;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+        }
+
+        body {
+            font-family: 'Noto Sans Bengali', sans-serif;
+            background: linear-gradient(135deg, #0a2435 0%, #145da0 55%, #1f7ae0 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text);
+        }
+
+        .marquee-header {
+            background: linear-gradient(90deg, #071b2b 0%, #0d3b66 100%);
+            color: white;
+            padding: 12px 20px;
+            overflow: hidden;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .marquee-text {
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+            animation: scroll 22s linear infinite;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .navbar-custom {
+            background: linear-gradient(90deg, #0d3b66 0%, #145da0 100%);
+            box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+            padding: 14px 36px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .navbar-brand {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--accent) !important;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.25);
+        }
+
+        .navbar-brand i {
+            margin-right: 8px;
+        }
+
+        .navbar-custom .navbar-toggler {
+            border-color: rgba(255,255,255,0.3);
+        }
+
+        .navbar-custom .navbar-toggler:focus {
+            box-shadow: none;
+        }
+
+        .navbar-custom .navbar-toggler-icon {
+            filter: brightness(0) invert(1);
+        }
+
+        .navbar-nav .nav-link {
+            color: #eef5ff !important;
+            margin-left: 28px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .navbar-nav .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dashboard-main {
+            flex: 1;
+            padding: 32px 20px 40px;
+        }
+
+        .dashboard-container {
+            max-width: 1250px;
+            margin: 0 auto;
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.97), rgba(247,250,255,0.98));
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 16px 45px rgba(0,0,0,0.18);
+            border-top: 5px solid var(--accent);
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 26px;
+            align-items: center;
+            margin-bottom: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: rgba(20,93,160,0.06);
+            right: -70px;
+            top: -70px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(20,93,160,0.08);
+            color: var(--primary);
+            padding: 8px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-size: 34px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .hero-subtitle {
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.8;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-btn {
+            border: none;
+            border-radius: 10px;
+            padding: 13px 18px;
+            font-size: 14px;
+            font-weight: 800;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary-custom {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: 0 8px 18px rgba(13,59,102,0.2);
+        }
+
+        .btn-primary-custom:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .btn-outline-custom {
+            background: white;
+            color: var(--primary);
+            border: 2px solid #dbe3ef;
+        }
+
+        .btn-outline-custom:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger-custom {
+            background: linear-gradient(90deg, #dc3545, #c82333);
+            color: white;
+        }
+
+        .btn-danger-custom:hover {
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-illustration {
+            background: linear-gradient(145deg, #f4b400 0%, #fff4cc 100%);
+            border-radius: 18px;
+            min-height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+            text-align: center;
+            box-shadow: inset 0 0 0 6px rgba(255,255,255,0.5);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-illustration .icon {
+            font-size: 76px;
+            margin-bottom: 14px;
+        }
+
+        .hero-illustration h3 {
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .hero-illustration p {
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .card-box {
+            background: rgba(255,255,255,0.98);
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 14px 38px rgba(0,0,0,0.16);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            font-size: 22px;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .profile-info {
+            display: grid;
+            gap: 14px;
+        }
+
+        .info-item {
+            background: #f8fbff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 14px 16px;
+        }
+
+        .info-label {
+            font-size: 12px;
+            color: var(--muted);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.6px;
+        }
+
+        .info-value {
+            font-size: 16px;
+            color: var(--text);
+            font-weight: 700;
+            word-break: break-word;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);
+            border: 1px solid #dbeafe;
+            border-radius: 16px;
+            padding: 20px 18px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+
+        .stat-card i {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .stat-card h4 {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: #475569;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.98);
+            border-radius: 18px;
+            padding: 24px 18px;
+            text-align: center;
+            box-shadow: 0 14px 38px rgba(0,0,0,0.16);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            color: var(--text);
+        }
+
+        .action-icon {
+            width: 68px;
+            height: 68px;
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: linear-gradient(145deg, #f4b400 0%, #fff4cc 100%);
+            color: var(--primary);
+            box-shadow: 0 8px 22px rgba(244,180,0,0.25);
+        }
+
+        .action-card h5 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .action-card p {
+            font-size: 13px;
+            color: #475569;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #071b2b 0%, #0d3b66 100%);
+            color: #d5deea;
+            text-align: center;
+            padding: 24px 20px;
+            font-size: 13px;
+            border-top: 3px solid var(--accent);
+        }
+
+        footer p {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .toast-msg {
+            position: fixed;
+            top: 90px;
+            right: 20px;
+            min-width: 300px;
+            max-width: 380px;
+            padding: 16px 20px;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            z-index: 9999;
+            display: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.28);
+            animation: slideIn 0.3s ease;
+            font-weight: 700;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(420px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .toast-success {
+            background: var(--success);
+            border-left: 5px solid #20c997;
+        }
+
+        .toast-error {
+            background: var(--danger);
+            border-left: 5px solid #ffd2d8;
+        }
+
+        .loading-text {
+            color: var(--muted);
+            font-weight: 700;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        @media (max-width: 1100px) {
+            .quick-actions {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-custom {
+                padding: 12px 18px;
+            }
+
+            .navbar-nav .nav-link {
+                margin-left: 0;
+                margin-top: 8px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .dashboard-main {
+                padding: 20px 12px 30px;
+            }
+
+            .hero-card,
+            .card-box {
+                padding: 20px;
+            }
+
+            .hero-title {
+                font-size: 26px;
+            }
+
+            .stats-grid,
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar-brand {
+                font-size: 21px;
+            }
+
+            .marquee-text {
+                font-size: 12px;
+            }
+
+            .toast-msg {
+                right: 12px;
+                left: 12px;
+                min-width: auto;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-header">
+        <div class="marquee-text">
+            📘 ICT Guide Dashboard | তোমার নোট, PDF, Mock Test, Progress Track এবং Smart Learning Resource এখন এক জায়গায় ✨
+        </div>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-laptop-code"></i> ICT Guide
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="fas fa-home"></i> হোম</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html"><i class="fas fa-user-graduate"></i> আমাদের সম্পর্কে</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html"><i class="fas fa-book-open"></i> কোর্স</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html"><i class="fas fa-phone"></i> যোগাযোগ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="dashboard-main">
+        <div class="dashboard-container">
+
+            <section class="hero-card">
+                <div>
+                    <div class="hero-badge">
+                        <i class="fas fa-user-shield"></i> Student Dashboard
+                    </div>
+
+                    <h1 class="hero-title">
+                        স্বাগতম, <span id="heroUserName">স্টুডেন্ট</span> 👋
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        এখানে তোমার ব্যক্তিগত প্রোফাইল, প্রস্তুতির ধরণ, learning tools এবং গুরুত্বপূর্ণ resource shortcut থাকবে।
+                        ধাপে ধাপে নিজেকে প্রস্তুত করো — HSC ICT, BCS ICT, Bank Job বা General IT যেটাই হোক।
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="index.html" class="hero-btn btn-primary-custom">
+                            <i class="fas fa-house"></i> হোমে যাও
+                        </a>
+
+                        <a href="courses.html" class="hero-btn btn-outline-custom">
+                            <i class="fas fa-book-open"></i> কোর্স দেখো
+                        </a>
+
+                        <button id="logoutBtn" class="hero-btn btn-danger-custom">
+                            <i class="fas fa-right-from-bracket"></i> Logout
+                        </button>
+                    </div>
+                </div>
+
+                <div class="hero-illustration">
+                    <div>
+                        <div class="icon">🎯</div>
+                        <h3>Stay Focused</h3>
+                        <p>
+                            Smart resource, structured practice এবং progress view-এর মাধ্যমে নিজের preparation আরও organized করো।
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="dashboard-grid">
+                <div class="card-box">
+                    <div class="card-title">
+                        <i class="fas fa-id-badge"></i> প্রোফাইল তথ্য
+                    </div>
+
+                    <div class="profile-info" id="profileInfo">
+                        <div class="loading-text">
+                            <i class="fas fa-spinner fa-spin"></i> User data load হচ্ছে...
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-box">
+                    <div class="card-title">
+                        <i class="fas fa-chart-pie"></i> Dashboard Summary
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-layer-group"></i>
+                            <h4 id="statCategory">--</h4>
+                            <p>তোমার selected preparation category</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <i class="fas fa-user-tag"></i>
+                            <h4 id="statRole">--</h4>
+                            <p>তোমার account role</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <i class="fas fa-file-pdf"></i>
+                            <h4>PDF</h4>
+                            <p>নোট এবং resource section browse করো</p>
+                        </div>
+
+                        <div class="stat-card">
+                            <i class="fas fa-clipboard-check"></i>
+                            <h4>Test</h4>
+                            <p>Practice ও mock test zone ready রাখো</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quick-actions">
+                <a href="hsc-ict.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h5>HSC ICT</h5>
+                    <p>অধ্যায়ভিত্তিক content, note ও explanation দেখো</p>
+                </a>
+
+                <a href="bcs-ict.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h5>BCS ICT</h5>
+                    <p>BCS ও চাকরি প্রস্তুতির resource access করো</p>
+                </a>
+
+                <a href="pdf-viewer.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h5>PDF Resource</h5>
+                    <p>তোমার note, handout ও PDF collection দেখো</p>
+                </a>
+
+                <a href="contact.html" class="action-card">
+                    <div class="action-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h5>Support</h5>
+                    <p>প্রয়োজন হলে যোগাযোগ ও সহায়তা নাও</p>
+                </a>
+            </section>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; ২০২৬ ICT Guide - স্মার্ট আইসিটি শিক্ষার প্ল্যাটফর্ম</p>
+        <div>
+            <a href="#">গোপনীয়তা নীতি</a> |
+            <a href="#">শর্তাবলী</a> |
+            <a href="#">নিরাপত্তা</a> |
+            <a href="contact.html">যোগাযোগ</a>
+        </div>
+    </footer>
+
+    <div id="toast" class="toast-msg"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="module">
+        import { auth } from "./firebase-config.js";
+        import {
+            onAuthStateChanged,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        import { db } from "./firebase-config.js";
+        import {
+            doc,
+            getDoc
+        } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        const heroUserName = document.getElementById("heroUserName");
+        const profileInfo = document.getElementById("profileInfo");
+        const statCategory = document.getElementById("statCategory");
+        const statRole = document.getElementById("statRole");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        function showToast(msg, type = "success") {
+            const toast = document.getElementById("toast");
+            toast.textContent = msg;
+            toast.className = "toast-msg " + (type === "success" ? "toast-success" : "toast-error");
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+            }, 4000);
+        }
+
+        function renderProfile(data, user) {
+            const name = data?.name || user.displayName || "নাম পাওয়া যায়নি";
+            const email = data?.email || user.email || "ইমেইল পাওয়া যায়নি";
+            const category = data?.category || "General IT";
+            const role = data?.role || "student";
+            const uid = user.uid;
+
+            heroUserName.textContent = name;
+            statCategory.textContent = category;
+            statRole.textContent = role;
+
+            profileInfo.innerHTML = `
+                <div class="info-item">
+                    <div class="info-label">Full Name</div>
+                    <div class="info-value">${name}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Email Address</div>
+                    <div class="info-value">${email}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Preparation Category</div>
+                    <div class="info-value">${category}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">Account Role</div>
+                    <div class="info-value">${role}</div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-label">User ID</div>
+                    <div class="info-value">${uid}</div>
+                </div>
+            `;
+        }
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) {
+                window.location.href = "login.html";
+                return;
+            }
+
+            try {
+                const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
+
+                if (userSnap.exists()) {
+                    renderProfile(userSnap.data(), user);
+                } else {
+                    renderProfile({}, user);
+                }
+            } catch (error) {
+                profileInfo.innerHTML = `
+                    <div class="info-item">
+                        <div class="info-label">Error</div>
+                        <div class="info-value">User data load করা যায়নি</div>
+                    </div>
+                `;
+                showToast("User data load করা যায়নি।", "error");
+            }
+        });
+
+        logoutBtn.addEventListener("click", async () => {
+            try {
+                await signOut(auth);
+                showToast("সফলভাবে logout করা হয়েছে।", "success");
+
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 900);
+            } catch (error) {
+                showToast("Logout করা যায়নি। আবার চেষ্টা করো।", "error");
+            }
+        });
+    </script>
+</body>
+</html>
