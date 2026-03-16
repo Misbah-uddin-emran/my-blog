@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ক্লাউড কম্পিউটিং — BCS & Bank Exam Guide</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --surface-2:#f8f8f8;
+      --text:#111111;
+      --muted:#333333;
+      --red:#c1121f;
+      --red-soft:#fff2f2;
+      --border:#e6e6e6;
+      --shadow:0 10px 30px rgba(0,0,0,0.06);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:"Nikosh","NikoshBAN","SutonnyMJ","SutonnyOMJ","SolaimanLipi","Kalpurush","Hind Siliguri","Noto Sans Bengali",sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.85;
+      overflow-x:hidden;
+    }
+    nav{
+      position:sticky;top:0;z-index:100;
+      background:#fff;border-bottom:1px solid var(--border);
+      padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+    }
+    .nav-brand{font-size:.95rem;font-weight:700;color:var(--red);letter-spacing:.02em}
+    .exam-badge{
+      display:inline-flex;align-items:center;gap:8px;
+      background:var(--red-soft);border:1px solid #f2c8cc;color:var(--red);
+      padding:7px 14px;border-radius:999px;font-size:.82rem;font-weight:700;
+    }
+    .hero{padding:64px 20px 38px;text-align:center}
+    .hero-icon{font-size:68px;display:block;margin-bottom:10px}
+    .eyebrow{color:var(--red);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;margin-bottom:10px}
+    h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.15;margin-bottom:14px}
+    h1 span{color:var(--red)}
+    .hero-sub{max-width:820px;margin:0 auto;color:var(--muted);font-size:1.02rem}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px}
+    .hero-tag{padding:8px 14px;border:1px solid #f2c8cc;background:var(--red-soft);border-radius:999px;color:var(--red);font-size:.8rem;font-weight:700}
+
+    main{max-width:980px;margin:0 auto;padding:0 18px 70px}
+    section{margin-bottom:46px}
+    .section-label{font-size:.82rem;font-weight:700;color:var(--red);margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase}
+    h2{font-size:clamp(1.45rem,3.5vw,2.15rem);line-height:1.3;margin-bottom:16px}
+    h3{font-size:1.08rem;color:var(--red);margin-bottom:10px}
+    p{margin-bottom:12px;color:var(--muted)}
+    strong{color:var(--red)}
+
+    .card,.definition-box,.passage-box,.mcq-item,.table-wrap,.note-box{
+      background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow)
+    }
+    .card{padding:22px}
+    .definition-box{padding:22px 24px;background:#fff7f7;border-left:5px solid var(--red);font-size:1.03rem;color:var(--text)}
+    .note-box{padding:16px 18px;background:var(--red-soft);border-left:4px solid var(--red);margin-bottom:18px}
+    .note-box p{margin:0;color:#4b0d13}
+
+    .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+    .feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+    .feature-item{border:1px solid var(--border);border-radius:14px;padding:16px;background:var(--surface-2)}
+    .feature-item .num{display:inline-block;color:var(--red);font-weight:800;font-size:1.35rem;margin-bottom:8px}
+    .feature-item h4{font-size:.98rem;margin-bottom:6px}
+    .feature-item p{font-size:.9rem;margin:0}
+
+    .service-card{display:flex;gap:14px;align-items:flex-start;padding:18px;border:1px solid var(--border);border-radius:14px;background:#fff;margin-bottom:12px}
+    .service-badge{width:54px;height:54px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;color:var(--red);background:var(--red-soft);border:1px solid #f2c8cc;flex-shrink:0}
+    .service-card p{margin:0}
+
+    .adv-list{list-style:none;display:grid;gap:10px}
+    .adv-list li{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border:1px solid var(--border);border-radius:14px;background:#fff}
+    .adv-icon{font-size:1.25rem;line-height:1;margin-top:3px}
+    .adv-text strong{display:block;margin-bottom:3px}
+    .adv-text span{color:var(--muted);font-size:.94rem}
+
+    .table-wrap{overflow-x:auto;padding:6px}
+    table{width:100%;border-collapse:collapse;font-size:.93rem}
+    th{background:var(--red-soft);color:var(--red);text-align:left;padding:12px 14px;border-bottom:1px solid var(--border)}
+    td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--muted);vertical-align:top}
+    td:first-child{color:var(--text);font-weight:700}
+    tr:last-child td{border-bottom:none}
+
+    .term-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:15px}
+    .term-card{padding:18px;border:1px solid var(--border);border-radius:14px;background:var(--surface-2)}
+    .term-card .icon{font-size:1.9rem;margin-bottom:8px}
+    .term-card h4{margin-bottom:8px;font-size:1rem}
+    .term-card p{font-size:.92rem;margin:0}
+
+    .mcq-section{padding:24px;background:#fffafa;border:1px solid #f0d7da;border-radius:18px;box-shadow:var(--shadow)}
+    .mcq-item{padding:16px 18px;margin-bottom:12px;background:#fff}
+    .mcq-item:last-child{margin-bottom:0}
+    .mcq-q{font-weight:700;color:var(--text);margin-bottom:8px}
+    .mcq-a{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--red-soft);color:var(--red);border:1px solid #f2c8cc;font-weight:700;font-size:.84rem;margin-bottom:7px}
+    .mcq-explain{font-size:.9rem;color:var(--muted);margin:0}
+
+    .passage-wrap{display:grid;gap:18px}
+    .passage-box{padding:24px 26px}
+    .passage-title{font-size:.9rem;color:var(--red);font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px}
+    .passage-box p{font-size:1rem;line-height:2;color:var(--text);margin:0}
+    .copy-btn{margin-top:12px;border:none;background:var(--red);color:#fff;padding:10px 16px;border-radius:10px;cursor:pointer;font-weight:700}
+    .copy-btn:hover{opacity:.92}
+
+    .key-points{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+    .key-points span{padding:9px 14px;border-radius:999px;background:var(--red-soft);border:1px solid #f2c8cc;color:var(--red);font-weight:700;font-size:.84rem}
+    .conclusion{text-align:center;padding:34px 24px;background:#fff7f7;border:1px solid #f0d7da;border-radius:20px;box-shadow:var(--shadow)}
+    .conclusion p{max-width:760px;margin:0 auto 12px}
+
+    footer{border-top:1px solid var(--border);padding:24px 18px;text-align:center;color:#555;font-size:.85rem}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    @media (max-width:680px){
+      nav{padding:12px 14px}
+      .hero{padding:54px 16px 30px}
+      main{padding:0 14px 56px}
+      .passage-box,.card,.definition-box,.mcq-section{padding:18px}
+      .service-card{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-brand">☁ ক্লাউড কম্পিউটিং</div>
+    <div class="exam-badge">📋 BCS · Bank · সরকারি চাকরি</div>
+  </nav>
+
+  <header class="hero reveal visible">
+    <span class="hero-icon">☁️</span>
+    <p class="eyebrow">সম্পূর্ণ পরীক্ষা গাইড</p>
+    <h1>ক্লাউড <span>কম্পিউটিং</span></h1>
+    <p class="hero-sub">BCS, বিভিন্ন Bank exam এবং সরকারি চাকরির পরীক্ষার জন্য ক্লাউড কম্পিউটিং-এর সবচেয়ে গুরুত্বপূর্ণ তথ্য, লিখিত পরীক্ষার প্যারাগ্রাফ, এবং ৩০টির বেশি MCQ একসাথে সাজানো হলো।</p>
+    <div class="hero-tags">
+      <span class="hero-tag">NIST</span>
+      <span class="hero-tag">IaaS · PaaS · SaaS</span>
+      <span class="hero-tag">Public · Private · Hybrid</span>
+      <span class="hero-tag">Virtualization</span>
+      <span class="hero-tag">36 MCQ</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="reveal">
+      <p class="section-label">০১ — সংজ্ঞা</p>
+      <h2>ক্লাউড কম্পিউটিং কী?</h2>
+      <div class="note-box"><p><strong>পরীক্ষায় খুব গুরুত্বপূর্ণ:</strong> NIST-এর সংজ্ঞা, শব্দটির উৎপত্তি, জনক, প্রথম commercial cloud service, এবং <strong>Pay as you go</strong> ধারণা—এগুলো MCQ-তে বারবার আসে।</p></div>
+      <div class="definition-box">
+        <p><strong>NIST (National Institute of Standards and Technology)</strong> এর মতে, ক্লাউড কম্পিউটিং হলো এমন একটি মডেল, যার মাধ্যমে ইন্টারনেটের সাহায্যে সার্ভার, স্টোরেজ, নেটওয়ার্ক, সফটওয়্যারসহ বিভিন্ন কম্পিউটিং রিসোর্স চাহিদামতো, দ্রুত এবং ন্যূনতম ব্যবস্থাপনা প্রচেষ্টায় ব্যবহার করা যায়।</p>
+      </div>
+      <div class="card">
+        <h3>ইতিহাস — পরীক্ষায় আসার মতো তথ্য</h3>
+        <p><strong>“Cloud Computing”</strong> শব্দটি ২০০৬ সালে Google-এর CEO <strong>Eric Schmidt</strong> ব্যবহার করেন। <strong>J.C.R. Licklider</strong> ১৯৬০-এর দশকে interconnected computer network-এর ধারণা দেন, তাই তাকে প্রায়ই cloud computing-এর <strong>জনক</strong> বলা হয়। <strong>John McCarthy</strong> ১৯৬১ সালে বলেন যে ভবিষ্যতে কম্পিউটিং হবে পানি-বিদ্যুতের মতো utility service। <strong>Amazon Web Services (AWS)</strong> ২০০৬ সালে EC2 ও S3 চালুর মাধ্যমে আধুনিক commercial cloud era শুরু করে।</p>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০২ — NIST এর ৫টি বৈশিষ্ট্য</p>
+      <h2>ক্লাউড কম্পিউটিং-এর ৫টি Essential Characteristics</h2>
+      <div class="feature-grid">
+        <div class="feature-item"><span class="num">01</span><h4>On-Demand Self-Service</h4><p>ব্যবহারকারী প্রয়োজন অনুযায়ী নিজেই computing resource নিতে পারে।</p></div>
+        <div class="feature-item"><span class="num">02</span><h4>Broad Network Access</h4><p>ইন্টারনেটের মাধ্যমে মোবাইল, ল্যাপটপ, ট্যাবসহ বিভিন্ন ডিভাইস থেকে অ্যাক্সেস করা যায়।</p></div>
+        <div class="feature-item"><span class="num">03</span><h4>Resource Pooling</h4><p>একই infrastructure একাধিক user শেয়ার করে ব্যবহার করে।</p></div>
+        <div class="feature-item"><span class="num">04</span><h4>Rapid Elasticity</h4><p>চাহিদা বাড়লে দ্রুত resource বাড়ানো এবং কমলে কমিয়ে আনা যায়।</p></div>
+        <div class="feature-item"><span class="num">05</span><h4>Measured Service</h4><p>ব্যবহার অনুযায়ী বিল—এটাই <strong>Pay as you go</strong> মডেল।</p></div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৩ — সার্ভিস মডেল</p>
+      <h2>তিনটি Service Model</h2>
+      <div class="service-card">
+        <div class="service-badge">IaaS</div>
+        <div><h3>Infrastructure as a Service</h3><p>এখানে সার্ভার, স্টোরেজ, নেটওয়ার্ক ইত্যাদি অবকাঠামো ভাড়া নেওয়া হয়। ব্যবহারকারী নিজে OS, application ও data manage করে। <strong>উদাহরণ:</strong> Amazon EC2, Azure Virtual Machines, Google Compute Engine.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-badge">PaaS</div>
+        <div><h3>Platform as a Service</h3><p>এটি developer-দের জন্য প্রস্তুত platform দেয়। developer শুধু application তৈরি ও deploy করে। <strong>উদাহরণ:</strong> Google App Engine, Heroku, AWS Elastic Beanstalk.</p></div>
+      </div>
+      <div class="service-card">
+        <div class="service-badge">SaaS</div>
+        <div><h3>Software as a Service</h3><p>সম্পূর্ণ software ইন্টারনেটের মাধ্যমে ব্যবহার করা যায়; installation প্রয়োজন হয় না। <strong>উদাহরণ:</strong> Gmail, Google Docs, Microsoft 365, Zoom, Dropbox.</p></div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>মডেল</th><th>ব্যবহারকারী যা ম্যানেজ করে</th><th>প্রোভাইডার যা ম্যানেজ করে</th><th>উপযুক্ত কার জন্য</th></tr></thead>
+          <tbody>
+            <tr><td>IaaS</td><td>OS, অ্যাপ, ডেটা</td><td>হার্ডওয়্যার, স্টোরেজ, নেটওয়ার্ক</td><td>IT Professional</td></tr>
+            <tr><td>PaaS</td><td>Application, Data</td><td>OS, Middleware, Hardware</td><td>Developer</td></tr>
+            <tr><td>SaaS</td><td>শুধু ব্যবহার</td><td>সবকিছু</td><td>General User</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৪ — Deployment Model</p>
+      <h2>চার ধরনের ক্লাউড</h2>
+      <ul class="adv-list">
+        <li><span class="adv-icon">🌍</span><div class="adv-text"><strong>Public Cloud</strong><span>সাধারণ মানুষের জন্য উন্মুক্ত। অনেক user একই infrastructure share করে। সবচেয়ে সাশ্রয়ী। উদাহরণ: AWS, Azure, Google Cloud.</span></div></li>
+        <li><span class="adv-icon">🏢</span><div class="adv-text"><strong>Private Cloud</strong><span>শুধু একটি নির্দিষ্ট প্রতিষ্ঠানের জন্য ব্যবহৃত হয়। নিরাপত্তা ও নিয়ন্ত্রণ সবচেয়ে বেশি। ব্যাংক ও সরকারি প্রতিষ্ঠানের জন্য গুরুত্বপূর্ণ।</span></div></li>
+        <li><span class="adv-icon">🔀</span><div class="adv-text"><strong>Hybrid Cloud</strong><span>Public ও Private cloud-এর সমন্বয়। Sensitive data private-এ এবং সাধারণ কাজ public-এ রাখা হয়। বর্তমানে সবচেয়ে practical model.</span></div></li>
+        <li><span class="adv-icon">🤝</span><div class="adv-text"><strong>Community Cloud</strong><span>একই ধরনের চাহিদা সম্পন্ন একাধিক প্রতিষ্ঠান একসাথে একটি cloud ব্যবহার করে। যেমন কয়েকটি বিশ্ববিদ্যালয় বা হাসপাতাল।</span></div></li>
+      </ul>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৫ — সুবিধা ও সীমাবদ্ধতা</p>
+      <h2>Advantages এবং Disadvantages</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>✅ সুবিধা</h3>
+          <ul class="adv-list">
+            <li><span class="adv-icon">💰</span><div class="adv-text"><strong>কম খরচ</strong><span>হার্ডওয়্যার কেনা লাগে না; ব্যবহার অনুযায়ী বিল দিতে হয়।</span></div></li>
+            <li><span class="adv-icon">📍</span><div class="adv-text"><strong>যেকোনো স্থান থেকে অ্যাক্সেস</strong><span>ইন্টারনেট থাকলেই anywhere access পাওয়া যায়।</span></div></li>
+            <li><span class="adv-icon">📈</span><div class="adv-text"><strong>Scalability ও Elasticity</strong><span>সহজে resource বাড়ানো বা কমানো যায়।</span></div></li>
+            <li><span class="adv-icon">💾</span><div class="adv-text"><strong>Backup ও Recovery</strong><span>ডেটা সংরক্ষণ ও disaster recovery সহজ হয়।</span></div></li>
+            <li><span class="adv-icon">🔄</span><div class="adv-text"><strong>Automatic Update</strong><span>Provider নিজে system update করে।</span></div></li>
+            <li><span class="adv-icon">🤝</span><div class="adv-text"><strong>Collaboration</strong><span>একাধিক user real-time-এ একই ফাইল বা project-এ কাজ করতে পারে।</span></div></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>❌ অসুবিধা</h3>
+          <ul class="adv-list">
+            <li><span class="adv-icon">🌐</span><div class="adv-text"><strong>Internet Dependency</strong><span>ইন্টারনেট ছাড়া cloud service ঠিকমতো ব্যবহার করা যায় না।</span></div></li>
+            <li><span class="adv-icon">🔒</span><div class="adv-text"><strong>Security Risk</strong><span>ভুল configuration বা attack হলে data breach হতে পারে।</span></div></li>
+            <li><span class="adv-icon">🕵️</span><div class="adv-text"><strong>Privacy Concern</strong><span>ডেটা third-party data center-এ থাকে।</span></div></li>
+            <li><span class="adv-icon">⏳</span><div class="adv-text"><strong>Downtime</strong><span>Provider-এর সমস্যা হলে service বন্ধ হতে পারে।</span></div></li>
+            <li><span class="adv-icon">🔗</span><div class="adv-text"><strong>Vendor Lock-in</strong><span>এক provider থেকে আরেক provider-এ migration কঠিন হতে পারে।</span></div></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৬ — প্রধান প্রোভাইডার</p>
+      <h2>বিশ্বের শীর্ষ Cloud Provider</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>পূর্ণ নাম</th><th>সংক্ষিপ্ত রূপ</th><th>কোম্পানি</th><th>পরীক্ষায় মনে রাখুন</th></tr></thead>
+          <tbody>
+            <tr><td>Amazon Web Services</td><td>AWS</td><td>Amazon</td><td><strong>সবচেয়ে বড় provider</strong></td></tr>
+            <tr><td>Microsoft Azure</td><td>Azure</td><td>Microsoft</td><td><strong>Azure = Microsoft</strong></td></tr>
+            <tr><td>Google Cloud Platform</td><td>GCP</td><td>Google</td><td><strong>GCP = Google</strong></td></tr>
+            <tr><td>Alibaba Cloud</td><td>Alibaba Cloud</td><td>Alibaba</td><td>চীনভিত্তিক বড় provider</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৭ — গুরুত্বপূর্ণ পরিভাষা</p>
+      <h2>পরীক্ষায় আসার মতো Key Terms</h2>
+      <div class="term-grid">
+        <div class="term-card"><div class="icon">⚙️</div><h4>Virtualization</h4><p>একটি physical server-কে একাধিক virtual machine-এ ভাগ করার প্রযুক্তি। <strong>এটিই cloud computing-এর মূল ভিত্তি।</strong></p></div>
+        <div class="term-card"><div class="icon">📦</div><h4>Containerization</h4><p>Application-কে container-এ package করে যেকোনো environment-এ চালানো যায়। Docker ও Kubernetes খুব পরিচিত উদাহরণ।</p></div>
+        <div class="term-card"><div class="icon">🔁</div><h4>Scalability vs Elasticity</h4><p><strong>Scalability</strong> হলো resource বাড়ানো; <strong>Elasticity</strong> হলো demand অনুযায়ী resource স্বয়ংক্রিয়ভাবে বাড়া-কমা।</p></div>
+        <div class="term-card"><div class="icon">🌐</div><h4>CDN</h4><p>Content Delivery Network বিভিন্ন জায়গায় server রেখে নিকটবর্তী location থেকে content দ্রুত সরবরাহ করে।</p></div>
+        <div class="term-card"><div class="icon">📜</div><h4>SLA</h4><p>Service Level Agreement হলো provider ও user-এর মধ্যে service quality, uptime ইত্যাদি নিয়ে চুক্তি।</p></div>
+        <div class="term-card"><div class="icon">🤖</div><h4>Serverless Computing</h4><p>Server manage না করেই code run করা যায়; code চললে তবেই bill হয়। উদাহরণ: AWS Lambda.</p></div>
+        <div class="term-card"><div class="icon">💧</div><h4>Utility Computing</h4><p>পানি-বিদ্যুতের মতো computing service সরবরাহের ধারণা। John McCarthy এই ধারণা popular করেন।</p></div>
+        <div class="term-card"><div class="icon">📡</div><h4>Edge Computing</h4><p>Data processing user-এর কাছাকাছি স্থানে করা হয়। IoT ডিভাইসে এটি খুব গুরুত্বপূর্ণ।</p></div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৮ — MCQ অনুশীলন</p>
+      <h2>BCS, Bank ও সরকারি চাকরির পরীক্ষার জন্য ৩৬টি গুরুত্বপূর্ণ MCQ</h2>
+      <div class="mcq-section">
+        <div class="mcq-item"><p class="mcq-q">১. “Cloud Computing” শব্দটি প্রথম কে ব্যবহার করেন?</p><span class="mcq-a">Eric Schmidt</span><p class="mcq-explain">Google-এর CEO Eric Schmidt ২০০৬ সালে এই শব্দটি ব্যবহার করেন।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২. Cloud Computing-এর জনক হিসেবে কাকে ধরা হয়?</p><span class="mcq-a">J.C.R. Licklider</span><p class="mcq-explain">Interconnected network ধারণার জন্য তাকে এই স্বীকৃতি দেওয়া হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩. NIST অনুযায়ী cloud computing-এর essential characteristics কয়টি?</p><span class="mcq-a">৫টি</span><p class="mcq-explain">এগুলো লিখিত ও MCQ উভয় পরীক্ষার জন্যই গুরুত্বপূর্ণ।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৪. “Pay as you go” কোন বৈশিষ্ট্যের সাথে সম্পর্কিত?</p><span class="mcq-a">Measured Service</span><p class="mcq-explain">Usage অনুযায়ী bill নির্ধারিত হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৫. Gmail কোন service model-এর উদাহরণ?</p><span class="mcq-a">SaaS</span><p class="mcq-explain">Gmail ইন্টারনেটভিত্তিক সম্পূর্ণ software service।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৬. Developer-দের জন্য ready-made platform দেয় কোন model?</p><span class="mcq-a">PaaS</span><p class="mcq-explain">Platform provider infrastructure manage করে।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৭. Infrastructure ভাড়া নেওয়ার model কোনটি?</p><span class="mcq-a">IaaS</span><p class="mcq-explain">এখানে server, storage, network ইত্যাদি resource পাওয়া যায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৮. Cloud computing-এর মূল ভিত্তি কী?</p><span class="mcq-a">Virtualization</span><p class="mcq-explain">Virtualization ছাড়া modern cloud সম্ভব নয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৯. সবচেয়ে নিরাপদ deployment model কোনটি?</p><span class="mcq-a">Private Cloud</span><p class="mcq-explain">একটি নির্দিষ্ট প্রতিষ্ঠানের জন্য ব্যবহৃত হওয়ায় নিয়ন্ত্রণ বেশি।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১০. Public এবং Private cloud একসাথে ব্যবহৃত হয় কোন model-এ?</p><span class="mcq-a">Hybrid Cloud</span><p class="mcq-explain">Sensitive ও সাধারণ data আলাদা করে ব্যবহারের সুবিধা দেয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১১. AWS-এর পূর্ণরূপ কী?</p><span class="mcq-a">Amazon Web Services</span><p class="mcq-explain">বিশ্বের সবচেয়ে বড় commercial cloud provider।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১২. Azure কোন কোম্পানির cloud service?</p><span class="mcq-a">Microsoft</span><p class="mcq-explain">এটি Microsoft-এর cloud platform।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৩. GCP-এর পূর্ণরূপ কী?</p><span class="mcq-a">Google Cloud Platform</span><p class="mcq-explain">Google-এর cloud computing service।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৪. প্রথম modern commercial cloud service চালু হয় কবে?</p><span class="mcq-a">২০০৬ সালে</span><p class="mcq-explain">AWS EC2 ও S3 চালুর মধ্য দিয়ে commercial cloud era শুরু হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৫. On-Demand Self-Service বলতে কী বোঝায়?</p><span class="mcq-a">User নিজে resource নিতে পারে</span><p class="mcq-explain">মানবীয় সহায়তা ছাড়াই প্রয়োজনমতো service নেওয়া যায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৬. Broad Network Access-এর অর্থ কী?</p><span class="mcq-a">বিভিন্ন ডিভাইস থেকে নেটওয়ার্কে অ্যাক্সেস</span><p class="mcq-explain">Mobile, laptop, tablet—সবখান থেকেই service পাওয়া যায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৭. Resource Pooling বলতে কী বোঝায়?</p><span class="mcq-a">একই resource বহু user share করে</span><p class="mcq-explain">Provider-এর pooled resource user-দের মধ্যে ভাগ হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৮. Rapid Elasticity-এর মূল বৈশিষ্ট্য কী?</p><span class="mcq-a">দ্রুত resource বাড়ানো-কমানো</span><p class="mcq-explain">Demand অনুযায়ী scalable service পাওয়া যায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">১৯. Community Cloud কাদের জন্য উপযোগী?</p><span class="mcq-a">একই ধরনের প্রয়োজন সম্পন্ন একাধিক প্রতিষ্ঠানের জন্য</span><p class="mcq-explain">যেমন হাসপাতাল, বিশ্ববিদ্যালয়, গবেষণা প্রতিষ্ঠান।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২০. Zoom কোন service model-এর উদাহরণ?</p><span class="mcq-a">SaaS</span><p class="mcq-explain">Zoom একটি internet-based software service।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২১. Google App Engine কোন model-এর উদাহরণ?</p><span class="mcq-a">PaaS</span><p class="mcq-explain">এটি developer-focused application platform।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২২. Amazon EC2 কোন model-এর উদাহরণ?</p><span class="mcq-a">IaaS</span><p class="mcq-explain">EC2 virtual server দেয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৩. Cloud computing-এর বড় সুবিধা কোনটি?</p><span class="mcq-a">কম খরচ</span><p class="mcq-explain">নিজস্ব data center তৈরি না করেও কাজ করা যায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৪. Cloud-এর প্রধান সীমাবদ্ধতা কোনটি?</p><span class="mcq-a">Internet dependency</span><p class="mcq-explain">নেটওয়ার্ক না থাকলে cloud service ব্যাহত হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৫. Service quality guarantee কোন চুক্তির মাধ্যমে নির্ধারিত হয়?</p><span class="mcq-a">SLA</span><p class="mcq-explain">Service Level Agreement-এ uptime ও service standard লেখা থাকে।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৬. Docker সাধারণত কোন ধারণার সাথে সম্পর্কিত?</p><span class="mcq-a">Containerization</span><p class="mcq-explain">Application portable করার জন্য container ব্যবহৃত হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৭. AWS Lambda কোন ধরনের computing-এর উদাহরণ?</p><span class="mcq-a">Serverless Computing</span><p class="mcq-explain">Server manage না করেই function run করা যায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৮. CDN-এর কাজ কী?</p><span class="mcq-a">নিকটবর্তী server থেকে দ্রুত content সরবরাহ</span><p class="mcq-explain">ওয়েবসাইটের speed ও content delivery বাড়ায়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">২৯. Data privacy concern সবচেয়ে বেশি কোন কারণে হয়?</p><span class="mcq-a">ডেটা third-party data center-এ থাকে</span><p class="mcq-explain">User নিজে physical control ধরে রাখতে পারে না।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩০. Utility Computing ধারণাটি কার সঙ্গে যুক্ত?</p><span class="mcq-a">John McCarthy</span><p class="mcq-explain">তিনি computing-কে utility service হিসেবে কল্পনা করেছিলেন।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩১. Edge Computing কোথায় বেশি ব্যবহৃত হয়?</p><span class="mcq-a">IoT ডিভাইসে</span><p class="mcq-explain">Low latency দরকার হলে data edge-এ process করা হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩২. Vendor Lock-in বলতে কী বোঝায়?</p><span class="mcq-a">এক provider থেকে অন্য provider-এ যাওয়া কঠিন হওয়া</span><p class="mcq-explain">Migration cost ও compatibility সমস্যার কারণে এটি হয়।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩৩. Automatic resource scaling কোন ধারণার অংশ?</p><span class="mcq-a">Elasticity</span><p class="mcq-explain">চাহিদা অনুযায়ী resource নিজে নিজে বাড়ে-কমে।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩৪. Private cloud সবচেয়ে বেশি কোথায় ব্যবহৃত হয়?</p><span class="mcq-a">ব্যাংক ও সরকারি প্রতিষ্ঠানে</span><p class="mcq-explain">সংবেদনশীল তথ্যের নিরাপত্তার জন্য এটি বেশি উপযোগী।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩৫. Cloud provider-এর resource pooled অবস্থায় ব্যবহৃত হওয়াকে কী বলে?</p><span class="mcq-a">Multi-tenancy / Resource Pooling</span><p class="mcq-explain">অনেক user একই মূল resource share করে।</p></div>
+        <div class="mcq-item"><p class="mcq-q">৩৬. Backup ও disaster recovery-এর জন্য cloud কেন জনপ্রিয়?</p><span class="mcq-a">দ্রুত data restore এবং remote storage সুবিধা</span><p class="mcq-explain">ডেটা অন্য location-এ সংরক্ষিত থাকায় recovery সহজ হয়।</p></div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <p class="section-label">০৯ — পরীক্ষায় লেখার জন্য প্যারাগ্রাফ</p>
+      <h2>লিখিত পরীক্ষার জন্য প্রস্তুত Paragraph</h2>
+      <div class="note-box"><p><strong>ব্যবহারবিধি:</strong> নিচের বাংলা paragraph লিখিত পরীক্ষায় সরাসরি ব্যবহার করতে পারবে। আর তোমার অনুরোধ অনুযায়ী <strong>শুধু passage অংশের English version</strong> আলাদাভাবে রাখা হয়েছে।</p></div>
+      <div class="passage-wrap">
+        <div>
+          <div class="passage-title">বাংলা প্যারাগ্রাফ</div>
+          <div class="passage-box" id="bnPassage">
+            <p>ক্লাউড কম্পিউটিং হলো আধুনিক তথ্যপ্রযুক্তির একটি যুগান্তকারী ধারণা, যেখানে ইন্টারনেটের মাধ্যমে দূরবর্তী data center থেকে কম্পিউটারের hardware, software, server, storage এবং network service ব্যবহার করা যায়। National Institute of Standards and Technology (NIST) এর মতে, cloud computing এমন একটি model যার মাধ্যমে ব্যবহারকারী প্রয়োজনমতো, দ্রুত এবং ন্যূনতম ব্যবস্থাপনায় computing resource পেতে পারে। এই ব্যবস্থায় ব্যবহারকারীকে নিজস্বভাবে ব্যয়বহুল server, storage device বা data center নির্মাণ করতে হয় না; বরং provider-এর অবকাঠামো ব্যবহার করে প্রয়োজন অনুযায়ী service নেওয়া যায়। এ কারণে cloud computing-এ <strong>Pay as you go</strong> billing model খুব জনপ্রিয়। NIST cloud computing-এর পাঁচটি মূল বৈশিষ্ট্য নির্ধারণ করেছে—On-demand Self-service, Broad Network Access, Resource Pooling, Rapid Elasticity এবং Measured Service। সার্ভিস মডেলের দিক থেকে এটি তিন ভাগে বিভক্ত: IaaS, PaaS এবং SaaS। আবার deployment model অনুযায়ী Public, Private, Hybrid ও Community Cloud রয়েছে। ক্লাউড কম্পিউটিং-এর সবচেয়ে বড় সুবিধা হলো কম খরচ, যেকোনো স্থান থেকে access, সহজ scalability, automatic backup এবং collaboration-এর সুবিধা। তবে এর কিছু সীমাবদ্ধতাও রয়েছে, যেমন internet dependency, security risk, privacy concern, downtime এবং vendor lock-in। Virtualization হলো cloud computing-এর মূল ভিত্তি, কারণ এর মাধ্যমে একটি physical server-কে একাধিক virtual machine-এ ভাগ করে দক্ষতার সাথে resource ব্যবহার করা যায়। বর্তমানে Amazon Web Services (AWS), Microsoft Azure এবং Google Cloud Platform বিশ্বের শীর্ষ cloud service provider। কৃত্রিম বুদ্ধিমত্তা, Big Data, IoT, e-governance এবং online banking-এর ক্রমবর্ধমান ব্যবহার cloud computing-কে আরও বেশি গুরুত্বপূর্ণ করে তুলছে। তাই বলা যায়, ভবিষ্যতের digital infrastructure গঠনে cloud computing একটি অপরিহার্য প্রযুক্তি।</p>
+          </div>
+          <button class="copy-btn" onclick="copyText('bnPassage', this)">📋 বাংলা প্যারাগ্রাফ কপি করুন</button>
+        </div>
+        <div>
+          <div class="passage-title">English Version of the Paragraph</div>
+          <div class="passage-box" id="enPassage">
+            <p>Cloud computing is one of the most important concepts in modern information technology. It means that computer resources such as servers, storage, software, databases, and networks are provided over the internet from remote data centers. According to the National Institute of Standards and Technology (NIST), cloud computing is a model that gives users convenient, on-demand access to shared computing resources with very little management effort. In simple words, a user or an organization does not need to build and maintain an expensive data center to use advanced computing services. Instead, these services can be rented from a cloud provider whenever needed. That is why the idea of <strong>pay as you go</strong> is strongly connected with cloud computing. NIST describes five essential characteristics of cloud computing: On-demand Self-service, Broad Network Access, Resource Pooling, Rapid Elasticity, and Measured Service. Based on service models, cloud computing is divided into three major types: Infrastructure as a Service (IaaS), Platform as a Service (PaaS), and Software as a Service (SaaS). Based on deployment models, it can also be classified as Public Cloud, Private Cloud, Hybrid Cloud, and Community Cloud. The major advantages of cloud computing are lower cost, easy access from anywhere, fast scalability, automatic backup, disaster recovery, and better collaboration among users. However, it also has some limitations, such as dependency on internet connection, possible security risks, privacy concerns, downtime, and vendor lock-in. Virtualization is considered the foundation of cloud computing because it allows one physical server to be divided into many virtual machines for efficient use of resources. Today, Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform are the leading cloud service providers in the world. With the rapid growth of artificial intelligence, big data, IoT, online banking, and e-governance, cloud computing is becoming the backbone of the future digital infrastructure. Therefore, cloud computing is not only a modern technology but also an essential system for the digital world.</p>
+          </div>
+          <button class="copy-btn" onclick="copyText('enPassage', this)">📋 English Paragraph Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="reveal">
+      <div class="conclusion">
+        <h2>মনে রাখার মূল পয়েন্ট</h2>
+        <p>MCQ ও লিখিত উভয় পরীক্ষার জন্য নিচের তথ্যগুলো সবচেয়ে বেশি গুরুত্বপূর্ণ। এগুলো মুখস্থ থাকলে cloud computing chapter অনেক সহজ হয়ে যাবে।</p>
+        <div class="key-points">
+          <span>জনক = J.C.R. Licklider</span>
+          <span>Term = Eric Schmidt (2006)</span>
+          <span>NIST = ৫টি বৈশিষ্ট্য</span>
+          <span>IaaS · PaaS · SaaS</span>
+          <span>Public · Private · Hybrid · Community</span>
+          <span>AWS = সবচেয়ে বড় provider</span>
+          <span>ভিত্তি = Virtualization</span>
+          <span>Pay as you go = Measured Service</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    ☁ ক্লাউড কম্পিউটিং সম্পূর্ণ গাইড · BCS ও Bank পরীক্ষার জন্য · Updated Final White Version
+  </footer>
+
+  <script>
+    function copyText(id, btn){
+      const text = document.getElementById(id).innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        const old = btn.innerHTML;
+        btn.innerHTML = '✅ কপি হয়েছে';
+        setTimeout(() => btn.innerHTML = old, 1800);
+      });
+    }
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.08});
+    reveals.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
