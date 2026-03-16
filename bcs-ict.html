@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>BCS — কম্পিউটার ও তথ্যপ্রযুক্তি</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg0:#f4f1ea;--bg1:#faf8f3;--bg2:#ffffff;--bg3:#fcfbf8;
+  --blue:#c78b22;--cyan:#7a5310;--purple:#0f5c55;
+  --green:#15803d;--red:#b91c1c;
+  --t1:#1f2937;--t2:#334155;--t3:#5b6472;--t4:#e8e0d1;
+  --nav:76px;--side:278px;
+  --shadow:0 14px 36px rgba(31,41,55,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;background:linear-gradient(180deg,#fbfaf7 0%,#f4f1ea 100%);color:var(--t1);font-size:17px;line-height:1.75;min-height:100vh;overflow-x:hidden;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(214,156,55,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(214,156,55,.035) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0;}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;min-height:var(--nav);background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-bottom:1px solid rgba(214,156,55,.18);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 28px;z-index:200;box-shadow:0 8px 24px rgba(31,41,55,.06);}
+.n-left,.n-right{display:flex;align-items:center;}
+.n-logo-wrap{display:flex;flex-direction:column;gap:2px;}
+.n-logo{font-family:'Rajdhani',sans-serif;font-size:26px;font-weight:700;letter-spacing:2.4px;background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;}
+.n-tag{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--t3);font-family:'JetBrains Mono',monospace;}
+.n-tabs{display:flex;gap:8px;background:#f7f2e8;border:1px solid rgba(214,156,55,.14);padding:6px;border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.8);}
+.n-tab{padding:10px 20px;border-radius:999px;font-size:15px;font-weight:700;cursor:pointer;border:1px solid transparent;transition:all .25s;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;background:transparent;color:var(--t2);}
+.n-tab:hover{transform:translateY(-1px);}
+.n-tab.c-tab.on,.n-tab.c-tab:hover{background:rgba(214,156,55,.14);border-color:rgba(214,156,55,.28);color:var(--cyan);box-shadow:0 8px 18px rgba(214,156,55,.12);}
+.n-tab.i-tab.on,.n-tab.i-tab:hover{background:rgba(15,118,110,.12);border-color:rgba(15,118,110,.22);color:var(--purple);box-shadow:0 8px 18px rgba(15,118,110,.10);}
+.n-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--cyan);letter-spacing:1.5px;padding:10px 14px;border:1px solid rgba(214,156,55,.24);border-radius:999px;background:rgba(214,156,55,.08);}
+
+/* ── HERO ── */
+.hero{padding-top:calc(var(--nav) + 66px);padding-bottom:42px;text-align:center;position:relative;z-index:1;}
+.hero-eye{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:3px;color:var(--cyan);text-transform:uppercase;margin-bottom:14px;opacity:0;animation:fu .6s .1s forwards;}
+.hero-h{font-family:'Rajdhani',sans-serif;font-size:clamp(34px,5.5vw,66px);font-weight:700;line-height:1.08;letter-spacing:-1px;margin-bottom:12px;color:var(--t1);opacity:0;animation:fu .6s .2s forwards;}
+.hero-h .bc{background:linear-gradient(135deg,var(--blue),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-h .bp{background:linear-gradient(135deg,var(--purple),#115e59);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:17px;color:var(--t2);font-weight:500;opacity:0;animation:fu .6s .35s forwards;}
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── LAYOUT ── */
+.wrap{display:none;max-width:1300px;margin:0 auto;padding:0 20px 80px;gap:22px;position:relative;z-index:1;}
+.wrap.on{display:flex;animation:si .35s ease;}
+@keyframes si{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SIDEBAR ── */
+.sb{width:var(--side);flex-shrink:0;position:sticky;top:calc(var(--nav)+18px);height:calc(100vh - var(--nav) - 34px);overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(32,36,44,.08) transparent;}
+.sb-inner{background:var(--bg2);border-radius:18px;padding:18px 12px;border:1px solid rgba(214,156,55,.12);box-shadow:var(--shadow);}
+.sb-head{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:6px 12px 14px;display:flex;align-items:center;gap:8px;}
+.sb-dot{width:7px;height:7px;border-radius:50%;animation:pp 2s infinite;}
+@keyframes pp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.78)}}
+.sb-item{padding:12px 14px;border-radius:12px;cursor:pointer;font-size:15px;color:var(--t2);font-weight:600;line-height:1.6;transition:all .22s;display:flex;align-items:flex-start;gap:9px;margin-bottom:5px;border:1px solid transparent;position:relative;background:transparent;}
+.sb-item::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:3px;border-radius:0 3px 3px 0;opacity:0;transition:opacity .2s;}
+.c-sb .sb-item::before{background:var(--blue);}
+.i-sb .sb-item::before{background:var(--purple);}
+.c-sb .sb-item:hover{background:rgba(214,156,55,.08);color:var(--t1);border-color:rgba(214,156,55,.18);}
+.i-sb .sb-item:hover{background:rgba(15,118,110,.08);color:var(--t1);border-color:rgba(15,118,110,.18);}
+.c-sb .sb-item.on{background:rgba(214,156,55,.12);color:var(--cyan);border-color:rgba(214,156,55,.24);}
+.i-sb .sb-item.on{background:rgba(15,118,110,.11);color:var(--purple);border-color:rgba(15,118,110,.22);}
+.sb-item.on::before{opacity:1;}
+.sb-num{font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.72;padding-top:4px;flex-shrink:0;}
+
+/* ── CONTENT PANELS ── */
+.content{flex:1;min-width:0;}
+.topic-panel{display:none;}
+.topic-panel.on{display:block;animation:ca .3s ease;}
+@keyframes ca{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
+
+/* Panel Header */
+.ph{border-radius:20px 20px 0 0;padding:30px 32px 22px;border:1px solid rgba(214,156,55,.12);border-bottom:none;position:relative;overflow:hidden;box-shadow:var(--shadow);}
+.c-panel .ph{background:linear-gradient(135deg,rgba(214,156,55,.14),rgba(255,255,255,.98));}
+.i-panel .ph{background:linear-gradient(135deg,rgba(15,118,110,.12),rgba(255,255,255,.98));border-color:rgba(15,118,110,.14);}
+.ph-eye{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:10px;}
+.c-panel .ph-eye{color:var(--cyan);}
+.i-panel .ph-eye{color:var(--purple);}
+.ph-title{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;font-size:38px;font-weight:700;line-height:1.2;letter-spacing:-.2px;margin-bottom:10px;color:var(--t1);}
+.c-panel .ph-title{color:var(--cyan);}
+.i-panel .ph-title{color:var(--purple);}
+.ph-sub{font-size:16px;color:var(--t2);font-weight:500;line-height:1.7;}
+
+/* Tabs */
+.tabs{display:flex;background:var(--bg2);border-left:1px solid rgba(214,156,55,.12);border-right:1px solid rgba(214,156,55,.12);padding:0 32px;gap:0;overflow-x:auto;}
+.i-panel .tabs{border-left-color:rgba(15,118,110,.14);border-right-color:rgba(15,118,110,.14);}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{padding:15px 20px;font-size:15px;font-weight:700;cursor:pointer;border-bottom:2px solid transparent;color:var(--t2);transition:all .2s;white-space:nowrap;font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;display:flex;align-items:center;gap:6px;}
+.tab:hover{color:var(--t2);}
+.c-panel .tab.on{color:var(--cyan);border-bottom-color:var(--blue);}
+.i-panel .tab.on{color:var(--purple);border-bottom-color:var(--purple);}
+
+/* Tab Content */
+.tc{background:var(--bg2);border-radius:0 0 20px 20px;padding:28px 32px;border:1px solid rgba(214,156,55,.12);border-top:none;min-height:380px;box-shadow:var(--shadow);}
+.i-panel .tc{border-color:rgba(15,118,110,.14);}
+.tc-pane{display:none;}
+.tc-pane.on{display:block;animation:fu .3s ease;}
+
+/* Content Styles */
+.intro-text{font-size:18px;color:var(--t2);line-height:1.95;margin-bottom:18px;font-weight:500;}
+.intro-text strong{color:var(--t1);}
+.c-panel .hl{color:var(--cyan);font-weight:700;}
+.i-panel .hl{color:var(--purple);font-weight:700;}
+
+.key-box{background:var(--bg3);border-radius:16px;padding:18px 22px;margin:16px 0;border:1px solid rgba(31,41,55,.06);}
+.c-panel .key-box{border-left:3px solid var(--blue);}
+.i-panel .key-box{border-left:3px solid var(--purple);}
+.key-box h4{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:12px;}
+.key-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:8px;}
+.key-item{display:flex;align-items:center;gap:8px;font-size:16px;color:var(--t2);font-weight:500;}
+.c-panel .key-item::before{content:'▸';font-size:10px;color:var(--blue);flex-shrink:0;}
+.i-panel .key-item::before{content:'▸';font-size:10px;color:var(--purple);flex-shrink:0;}
+
+.info-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:11px;margin:16px 0;}
+.info-card{background:var(--bg3);border-radius:14px;padding:15px 17px;border:1px solid rgba(31,41,55,.06);box-shadow:0 8px 20px rgba(31,41,55,.04);}
+.c-panel .info-card{border-top:2px solid rgba(214,156,55,.35);}
+.i-panel .info-card{border-top:2px solid rgba(15,118,110,.35);}
+.ic-label{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:5px;}
+.ic-val{font-size:15.5px;color:var(--t2);line-height:1.8;font-weight:500;}
+
+/* Important Tab */
+.imp-row{display:flex;align-items:flex-start;gap:13px;padding:13px 0;border-bottom:1px solid rgba(31,41,55,.06);}
+.imp-row:last-child{border-bottom:none;}
+.imp-num{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;min-width:28px;padding-top:3px;}
+.c-panel .imp-num{color:var(--blue);}
+.i-panel .imp-num{color:var(--purple);}
+.imp-text{font-size:14.5px;color:var(--t2);line-height:1.75;}
+.imp-text strong{color:var(--t1);}
+.badge{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 8px;border-radius:999px;margin-left:6px;vertical-align:middle;}
+.c-panel .badge{background:rgba(214,156,55,.12);color:var(--cyan);}
+.i-panel .badge{background:rgba(15,118,110,.12);color:var(--purple);}
+
+/* MCQ */
+.mcq-q{background:var(--bg3);border-radius:16px;padding:20px 22px;margin-bottom:14px;border:1px solid rgba(31,41,55,.06);box-shadow:0 10px 24px rgba(31,41,55,.04);}
+.mcq-qnum{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1.5px;color:var(--t3);margin-bottom:10px;}
+.mcq-qtext{font-size:15px;color:var(--t1);line-height:1.7;margin-bottom:15px;font-weight:600;}
+.mcq-opts{display:flex;flex-direction:column;gap:8px;}
+.mcq-opt{padding:11px 16px;border-radius:10px;font-size:14px;cursor:pointer;border:1px solid rgba(31,41,55,.08);color:var(--t2);transition:all .2s;display:flex;align-items:center;gap:10px;background:#fff;}
+.mcq-opt:hover{border-color:rgba(214,156,55,.34);color:var(--t1);transform:translateX(2px);}
+.mcq-opt .ol{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;min-width:22px;}
+.mcq-opt.correct{background:rgba(22,163,74,.10);border-color:rgba(22,163,74,.35);color:#166534;pointer-events:none;}
+.mcq-opt.wrong{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.24);color:#b91c1c;pointer-events:none;}
+.mcq-opt.locked{pointer-events:none;}
+.mcq-exp{margin-top:11px;padding:11px 15px;background:rgba(22,163,74,.08);border-radius:10px;font-size:13px;color:#166534;display:none;border-left:3px solid var(--green);line-height:1.65;}
+.mcq-exp.show{display:block;}
+
+/* BCS */
+.bcs-q{background:var(--bg3);border-radius:16px;padding:20px 22px;margin-bottom:13px;border:1px solid rgba(31,41,55,.06);box-shadow:0 10px 24px rgba(31,41,55,.04);}
+.bcs-year{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:11px;padding:6px 11px;border-radius:999px;margin-bottom:12px;font-weight:700;}
+.c-panel .bcs-year{background:rgba(214,156,55,.12);color:var(--cyan);}
+.i-panel .bcs-year{background:rgba(15,118,110,.12);color:var(--purple);}
+.bcs-qtext{font-size:14.5px;color:var(--t1);line-height:1.7;margin-bottom:13px;}
+.bcs-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.bcs-opt{padding:10px 14px;border-radius:10px;font-size:13.5px;border:1px solid rgba(31,41,55,.08);color:var(--t2);cursor:pointer;transition:all .2s;background:#fff;}
+.bcs-opt:hover{border-color:rgba(214,156,55,.34);color:var(--t1);}
+.bcs-opt.correct{background:rgba(22,163,74,.10);border-color:rgba(22,163,74,.35);color:#166534;pointer-events:none;}
+.bcs-opt.wrong{background:rgba(220,38,38,.08);border-color:rgba(220,38,38,.24);color:#b91c1c;pointer-events:none;}
+.bcs-opt.locked{pointer-events:none;}
+.bcs-ans{margin-top:10px;font-size:13px;color:#166534;display:none;line-height:1.6;}
+.bcs-ans.show{display:block;}
+
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-thumb{background:rgba(31,41,55,.12);border-radius:999px;}
+
+@media(max-width:920px){
+  nav{padding:12px 18px;gap:12px;}
+  .n-logo{font-size:22px;}
+  .n-badge{display:none;}
+}
+
+@media(max-width:768px){
+  nav{position:sticky;top:0;flex-wrap:wrap;justify-content:center;min-height:auto;padding:12px 14px;}
+  .n-left,.n-right{width:100%;justify-content:center;}
+  .n-logo-wrap{align-items:center;}
+  .n-tabs{width:100%;justify-content:center;}
+  .wrap.on{flex-direction:column;}
+  .sb{width:100%;position:static;height:auto;}
+  .bcs-opts{grid-template-columns:1fr;}
+  .tc{padding:20px 18px;}
+  .ph{padding:20px 18px 16px;}
+  .tabs{padding:0 18px;}
+  .hero{padding-top:42px;}
+  .hero-sub{padding:0 10px;}
+}
+
+/* Readability improvements */
+p,li,button,input,textarea,select,a,span,div{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;}
+.hero-h,.ph-title{font-family:'Noto Sans Bengali','Hind Siliguri',sans-serif;}
+.n-logo{letter-spacing:1.6px;}
+.key-box h4,.ic-label,.mcq-qnum,.bcs-year,.sb-head,.hero-eye,.n-tag,.n-badge{letter-spacing:1.4px;}
+.read-descprition,.post-description,.desc,.explain,.ans,.why,.text-muted{color:var(--t2)!important;}
+button,.mcq-opt,.sb-item,.tab{letter-spacing:0!important;}
+.c-panel .tab.on,.c-panel .hl,.c-panel .ph-eye,.c-panel .sb-item.on{color:#7a5310;}
+.i-panel .tab.on,.i-panel .hl,.i-panel .ph-eye,.i-panel .sb-item.on{color:#0f5c55;}
+.mcq-card,.bcs-card,.key-box,.info-card{box-shadow:0 10px 24px rgba(31,41,55,.05);}
+@media (max-width:768px){
+  body{font-size:16px;}
+  .hero-h{font-size:34px;}
+  .ph-title{font-size:30px;}
+  .intro-text{font-size:17px;}
+  .sb-item,.tab,.n-tab{font-size:14px;}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="n-left">
+    <div class="n-logo-wrap">
+      <div class="n-logo">BCS PREP</div>
+      <div class="n-tag">Computer & ICT Syllabus</div>
+    </div>
+  </div>
+  <div class="n-tabs">
+    <button class="n-tab c-tab on" onclick="switchSec('c')">কম্পিউটার</button>
+    <button class="n-tab i-tab" onclick="switchSec('i')">তথ্যপ্রযুক্তি</button>
+  </div>
+  <div class="n-right">
+    <div class="n-badge">PRELIMINARY GUIDE</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eye">বাংলাদেশ সিভিল সার্ভিস · প্রিলিমিনারি সিলেবাস</div>
+  <h1 class="hero-h"><span class="bc">কম্পিউটার</span> ও <span class="bp">তথ্যপ্রযুক্তি</span></h1>
+  <p class="hero-sub">টপিক বেছে নিন · পরিচিতি · গুরুত্বপূর্ণ তথ্য · MCQ অনুশীলন · বিসিএস প্রশ্ন</p>
+</div>
+
+<!-- COMPUTER SECTION -->
+<div id="sec-c" class="wrap on">
+  <div class="sb c-sb">
+    <div class="sb-inner">
+      <div class="sb-head" style="color:var(--blue)"><span class="sb-dot" style="background:var(--blue)"></span>কম্পিউটার</div>
+      <div class="sb-item on" id="si-c1" onclick="openTopic('c','c1')"><span class="sb-num">01</span><span>কম্পিউটার পেরিফেরালস</span></div>
+      <div class="sb-item" id="si-c2" onclick="openTopic('c','c2')"><span class="sb-num">02</span><span>কম্পিউটার আর্কিটেকচার</span></div>
+      <div class="sb-item" id="si-c3" onclick="openTopic('c','c3')"><span class="sb-num">03</span><span>কম্পিউটারের পারফর্মেন্স</span></div>
+      <div class="sb-item" id="si-c4" onclick="openTopic('c','c4')"><span class="sb-num">04</span><span>দৈনন্দিন জীবনে কম্পিউটার</span></div>
+      <div class="sb-item" id="si-c5" onclick="openTopic('c','c5')"><span class="sb-num">05</span><span>নম্বর সিস্টেম</span></div>
+      <div class="sb-item" id="si-c6" onclick="openTopic('c','c6')"><span class="sb-num">06</span><span>অপারেটিং সিস্টেম</span></div>
+      <div class="sb-item" id="si-c7" onclick="openTopic('c','c7')"><span class="sb-num">07</span><span>এম্বেডেড কম্পিউটার</span></div>
+      <div class="sb-item" id="si-c8" onclick="openTopic('c','c8')"><span class="sb-num">08</span><span>কম্পিউটারের ইতিহাস</span></div>
+      <div class="sb-item" id="si-c9" onclick="openTopic('c','c9')"><span class="sb-num">09</span><span>কম্পিউটারের প্রকারভেদ</span></div>
+      <div class="sb-item" id="si-c10" onclick="openTopic('c','c10')"><span class="sb-num">10</span><span>কম্পিউটার প্রোগ্রাম</span></div>
+      <div class="sb-item" id="si-c11" onclick="openTopic('c','c11')"><span class="sb-num">11</span><span>ডেটাবেইস সিস্টেম</span></div>
+    </div>
+  </div>
+  <div class="content" id="content-c"></div>
+</div>
+
+<!-- IT SECTION -->
+<div id="sec-i" class="wrap">
+  <div class="sb i-sb">
+    <div class="sb-inner">
+      <div class="sb-head" style="color:var(--purple)"><span class="sb-dot" style="background:var(--purple)"></span>তথ্যপ্রযুক্তি</div>
+      <div class="sb-item on" id="si-i1" onclick="openTopic('i','i1')"><span class="sb-num">01</span><span>ই-কমার্স</span></div>
+      <div class="sb-item" id="si-i2" onclick="openTopic('i','i2')"><span class="sb-num">02</span><span>সেলুলার ডেটা নেটওয়ার্ক</span></div>
+      <div class="sb-item" id="si-i3" onclick="openTopic('i','i3')"><span class="sb-num">03</span><span>কম্পিউটার নেটওয়ার্ক</span></div>
+      <div class="sb-item" id="si-i4" onclick="openTopic('i','i4')"><span class="sb-num">04</span><span>দৈনন্দিন জীবনে IT</span></div>
+      <div class="sb-item" id="si-i5" onclick="openTopic('i','i5')"><span class="sb-num">05</span><span>স্মার্টফোন</span></div>
+      <div class="sb-item" id="si-i6" onclick="openTopic('i','i6')"><span class="sb-num">06</span><span>ওয়ার্ল্ড ওয়াইড ওয়েব</span></div>
+      <div class="sb-item" id="si-i7" onclick="openTopic('i','i7')"><span class="sb-num">07</span><span>ইন্টারনেট</span></div>
+      <div class="sb-item" id="si-i8" onclick="openTopic('i','i8')"><span class="sb-num">08</span><span>Daily-Use Computing</span></div>
+      <div class="sb-item" id="si-i9" onclick="openTopic('i','i9')"><span class="sb-num">09</span><span>ক্লায়েন্ট-সার্ভার</span></div>
+      <div class="sb-item" id="si-i10" onclick="openTopic('i','i10')"><span class="sb-num">10</span><span>মোবাইল প্রযুক্তির বৈশিষ্ট্য</span></div>
+      <div class="sb-item" id="si-i11" onclick="openTopic('i','i11')"><span class="sb-num">11</span><span>টেক জায়ান্টস</span></div>
+      <div class="sb-item" id="si-i12" onclick="openTopic('i','i12')"><span class="sb-num">12</span><span>ক্লাউড কম্পিউটিং</span></div>
+      <div class="sb-item" id="si-i13" onclick="openTopic('i','i13')"><span class="sb-num">13</span><span>সোশ্যাল নেটওয়ার্কিং</span></div>
+      <div class="sb-item" id="si-i14" onclick="openTopic('i','i14')"><span class="sb-num">14</span><span>রোবোটিক্স</span></div>
+      <div class="sb-item" id="si-i15" onclick="openTopic('i','i15')"><span class="sb-num">15</span><span>সাইবার অপরাধ</span></div>
+    </div>
+  </div>
+  <div class="content" id="content-i"></div>
+</div>
+
+<script>
+/* ══════════════════════════════════════════
+   DATA  —  প্রতিটি টপিকের সব ডেটা এখানে
+   ══════════════════════════════════════════ */
+const D = {
+
+  /* ─── COMPUTER ─── */
+  c1:{
+    cls:'c-panel', eye:'COMPUTER PERIPHERALS', title:'কম্পিউটার পেরিফেরালস', sub:'Input · Output · Storage Devices',
+    intro:`<p class="intro-text">কম্পিউটার <strong>পেরিফেরালস</strong> হলো সেইসব যন্ত্রাংশ যা কম্পিউটারের সাথে সংযুক্ত হয়ে তথ্য আদান-প্রদান করে। তিন ভাগে বিভক্ত: <span class="hl">ইনপুট ডিভাইস, আউটপুট ডিভাইস</span> এবং <span class="hl">স্টোরেজ ডিভাইস</span>।</p>
+    <div class="key-box"><h4>ইনপুট ডিভাইস</h4><div class="key-list"><span class="key-item">কি-বোর্ড (Keyboard)</span><span class="key-item">মাউস (Mouse)</span><span class="key-item">স্ক্যানার</span><span class="key-item">OCR — Optical Character Recognition</span><span class="key-item">OMR — Optical Mark Reader</span><span class="key-item">BCR — Bar Code Reader</span><span class="key-item">ওয়েবক্যাম</span><span class="key-item">মাইক্রোফোন</span></div></div>
+    <div class="key-box"><h4>আউটপুট ডিভাইস</h4><div class="key-list"><span class="key-item">মনিটর (Monitor)</span><span class="key-item">প্রিন্টার (Printer)</span><span class="key-item">প্লটার (Plotter)</span><span class="key-item">স্পিকার</span><span class="key-item">প্রজেক্টর</span></div></div>`,
+    imp:[
+      {t:'<strong>ইনপুট ডিভাইস</strong> ব্যবহারকারীর তথ্য গ্রহণ করে CPU-তে পাঠায়। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>OCR</strong> (Optical Character Recognition) — হস্তলিখিত/মুদ্রিত টেক্সটকে ডিজিটালে রূপান্তর করে।'},
+      {t:'<strong>OMR</strong> (Optical Mark Reader) — আলোর প্রতিফলনে মার্ক পড়ে। MCQ উত্তরপত্রে ব্যবহৃত।'},
+      {t:'<strong>BCR / Barcode Reader</strong> — সুপারশপে পণ্যের বারকোড স্ক্যান করতে ব্যবহার হয়।'},
+      {t:'<strong>Plotter</strong> — বড় আকারের গ্রাফ ও নকশা ছাপায়। প্রকৌশল ও স্থাপত্যে ব্যবহৃত।'},
+      {t:'<strong>Touch screen</strong> একই সাথে ইনপুট ও আউটপুট — Dual-purpose device।'}
+    ],
+    mcq:[
+      {q:'নিচের কোনটি ইনপুট ডিভাইস নয়?', opts:['কি-বোর্ড','মাউস','স্ক্যানার','মনিটর'], ans:3, exp:'মনিটর একটি আউটপুট ডিভাইস — এটি তথ্য প্রদর্শন করে।'},
+      {q:'OMR কোথায় ব্যবহৃত হয়?', opts:['গান রেকর্ডিং','MCQ উত্তরপত্রে','ভিডিও এডিটিং','ফাইল স্টোরেজ'], ans:1, exp:'OMR পরীক্ষার বুলেট শিটে আলোর প্রতিফলনে চিহ্নিত স্থান পড়ে।'}
+    ],
+    bcs:[
+      {y:'৩৪তম BCS', q:'কম্পিউটারের কোন ডিভাইসটি তথ্য গ্রহণ করে?', opts:['আউটপুট ডিভাইস','ইনপুট ডিভাইস','স্টোরেজ ডিভাইস','প্রসেসিং ইউনিট'], ans:1, exp:'ইনপুট ডিভাইস ব্যবহারকারীর কাছ থেকে তথ্য গ্রহণ করে CPU-তে পাঠায়।'},
+      {y:'৩৮তম BCS', q:'OCR-এর পূর্ণরূপ কোনটি?', opts:['Optical Character Recognition','Output Color Reader','Optical Color Rendering','Output Character Reader'], ans:0, exp:'OCR = Optical Character Recognition।'}
+    ]
+  },
+
+  c2:{
+    cls:'c-panel', eye:'COMPUTER ARCHITECTURE', title:'কম্পিউটার আর্কিটেকচার', sub:'CPU · RAM · ROM · ALU · Hard Disk',
+    intro:`<p class="intro-text">কম্পিউটারের <strong>অভ্যন্তরীণ কাঠামো</strong> বোঝার জন্য মূল উপাদানগুলো জানা দরকার: <span class="hl">CPU, RAM, ROM, ALU, Control Unit, Hard Disk</span>।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">CPU</div><div class="ic-val">Central Processing Unit — কম্পিউটারের মস্তিষ্ক। সব সিদ্ধান্ত এখানে।</div></div>
+      <div class="info-card"><div class="ic-label">ALU</div><div class="ic-val">Arithmetic Logic Unit — গণনা ও যৌক্তিক তুলনার কাজ।</div></div>
+      <div class="info-card"><div class="ic-label">RAM</div><div class="ic-val">Random Access Memory — অস্থায়ী মেমরি। বিদ্যুৎ গেলে মুছে।</div></div>
+      <div class="info-card"><div class="ic-label">ROM</div><div class="ic-val">Read Only Memory — স্থায়ী। BIOS এখানে থাকে।</div></div>
+      <div class="info-card"><div class="ic-label">Hard Disk</div><div class="ic-val">স্থায়ী স্টোরেজ। GB/TB-এ পরিমাপ।</div></div>
+      <div class="info-card"><div class="ic-label">Cache</div><div class="ic-val">CPU-এর নিকটস্থ দ্রুততম মেমরি। L1 > L2 > L3।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>CPU = ALU + Control Unit + Registers</strong> — এই তিনটি নিয়ে CPU গঠিত। <span class="badge">সূত্র</span>'},
+      {t:'<strong>RAM volatile</strong> — বিদ্যুৎ গেলে সব ডেটা হারিয়ে যায়।'},
+      {t:'<strong>ROM non-volatile</strong> — স্থায়ী মেমরি, BIOS এখানে সংরক্ষিত।'},
+      {t:'<strong>SSD</strong> (Solid State Drive) Hard Disk-এর আধুনিক বিকল্প — দ্রুততর।'},
+      {t:'<strong>Motherboard</strong> — সব উপাদান এর উপর সংযুক্ত থাকে।'}
+    ],
+    mcq:[
+      {q:'CPU-এর পূর্ণরূপ কী?', opts:['Central Processing Unit','Computer Processing Unit','Central Processor Universe','Core Processing Unit'], ans:0, exp:'CPU = Central Processing Unit।'},
+      {q:'BIOS কোথায় সংরক্ষিত থাকে?', opts:['RAM','Hard Disk','ROM','Cache'], ans:2, exp:'BIOS ROM-এ সংরক্ষিত — স্থায়ী ও পরিবর্তনহীন।'}
+    ],
+    bcs:[
+      {y:'৩৬তম BCS', q:'কম্পিউটারের মস্তিষ্ক বলা হয় কোনটিকে?', opts:['RAM','ROM','CPU','Hard Disk'], ans:2, exp:'CPU সব প্রক্রিয়াকরণ করে বলে একে কম্পিউটারের মস্তিষ্ক বলে।'},
+      {y:'৪০তম BCS', q:'RAM ও ROM-এর মূল পার্থক্য কী?', opts:['আকারে','গতিতে','স্থায়িত্বে','দামে'], ans:2, exp:'RAM volatile (অস্থায়ী), ROM non-volatile (স্থায়ী)।'}
+    ]
+  },
+
+  c3:{
+    cls:'c-panel', eye:'COMPUTER PERFORMANCE', title:'কম্পিউটারের পারফর্মেন্স', sub:'Clock Speed · MIPS · Cache · Throughput',
+    intro:`<p class="intro-text">কম্পিউটারের <strong>পারফর্মেন্স</strong> নির্ভর করে প্রসেসর গতি, মেমরি ও স্টোরেজের উপর। গতি পরিমাপ হয় <span class="hl">GHz, MIPS, Throughput</span> দিয়ে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Clock Speed</div><div class="ic-val">MHz বা GHz-এ পরিমাপ। বেশি GHz = দ্রুততর।</div></div>
+      <div class="info-card"><div class="ic-label">MIPS</div><div class="ic-val">Million Instructions Per Second — গতির মান।</div></div>
+      <div class="info-card"><div class="ic-label">Cache L1/L2/L3</div><div class="ic-val">L1 সবচেয়ে দ্রুত, L3 সবচেয়ে বড়।</div></div>
+      <div class="info-card"><div class="ic-label">Throughput</div><div class="ic-val">নির্দিষ্ট সময়ে সম্পন্ন কাজের পরিমাণ।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>Clock Speed</strong> বেশি হলে CPU দ্রুততর — পরিমাপ: GHz। <span class="badge">সূত্র</span>'},
+      {t:'<strong>MIPS</strong> = Million Instructions Per Second — প্রসেসরের গতির পরিমাপ।'},
+      {t:'<strong>Cache L1</strong> সবচেয়ে ছোট কিন্তু CPU-এর কাছে তাই দ্রুততম।'},
+      {t:'<strong>Multi-core</strong> (Dual, Quad, Octa-core) একসাথে একাধিক কাজ করতে পারে।'},
+      {t:'<strong>Bottleneck</strong> — যে উপাদান পারফর্মেন্স সীমিত করে তাকে বলে Bottleneck।'}
+    ],
+    mcq:[
+      {q:'MIPS-এর পূর্ণরূপ কী?', opts:['Memory In Processing Speed','Million Instructions Per Second','Mega Instructions Per System','Maximum Input Processing Speed'], ans:1, exp:'MIPS = Million Instructions Per Second।'},
+      {q:'Cache Memory-র কোন স্তর সবচেয়ে দ্রুত?', opts:['L3','L2','L1','L4'], ans:2, exp:'L1 Cache CPU-এর সবচেয়ে কাছে, তাই সবচেয়ে দ্রুত।'}
+    ],
+    bcs:[
+      {y:'৪১তম BCS', q:'কম্পিউটারের গতির একক কী?', opts:['Byte','GHz','GB','Pixel'], ans:1, exp:'প্রসেসরের গতি GHz (গিগাহার্টজ) বা MHz-এ পরিমাপ।'},
+      {y:'৩৭তম BCS', q:'L1, L2, L3 কোন মেমরির স্তর?', opts:['RAM','ROM','Cache Memory','Virtual Memory'], ans:2, exp:'L1, L2, L3 হলো Cache Memory-র তিনটি স্তর।'}
+    ]
+  },
+
+  c4:{
+    cls:'c-panel', eye:'COMPUTER IN PRACTICAL FIELDS', title:'দৈনন্দিন জীবনে কম্পিউটার', sub:'কৃষি · যোগাযোগ · শিক্ষা · স্বাস্থ্য',
+    intro:`<p class="intro-text">কম্পিউটার এখন জীবনের প্রতিটি ক্ষেত্রে অপরিহার্য: <span class="hl">কৃষি, যোগাযোগ, শিক্ষা, স্বাস্থ্য, ব্যবসা ও খেলাধুলা</span>।</p>
+    <div class="key-box"><h4>প্রয়োগক্ষেত্র</h4><div class="key-list">
+      <span class="key-item">কৃষি — আবহাওয়া পূর্বাভাস, GIS ম্যাপিং</span>
+      <span class="key-item">যোগাযোগ — ইমেইল, ভিডিও কল</span>
+      <span class="key-item">শিক্ষা — LMS, ই-লাইব্রেরি</span>
+      <span class="key-item">স্বাস্থ্য — Telemedicine, MRI বিশ্লেষণ</span>
+      <span class="key-item">ব্যাংকিং — ATM, অনলাইন ব্যাংকিং</span>
+      <span class="key-item">খেলাধুলা — পারফর্মেন্স বিশ্লেষণ</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>কৃষিতে:</strong> GIS ম্যাপিং, ড্রোনে সার ছিটানো, মাটি বিশ্লেষণ। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>স্বাস্থ্যে:</strong> MRI/CT স্ক্যান বিশ্লেষণ, রোবটিক সার্জারি, ইলেকট্রনিক হেলথ রেকর্ড।'},
+      {t:'<strong>শিক্ষায়:</strong> LMS (Learning Management System), ভার্চুয়াল ক্লাসরুম।'},
+      {t:'<strong>ব্যাংকিং:</strong> ATM, অনলাইন ব্যাংকিং, SWIFT আন্তর্জাতিক অর্থ স্থানান্তর।'},
+      {t:'<strong>আবহাওয়া পূর্বাভাস:</strong> সুপার কম্পিউটার দিয়ে জটিল আবহাওয়া মডেল তৈরি।'}
+    ],
+    mcq:[
+      {q:'LMS-এর পূর্ণরূপ কী?', opts:['Local Memory System','Learning Management System','Large Motherboard Setup','Linux Master Software'], ans:1, exp:'LMS = Learning Management System — অনলাইন শিক্ষা পরিচালনার সফটওয়্যার।'},
+      {q:'কৃষিতে কম্পিউটার কোন কাজে ব্যবহৃত?', opts:['ফসল খাওয়ায়','আবহাওয়া পূর্বাভাস ও মাটি বিশ্লেষণে','সেচ খাল খননে','কৃষক নিয়োগে'], ans:1, exp:'কম্পিউটার কৃষিতে আবহাওয়া পূর্বাভাস, GIS ম্যাপিং, ড্রোনে ব্যবহৃত হয়।'}
+    ],
+    bcs:[
+      {y:'৩৩তম BCS', q:'টেলিমেডিসিন কী?', opts:['টেলিফোনে ওষুধ বিক্রি','ইন্টারনেটে ডাক্তারের পরামর্শ','হাসপাতাল ব্যবস্থাপনা','মেডিকেল রিপোর্ট'], ans:1, exp:'টেলিমেডিসিন = ইন্টারনেটের মাধ্যমে ঘরে বসে ডাক্তারের পরামর্শ।'},
+      {y:'৩৯তম BCS', q:'আন্তর্জাতিক ব্যাংক লেনদেনে কোন সিস্টেম ব্যবহৃত?', opts:['GPS','SWIFT','HTML','FTP'], ans:1, exp:'SWIFT আন্তর্জাতিক ব্যাংক লেনদেনের বৈশ্বিক নেটওয়ার্ক।'}
+    ]
+  },
+
+  c5:{
+    cls:'c-panel', eye:'NUMBER SYSTEMS', title:'নম্বর সিস্টেম', sub:'Binary · Octal · Decimal · Hexadecimal',
+    intro:`<p class="intro-text">কম্পিউটার মূলত <span class="hl">বাইনারি (Binary)</span> সিস্টেমে কাজ করে — শুধুমাত্র <strong>0</strong> এবং <strong>1</strong>। BCS পরীক্ষায় রূপান্তর প্রশ্ন প্রায়ই আসে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Decimal (বেস-১০)</div><div class="ic-val">অঙ্ক: 0–9। দৈনন্দিন ব্যবহারের সংখ্যা।</div></div>
+      <div class="info-card"><div class="ic-label">Binary (বেস-২)</div><div class="ic-val">অঙ্ক: 0, 1। কম্পিউটারের মূল ভাষা।</div></div>
+      <div class="info-card"><div class="ic-label">Octal (বেস-৮)</div><div class="ic-val">অঙ্ক: 0–7। 3 বিটে প্রকাশ।</div></div>
+      <div class="info-card"><div class="ic-label">Hexadecimal (বেস-১৬)</div><div class="ic-val">অঙ্ক: 0–9, A–F। FF = 255।</div></div>
+    </div>
+    <div class="key-box"><h4>দ্রুত রূপান্তর মনে রাখুন</h4><div class="key-list">
+      <span class="key-item">10 → 1010 (Binary)</span>
+      <span class="key-item">A=10, B=11...F=15 (Hex)</span>
+      <span class="key-item">FF = 255 (Decimal)</span>
+      <span class="key-item">1 Byte = 8 Bit</span>
+      <span class="key-item">1 KB = 1024 Byte</span>
+      <span class="key-item">1 MB = 1024 KB</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>1 Bit</strong> = 0 বা 1। <strong>1 Byte = 8 Bit</strong>। <strong>1 KB = 1024 Byte</strong>। <span class="badge">সূত্র</span>'},
+      {t:'<strong>Binary→Decimal:</strong> 1010 = 1×8+0×4+1×2+0×1 = 10।'},
+      {t:'<strong>Decimal→Binary:</strong> ক্রমাগত 2 দিয়ে ভাগ, ভাগশেষ উল্টো ক্রমে লিখুন।'},
+      {t:'<strong>Hexadecimal</strong> রঙ কোডে ব্যবহৃত — #FF0000 = লাল, #00FF00 = সবুজ।'},
+      {t:'<strong>1 nibble = 4 bits, 1 word = 2 bytes (16-bit)</strong>।'}
+    ],
+    mcq:[
+      {q:'বাইনারি 1010 = ডেসিমালে কত?', opts:['8','9','10','11'], ans:2, exp:'1010(₂) = 1×8+0×4+1×2+0×1 = 10(₁₀)।'},
+      {q:'Hex-এ F-এর ডেসিমাল মান কত?', opts:['14','15','16','10'], ans:1, exp:'Hexadecimal: A=10, B=11...F=15।'}
+    ],
+    bcs:[
+      {y:'৩৫তম BCS', q:'বাইনারি সংখ্যা পদ্ধতির ভিত্তি কত?', opts:['8','10','16','2'], ans:3, exp:'বাইনারির ভিত্তি (base) হলো 2।'},
+      {y:'৪৩তম BCS', q:'1 Kilobyte = কত Byte?', opts:['100','512','1000','1024'], ans:3, exp:'1 KB = 1024 Byte (2¹⁰)।'}
+    ]
+  },
+
+  c6:{
+    cls:'c-panel', eye:'OPERATING SYSTEMS', title:'অপারেটিং সিস্টেম', sub:'Windows · Linux · macOS · Android · iOS',
+    intro:`<p class="intro-text"><strong>অপারেটিং সিস্টেম (OS)</strong> হলো সেই সফটওয়্যার যা হার্ডওয়্যার ও অ্যাপ্লিকেশনের মধ্যে সেতু হিসেবে কাজ করে।</p>
+    <div class="key-box"><h4>জনপ্রিয় অপারেটিং সিস্টেম</h4><div class="key-list">
+      <span class="key-item">Windows — Microsoft</span>
+      <span class="key-item">macOS — Apple</span>
+      <span class="key-item">Linux — Linus Torvalds (১৯৯১)</span>
+      <span class="key-item">Android — Google</span>
+      <span class="key-item">iOS — Apple</span>
+      <span class="key-item">UNIX — Bell Labs</span>
+    </div></div>
+    <p class="intro-text"><strong>OS-এর প্রধান কাজ:</strong> মেমরি ব্যবস্থাপনা, প্রক্রিয়া নিয়ন্ত্রণ, ফাইল সিস্টেম, I/O পরিচালনা ও নিরাপত্তা নিশ্চিত করা।</p>`,
+    imp:[
+      {t:'<strong>GUI</strong> (Graphical User Interface) — চিত্র ও আইকনভিত্তিক। ব্যবহার সহজ। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>CLI</strong> (Command Line Interface) — টেক্সট কমান্ডভিত্তিক। Linux টার্মিনাল।'},
+      {t:'<strong>Kernel</strong> — OS-এর মূল অংশ যা সরাসরি হার্ডওয়্যার নিয়ন্ত্রণ করে।'},
+      {t:'<strong>Linux</strong> ওপেন-সোর্স এবং বিনামূল্যে। Linus Torvalds ১৯৯১ সালে তৈরি করেন।'},
+      {t:'<strong>Multi-tasking OS</strong> একসাথে একাধিক প্রোগ্রাম চালাতে পারে।'}
+    ],
+    mcq:[
+      {q:'Linux OS কে তৈরি করেন?', opts:['Bill Gates','Steve Jobs','Linus Torvalds','Dennis Ritchie'], ans:2, exp:'Linus Torvalds ১৯৯১ সালে Helsinki বিশ্ববিদ্যালয়ে Linux তৈরি করেন।'},
+      {q:'OS-এর কোন অংশ সরাসরি হার্ডওয়্যার নিয়ন্ত্রণ করে?', opts:['Shell','Kernel','GUI','Application'], ans:1, exp:'Kernel হলো OS-এর মূল অংশ।'}
+    ],
+    bcs:[
+      {y:'৩৬তম BCS', q:'Linux কোন ধরনের OS?', opts:['বাণিজ্যিক','ওপেন-সোর্স','প্রোপ্রাইটারি','বন্ধ উৎস'], ans:1, exp:'Linux সম্পূর্ণ ওপেন-সোর্স এবং বিনামূল্যে।'},
+      {y:'৪২তম BCS', q:'Windows OS কে তৈরি করে?', opts:['Apple','Google','Microsoft','IBM'], ans:2, exp:'Microsoft Corporation Windows তৈরি করে।'}
+    ]
+  },
+
+  c7:{
+    cls:'c-panel', eye:'EMBEDDED COMPUTER', title:'এম্বেডেড কম্পিউটার', sub:'বিশেষ উদ্দেশ্যে নির্মিত · IoT · Microcontroller',
+    intro:`<p class="intro-text"><strong>এম্বেডেড কম্পিউটার</strong> হলো কোনো বিশেষ যন্ত্রের ভেতরে লাগানো কম্পিউটার যা শুধু নির্দিষ্ট একটি কাজের জন্য ডিজাইন করা।</p>
+    <div class="key-box"><h4>উদাহরণ</h4><div class="key-list">
+      <span class="key-item">মাইক্রোওয়েভ ওভেন</span>
+      <span class="key-item">ডিজিটাল ক্যামেরা</span>
+      <span class="key-item">ATM মেশিন</span>
+      <span class="key-item">স্মার্টওয়াচ</span>
+      <span class="key-item">কার ইঞ্জিন কন্ট্রোল</span>
+      <span class="key-item">পেসমেকার</span>
+      <span class="key-item">রিমোট কন্ট্রোল</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>বৈশিষ্ট্য:</strong> একটি নির্দিষ্ট কাজ, কম বিদ্যুৎ, ছোট আকার, Real-time কাজ। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Microcontroller</strong> — CPU + RAM + ROM একই চিপে। এম্বেডেড সিস্টেমের মূল।'},
+      {t:'<strong>Arduino & Raspberry Pi</strong> — জনপ্রিয় এম্বেডেড ডেভেলপমেন্ট প্ল্যাটফর্ম।'},
+      {t:'<strong>RTOS</strong> (Real-Time Operating System) — এম্বেডেড সিস্টেমে ব্যবহৃত OS।'},
+      {t:'<strong>IoT</strong> (Internet of Things) — এম্বেডেড ডিভাইস ইন্টারনেটে সংযুক্ত।'}
+    ],
+    mcq:[
+      {q:'ATM মেশিনে কোন ধরনের কম্পিউটার ব্যবহৃত?', opts:['সুপার কম্পিউটার','মেইনফ্রেম','এম্বেডেড কম্পিউটার','পার্সোনাল কম্পিউটার'], ans:2, exp:'ATM-এ এম্বেডেড কম্পিউটার ব্যবহৃত হয় যা শুধু ব্যাংকিং কাজ করে।'},
+      {q:'IoT-এর পূর্ণরূপ কী?', opts:['Internet of Technology','Internet of Things','Integrated Online Technology','Internal Object Transfer'], ans:1, exp:'IoT = Internet of Things।'}
+    ],
+    bcs:[
+      {y:'৪০তম BCS', q:'IoT-এর পূর্ণরূপ কী?', opts:['Internet of Technology','Internet of Things','Integrated Online Technology','Internal Object Transfer'], ans:1, exp:'IoT = Internet of Things — ইন্টারনেটে সংযুক্ত স্মার্ট ডিভাইসের নেটওয়ার্ক।'},
+      {y:'৩৫তম BCS', q:'Microcontroller-এ কী থাকে?', opts:['শুধু CPU','CPU+RAM+ROM একসাথে','শুধু RAM','শুধু স্টোরেজ'], ans:1, exp:'Microcontroller একটি চিপে CPU, RAM, ROM সব থাকে।'}
+    ]
+  },
+
+  c8:{
+    cls:'c-panel', eye:'HISTORY OF COMPUTER', title:'কম্পিউটারের ইতিহাস', sub:'প্রজন্ম ১→৫ · Babbage · ENIAC · Alan Turing',
+    intro:`<p class="intro-text">কম্পিউটারের ইতিহাস বিভিন্ন <strong>প্রজন্মে</strong> বিভক্ত — প্রতিটি প্রজন্মে প্রযুক্তিগত বিপ্লব ঘটেছে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">১ম প্রজন্ম (1940-56)</div><div class="ic-val">Vacuum Tube। ENIAC, UNIVAC।</div></div>
+      <div class="info-card"><div class="ic-label">২য় প্রজন্ম (1956-63)</div><div class="ic-val">Transistor। আকার ছোট হলো।</div></div>
+      <div class="info-card"><div class="ic-label">৩য় প্রজন্ম (1964-71)</div><div class="ic-val">IC (Integrated Circuit)।</div></div>
+      <div class="info-card"><div class="ic-label">৪র্থ প্রজন্ম (1971–)</div><div class="ic-val">Microprocessor। PC যুগ। Intel 4004।</div></div>
+      <div class="info-card"><div class="ic-label">৫ম প্রজন্ম</div><div class="ic-val">AI, Machine Learning, Quantum।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>Charles Babbage</strong> কম্পিউটারের জনক — Analytical Engine তৈরি করেন। <span class="badge">বারবার আসে</span>'},
+      {t:'<strong>Ada Lovelace</strong> — প্রথম কম্পিউটার প্রোগ্রামার। Babbage-এর সহযোগী।'},
+      {t:'<strong>ENIAC</strong> (1945) — প্রথম ইলেকট্রনিক সাধারণ-উদ্দেশ্যের কম্পিউটার।'},
+      {t:'<strong>Intel 4004</strong> — প্রথম মাইক্রোপ্রসেসর (১৯৭১)।'},
+      {t:'<strong>বাংলাদেশে:</strong> ১৯৬৪ সালে পারমাণবিক শক্তি কমিশনে IBM 1620 প্রথম কম্পিউটার।'}
+    ],
+    mcq:[
+      {q:'কম্পিউটারের জনক কাকে বলা হয়?', opts:['Alan Turing','Bill Gates','Charles Babbage','John von Neumann'], ans:2, exp:'Charles Babbage Analytical Engine তৈরি করেন।'},
+      {q:'প্রথম ইলেকট্রনিক কম্পিউটার কোনটি?', opts:['UNIVAC','ENIAC','IBM 360','Colossus'], ans:1, exp:'ENIAC (1945) — প্রথম সাধারণ উদ্দেশ্যের ইলেকট্রনিক কম্পিউটার।'}
+    ],
+    bcs:[
+      {y:'৩৪তম BCS', q:'কম্পিউটারের জনক কে?', opts:['Alan Turing','Charles Babbage','Bill Gates','Ada Lovelace'], ans:1, exp:'Charles Babbage — Analytical Engine তৈরি করেন।'},
+      {y:'৪৩তম BCS', q:'প্রথম কম্পিউটার প্রোগ্রামার কে?', opts:['Charles Babbage','Alan Turing','Ada Lovelace','Grace Hopper'], ans:2, exp:'Ada Lovelace — প্রথম অ্যালগরিদম লেখেন।'}
+    ]
+  },
+
+  c9:{
+    cls:'c-panel', eye:'TYPES OF COMPUTERS', title:'কম্পিউটারের প্রকারভেদ', sub:'Super · Mainframe · Mini · Micro · Analog · Digital',
+    intro:`<p class="intro-text">কম্পিউটারকে আকার ও ক্ষমতা অনুযায়ী শ্রেণিবিভাগ করা যায়।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Super Computer</div><div class="ic-val">সর্বোচ্চ ক্ষমতা। আবহাওয়া, পারমাণবিক গবেষণায়।</div></div>
+      <div class="info-card"><div class="ic-label">Mainframe</div><div class="ic-val">হাজারো ব্যবহারকারী একসাথে। ব্যাংক, বিমান।</div></div>
+      <div class="info-card"><div class="ic-label">Mini Computer</div><div class="ic-val">মাঝারি আকার। Mainframe-এর ছোট সংস্করণ।</div></div>
+      <div class="info-card"><div class="ic-label">Micro / PC</div><div class="ic-val">ব্যক্তিগত ব্যবহার। Desktop, Laptop, Tablet।</div></div>
+      <div class="info-card"><div class="ic-label">Analog</div><div class="ic-val">তরঙ্গ সংকেতে কাজ করে।</div></div>
+      <div class="info-card"><div class="ic-label">Hybrid</div><div class="ic-val">Analog + Digital উভয়।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>Super Computer</strong> গতি Teraflops বা Petaflops-এ পরিমাপ। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Mainframe</strong> একসাথে হাজারো ব্যবহারকারীকে সেবা দেয় — ব্যাংক ও এয়ারলাইনসে।'},
+      {t:'<strong>Analog</strong> কম্পিউটার তরঙ্গে কাজ করে, <strong>Digital</strong> কম্পিউটার 0/1-এ।'},
+      {t:'<strong>Hybrid Computer</strong> হাসপাতালে ব্যবহৃত — Analog ও Digital উভয় পদ্ধতি।'},
+      {t:'<strong>Workstation</strong> — উচ্চ পারফর্মেন্সের PC। গ্রাফিক্স ডিজাইনে ব্যবহৃত।'}
+    ],
+    mcq:[
+      {q:'Supercomputer-এর গতি কী দিয়ে পরিমাপ?', opts:['GHz','MIPS','Teraflops','MHz'], ans:2, exp:'Supercomputer-এর গতি Teraflops বা Petaflops-এ পরিমাপ।'},
+      {q:'ব্যাংকে কোন ধরনের কম্পিউটার ব্যবহার হয়?', opts:['Micro','Super','Mainframe','Embedded'], ans:2, exp:'ব্যাংকে হাজারো লেনদেন পরিচালনায় Mainframe ব্যবহৃত হয়।'}
+    ],
+    bcs:[
+      {y:'৩৭তম BCS', q:'সবচেয়ে শক্তিশালী কম্পিউটার কোনটি?', opts:['Mainframe','Mini Computer','Super Computer','Personal Computer'], ans:2, exp:'Super Computer সর্বোচ্চ প্রক্রিয়াকরণ ক্ষমতাসম্পন্ন।'},
+      {y:'৪১তম BCS', q:'Hybrid Computer কী?', opts:['শুধু Digital','শুধু Analog','Digital ও Analog উভয়','Wireless Computer'], ans:2, exp:'Hybrid Computer Digital ও Analog উভয় পদ্ধতিতে কাজ করে।'}
+    ]
+  },
+
+  c10:{
+    cls:'c-panel', eye:'COMPUTER PROGRAM', title:'কম্পিউটার প্রোগ্রাম', sub:'Virus · Firewall · Malware · Software',
+    intro:`<p class="intro-text"><strong>কম্পিউটার প্রোগ্রাম</strong> হলো নির্দেশাবলীর সমষ্টি। নিরাপত্তা বিষয়ক তথ্য BCS-এ বেশি আসে।</p>
+    <div class="key-box"><h4>ম্যালওয়্যারের ধরন</h4><div class="key-list">
+      <span class="key-item">Virus — ফাইলে সংযুক্ত হয়</span>
+      <span class="key-item">Worm — নিজে নেটওয়ার্কে ছড়ায়</span>
+      <span class="key-item">Trojan — বৈধ সফটওয়্যারে লুকায়</span>
+      <span class="key-item">Spyware — তথ্য চুরি করে</span>
+      <span class="key-item">Ransomware — ফাইল আটকায়</span>
+      <span class="key-item">Adware — বিজ্ঞাপন দেখায়</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>Virus</strong> অন্য ফাইলে সংযুক্ত হয়ে ছড়ায়। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>Worm</strong> নেটওয়ার্কে নিজেই ছড়াতে পারে — কোনো হোস্ট ফাইল ছাড়া।'},
+      {t:'<strong>Firewall</strong> নেটওয়ার্কে অননুমোদিত প্রবেশ ঠেকায়। Hardware ও Software উভয়।'},
+      {t:'<strong>Ransomware</strong> ফাইল এনক্রিপ্ট করে মুক্তিপণ চায়। WannaCry বিখ্যাত।'},
+      {t:'<strong>Compiler</strong> সোর্স কোডকে একবারে মেশিন কোডে রূপান্তর করে।'}
+    ],
+    mcq:[
+      {q:'Virus ও Worm-এর পার্থক্য কী?', opts:['কোনো পার্থক্য নেই','Virus ফাইলে লাগে, Worm নিজে ছড়ায়','Worm ফাইলে লাগে','Virus শুধু মোবাইলে হয়'], ans:1, exp:'Virus অন্য ফাইলে সংযুক্ত হয়, Worm নেটওয়ার্কে নিজেই ছড়ায়।'},
+      {q:'Ransomware কী করে?', opts:['ছবি মুছে','ফাইল এনক্রিপ্ট করে মুক্তিপণ চায়','ইন্টারনেট বন্ধ করে','ব্যাটারি নষ্ট করে'], ans:1, exp:'Ransomware ফাইল এনক্রিপ্ট করে ডিক্রিপশনের জন্য অর্থ দাবি করে।'}
+    ],
+    bcs:[
+      {y:'৩৬তম BCS', q:'WannaCry কী ধরনের ম্যালওয়্যার?', opts:['Virus','Worm','Ransomware','Spyware'], ans:2, exp:'WannaCry ২০১৭ সালের বিখ্যাত Ransomware।'},
+      {y:'৪০তম BCS', q:'Firewall কী কাজ করে?', opts:['ভাইরাস তৈরি','নেটওয়ার্কে অননুমোদিত প্রবেশ ঠেকায়','ইন্টারনেট দ্রুত করে','ফাইল সংকুচিত করে'], ans:1, exp:'Firewall অননুমোদিত নেটওয়ার্ক ট্রাফিক ব্লক করে।'}
+    ]
+  },
+
+  c11:{
+    cls:'c-panel', eye:'DATABASE SYSTEM', title:'ডেটাবেইস সিস্টেম', sub:'DBMS · SQL · NoSQL · Primary Key',
+    intro:`<p class="intro-text"><strong>ডেটাবেইস</strong> হলো সংগঠিতভাবে সংরক্ষিত তথ্যের সমষ্টি। <span class="hl">DBMS</span> দিয়ে এটি পরিচালনা করা হয়।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">DBMS</div><div class="ic-val">Database Management System। MySQL, Oracle, MongoDB।</div></div>
+      <div class="info-card"><div class="ic-label">SQL</div><div class="ic-val">Structured Query Language। ডেটা পরিচালনার ভাষা।</div></div>
+      <div class="info-card"><div class="ic-label">Primary Key</div><div class="ic-val">প্রতিটি রেকর্ডের অনন্য পরিচয়। NULL হবে না।</div></div>
+      <div class="info-card"><div class="ic-label">NoSQL</div><div class="ic-val">অসংগঠিত ডেটার জন্য। MongoDB, Cassandra।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>DBMS-এর কাজ:</strong> সংরক্ষণ, পুনরুদ্ধার, নিরাপত্তা, সামঞ্জস্য রক্ষা। <span class="badge">গুরুত্বপূর্ণ</span>'},
+      {t:'<strong>SQL কমান্ড:</strong> SELECT, INSERT, UPDATE, DELETE, CREATE, DROP।'},
+      {t:'<strong>Primary Key</strong> — রেকর্ডকে অনন্যভাবে চিহ্নিত করে। NULL বা Duplicate হবে না।'},
+      {t:'<strong>Foreign Key</strong> — অন্য টেবিলের Primary Key-কে রেফার করে।'},
+      {t:'<strong>Normalization</strong> — ডেটার পুনরাবৃত্তি কমানোর প্রক্রিয়া।'}
+    ],
+    mcq:[
+      {q:'SQL-এর পূর্ণরূপ কী?', opts:['Simple Query Language','Structured Query Language','Sequential Query Logic','System Query Language'], ans:1, exp:'SQL = Structured Query Language।'},
+      {q:'Primary Key-এর বৈশিষ্ট্য কোনটি?', opts:['Null হতে পারে','Duplicate হতে পারে','অনন্য ও NULL নয়','যেকোনো মান নেয়'], ans:2, exp:'Primary Key প্রতিটি রেকর্ডকে অনন্যভাবে চিহ্নিত করে — NULL বা Duplicate হয় না।'}
+    ],
+    bcs:[
+      {y:'৩৯তম BCS', q:'DBMS-এর পূর্ণরূপ কী?', opts:['Digital Base Management System','Database Management System','Data Binary Management System','Dynamic Base Master System'], ans:1, exp:'DBMS = Database Management System।'},
+      {y:'৪১তম BCS', q:'SQL-এ ডেটা নির্বাচন করতে কোন কমান্ড?', opts:['INSERT','UPDATE','SELECT','DELETE'], ans:2, exp:'SELECT কমান্ড ডেটাবেজ থেকে ডেটা পুনরুদ্ধার করে।'}
+    ]
+  },
+
+  /* ─── IT ─── */
+  i1:{
+    cls:'i-panel', eye:'E-COMMERCE', title:'ই-কমার্স', sub:'B2B · B2C · C2C · M-Commerce',
+    intro:`<p class="intro-text"><strong>ই-কমার্স</strong> হলো ইন্টারনেটের মাধ্যমে পণ্য ও সেবা ক্রয়-বিক্রয়ের প্রক্রিয়া।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">B2B</div><div class="ic-val">Business to Business — প্রতিষ্ঠানের মধ্যে।</div></div>
+      <div class="info-card"><div class="ic-label">B2C</div><div class="ic-val">Business to Consumer — Amazon, Daraz।</div></div>
+      <div class="info-card"><div class="ic-label">C2C</div><div class="ic-val">Consumer to Consumer — OLX, Facebook Marketplace।</div></div>
+      <div class="info-card"><div class="ic-label">M-Commerce</div><div class="ic-val">মোবাইলে কেনাকাটা — bKash, Nagad।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>ই-কমার্স</strong> ২৪/৭ কাজ করে — ঘুমানোর সময়ও বিক্রয় সম্ভব। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>SSL</strong> (Secure Socket Layer) অনলাইন লেনদেন এনক্রিপ্ট করে নিরাপদ রাখে।'},
+      {t:'<strong>Payment Gateway</strong> — অনলাইন পেমেন্টের মধ্যস্থতাকারী সিস্টেম।'},
+      {t:'<strong>বাংলাদেশে:</strong> Daraz, Chaldal, Shajgoj জনপ্রিয় ই-কমার্স প্ল্যাটফর্ম।'}
+    ],
+    mcq:[
+      {q:'B2C ই-কমার্সের উদাহরণ কোনটি?', opts:['OLX','Amazon','Facebook Marketplace','LinkedIn'], ans:1, exp:'B2C = Business to Consumer। Amazon ব্যবসা থেকে সরাসরি ভোক্তায় পণ্য বিক্রি করে।'},
+      {q:'অনলাইন লেনদেন নিরাপদ রাখতে কোন প্রযুক্তি?', opts:['HTTP','FTP','SSL','SMTP'], ans:2, exp:'SSL (Secure Sockets Layer) ডেটা এনক্রিপ্ট করে অনলাইন লেনদেন নিরাপদ রাখে।'}
+    ],
+    bcs:[
+      {y:'৩৮তম BCS', q:'ক্রেতা থেকে ক্রেতার ই-কমার্স মডেল কোনটি?', opts:['B2B','B2C','C2C','G2C'], ans:2, exp:'C2C = Consumer to Consumer।'},
+      {y:'৪২তম BCS', q:'M-Commerce কী?', opts:['মোবাইলে ই-কমার্স','মার্কেট কমার্স','মিলিটারি কমার্স','মেইন কমার্স'], ans:0, exp:'M-Commerce = Mobile Commerce — মোবাইল ডিভাইসে ব্যবসা।'}
+    ]
+  },
+
+  i2:{
+    cls:'i-panel', eye:'CELLULAR DATA NETWORK', title:'সেলুলার ডেটা নেটওয়ার্ক', sub:'2G · 3G · 4G LTE · 5G · WiMAX',
+    intro:`<p class="intro-text">মোবাইল নেটওয়ার্কের প্রতিটি প্রজন্মে গতি ও সক্ষমতা বেড়েছে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">2G — GSM</div><div class="ic-val">ডিজিটাল Voice ও SMS। ~9.6 kbps।</div></div>
+      <div class="info-card"><div class="ic-label">3G — WCDMA</div><div class="ic-val">মোবাইল ইন্টারনেট। ~384kbps–2Mbps।</div></div>
+      <div class="info-card"><div class="ic-label">4G — LTE</div><div class="ic-val">HD স্ট্রিমিং। ~100 Mbps।</div></div>
+      <div class="info-card"><div class="ic-label">5G — NR</div><div class="ic-val">অতি দ্রুত। ~1–10 Gbps। IoT-বান্ধব।</div></div>
+      <div class="info-card"><div class="ic-label">WiMAX</div><div class="ic-val">Worldwide Interoperability for Microwave Access।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>GSM</strong> (Global System for Mobile) — 2G-এর প্রযুক্তি। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>LTE</strong> (Long Term Evolution) — 4G-এর প্রযুক্তি।'},
+      {t:'<strong>WiMAX</strong> IEEE 802.16 স্ট্যান্ডার্ড। দূরবর্তী ব্রডব্যান্ড সংযোগে।'},
+      {t:'<strong>5G</strong> আল্ট্রা-লো লেটেন্সি দেয়। স্বায়ত্তশাসিত গাড়ি ও IoT-এর জন্য।'},
+      {t:'<strong>বাংলাদেশে 4G</strong> ২০১৮ সালে চালু হয়।'}
+    ],
+    mcq:[
+      {q:'4G-এর প্রযুক্তি কোনটি?', opts:['GSM','CDMA','LTE','WiMAX'], ans:2, exp:'LTE (Long Term Evolution) হলো 4G-এর প্রযুক্তি।'},
+      {q:'WiMAX-এর পূর্ণরূপ কী?', opts:['Wireless Internet Maximum','Worldwide Interoperability for Microwave Access','Wide Internet Mobile Access','Wireless Integrated Mobile Exchange'], ans:1, exp:'WiMAX = Worldwide Interoperability for Microwave Access।'}
+    ],
+    bcs:[
+      {y:'৩৬তম BCS', q:'4G নেটওয়ার্কের প্রযুক্তি কী?', opts:['GSM','CDMA','LTE','UMTS'], ans:2, exp:'4G LTE (Long Term Evolution) প্রযুক্তি ব্যবহার করে।'},
+      {y:'৪৩তম BCS', q:'বাংলাদেশে 4G কবে চালু হয়?', opts:['2016','2017','2018','2019'], ans:2, exp:'বাংলাদেশে ২০১৮ সালে 4G/LTE চালু হয়।'}
+    ]
+  },
+
+  i3:{
+    cls:'i-panel', eye:'COMPUTER NETWORK', title:'কম্পিউটার নেটওয়ার্ক', sub:'LAN · MAN · WAN · WiFi · Topology',
+    intro:`<p class="intro-text"><strong>কম্পিউটার নেটওয়ার্ক</strong> হলো একাধিক কম্পিউটারের মধ্যে ডেটা আদান-প্রদানের ব্যবস্থা।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">LAN</div><div class="ic-val">Local Area Network। ভবন বা ক্যাম্পাস।</div></div>
+      <div class="info-card"><div class="ic-label">MAN</div><div class="ic-val">Metropolitan Area Network। একটি শহর।</div></div>
+      <div class="info-card"><div class="ic-label">WAN</div><div class="ic-val">Wide Area Network। দেশব্যাপী। ইন্টারনেট।</div></div>
+      <div class="info-card"><div class="ic-label">WiFi</div><div class="ic-val">Wireless LAN। IEEE 802.11 স্ট্যান্ডার্ড।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>Topology:</strong> Bus, Ring, Star, Mesh, Tree। নেটওয়ার্কের কাঠামো। <span class="badge">BCS বারবার</span>'},
+      {t:'<strong>Star Topology</strong> সবচেয়ে জনপ্রিয় — কেন্দ্রীয় Switch/Hub-এ সব সংযুক্ত।'},
+      {t:'<strong>Router</strong> — বিভিন্ন নেটওয়ার্কের মধ্যে ডেটা রাউট করে।'},
+      {t:'<strong>Protocol: TCP/IP, HTTP, FTP, SMTP</strong> — নেটওয়ার্কের নিয়মকানুন।'},
+      {t:'<strong>IP Address</strong> — প্রতিটি ডিভাইসের অনন্য নেটওয়ার্ক ঠিকানা।'}
+    ],
+    mcq:[
+      {q:'LAN-এর পূর্ণরূপ কী?', opts:['Large Area Network','Local Area Network','Long Access Network','Local Access Node'], ans:1, exp:'LAN = Local Area Network।'},
+      {q:'WiFi কোন IEEE স্ট্যান্ডার্ড অনুসরণ করে?', opts:['802.3','802.11','802.16','802.15'], ans:1, exp:'WiFi হলো IEEE 802.11 ভিত্তিক বেতার LAN।'}
+    ],
+    bcs:[
+      {y:'৩৪তম BCS', q:'ইন্টারনেট কোন ধরনের নেটওয়ার্ক?', opts:['LAN','MAN','WAN','PAN'], ans:2, exp:'ইন্টারনেট বিশ্বব্যাপী বিস্তৃত WAN।'},
+      {y:'৪০তম BCS', q:'সবচেয়ে জনপ্রিয় Network Topology কোনটি?', opts:['Bus','Ring','Star','Mesh'], ans:2, exp:'Star Topology সবচেয়ে বেশি ব্যবহৃত।'}
+    ]
+  },
+
+  i4:{
+    cls:'i-panel', eye:'IT IN PRACTICAL FIELDS', title:'দৈনন্দিন জীবনে তথ্যপ্রযুক্তি', sub:'e-Governance · Mobile Banking · EdTech · FinTech',
+    intro:`<p class="intro-text">তথ্যপ্রযুক্তি জীবনের প্রতিটি খাতে বিপ্লব এনেছে।</p>
+    <div class="key-box"><h4>প্রয়োগক্ষেত্র</h4><div class="key-list">
+      <span class="key-item">e-Governance — অনলাইন সরকারি সেবা</span>
+      <span class="key-item">Mobile Banking — bKash, Nagad</span>
+      <span class="key-item">Telemedicine — ভিডিওতে ডাক্তার</span>
+      <span class="key-item">e-Learning — Coursera, Khan Academy</span>
+      <span class="key-item">Digital Payment — কার্ড, QR কোড</span>
+      <span class="key-item">Smart City — ট্রাফিক ব্যবস্থাপনা</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>e-Governance</strong> সরকারি সেবা ডিজিটালে আনে — NID, জন্ম নিবন্ধন অনলাইনে। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Digital Bangladesh:</strong> ২০২১ লক্ষ্যমাত্রা। এখন "Smart Bangladesh 2041"।'},
+      {t:'<strong>Mobile Banking:</strong> bKash, Nagad, Rocket — আর্থিক অন্তর্ভুক্তিতে বিপ্লব।'},
+      {t:'<strong>FinTech</strong> = Financial Technology — ডিজিটাল পেমেন্ট ও আর্থিক সেবার সমন্বয়।'}
+    ],
+    mcq:[
+      {q:'e-Governance কী?', opts:['ইলেকট্রনিক মুদ্রা','ডিজিটাল সরকারি সেবা','সরকারি ইমেইল সিস্টেম','ইলেকট্রনিক নির্বাচন'], ans:1, exp:'e-Governance = তথ্যপ্রযুক্তি ব্যবহার করে সরকারি সেবা প্রদান।'},
+      {q:'FinTech-এর পূর্ণরূপ কী?', opts:['Financial Technology','Finance Text','Fine Technology','Final Tech'], ans:0, exp:'FinTech = Financial Technology।'}
+    ],
+    bcs:[
+      {y:'৪৩তম BCS', q:'"Digital Bangladesh" ভিশনের বছর কত?', opts:['2020','2021','2025','2030'], ans:1, exp:'Digital Bangladesh ভিশন ২০২১-এর লক্ষ্যমাত্রা ছিল।'},
+      {y:'৩৯তম BCS', q:'বাংলাদেশের জনপ্রিয় মোবাইল ব্যাংকিং সেবা?', opts:['PayPal','bKash','Venmo','Stripe'], ans:1, exp:'bKash বাংলাদেশের সবচেয়ে জনপ্রিয় মোবাইল ব্যাংকিং সেবা।'}
+    ]
+  },
+
+  i5:{
+    cls:'i-panel', eye:'SMARTPHONE', title:'স্মার্টফোন', sub:'Android · iOS · App Store · Play Store',
+    intro:`<p class="intro-text"><strong>স্মার্টফোন</strong> হলো উন্নত OS সহ মোবাইল ফোন যা কম্পিউটারের মতো কাজ করে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Android</div><div class="ic-val">Google-এর OS। ওপেন-সোর্স। বিশ্বে সর্বাধিক।</div></div>
+      <div class="info-card"><div class="ic-label">iOS</div><div class="ic-val">Apple-এর OS। শুধু iPhone-এ।</div></div>
+      <div class="info-card"><div class="ic-label">Play Store</div><div class="ic-val">Android অ্যাপের ভান্ডার।</div></div>
+      <div class="info-card"><div class="ic-label">App Store</div><div class="ic-val">iOS অ্যাপের ভান্ডার।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>প্রথম iPhone:</strong> Apple — ২০০৭ সালে Steve Jobs উন্মোচন করেন। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Android</strong> ওপেন-সোর্স, বিশ্বের ৭০%+ স্মার্টফোনে ব্যবহৃত।'},
+      {t:'<strong>IBM Simon</strong> (১৯৯৩) — প্রথম "স্মার্টফোন" ধারণার ডিভাইস।'},
+      {t:'<strong>NFC, GPS, Bluetooth, 4G/5G</strong> — আধুনিক স্মার্টফোনের মূল কানেক্টিভিটি।'}
+    ],
+    mcq:[
+      {q:'প্রথম iPhone কত সালে বের হয়?', opts:['2005','2007','2010','2004'], ans:1, exp:'Steve Jobs ২০০৭ সালে প্রথম iPhone উন্মোচন করেন।'},
+      {q:'Android OS কার তৈরি?', opts:['Apple','Microsoft','Google','Samsung'], ans:2, exp:'Android হলো Google-এর মোবাইল OS।'}
+    ],
+    bcs:[
+      {y:'৪১তম BCS', q:'প্রথম iPhone কে উন্মোচন করেন?', opts:['Tim Cook','Bill Gates','Steve Jobs','Mark Zuckerberg'], ans:2, exp:'Steve Jobs ২০০৭ সালে Apple-এর প্রথম iPhone উন্মোচন করেন।'},
+      {y:'৩৭তম BCS', q:'iOS কোন কোম্পানির OS?', opts:['Google','Microsoft','Apple','Samsung'], ans:2, exp:'iOS হলো Apple-এর মোবাইল অপারেটিং সিস্টেম।'}
+    ]
+  },
+
+  i6:{
+    cls:'i-panel', eye:'WORLD WIDE WEB', title:'ওয়ার্ল্ড ওয়াইড ওয়েব', sub:'WWW · URL · HTTP · HTTPS · HTML · Browser',
+    intro:`<p class="intro-text"><strong>WWW</strong> ইন্টারনেটের মাধ্যমে অ্যাক্সেসযোগ্য ওয়েবপেজের বিশাল সংগ্রহ। <strong>Tim Berners-Lee</strong> ১৯৮৯ সালে CERN-এ উদ্ভাবন করেন।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">URL</div><div class="ic-val">Uniform Resource Locator — ওয়েবপেজের ঠিকানা।</div></div>
+      <div class="info-card"><div class="ic-label">HTTP / HTTPS</div><div class="ic-val">HyperText Transfer Protocol। S = Secure।</div></div>
+      <div class="info-card"><div class="ic-label">HTML</div><div class="ic-val">HyperText Markup Language — ওয়েবপেজ তৈরির ভাষা।</div></div>
+      <div class="info-card"><div class="ic-label">Browser</div><div class="ic-val">Chrome, Firefox, Safari, Edge।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>Tim Berners-Lee</strong> WWW-এর জনক। ১৯৮৯ সালে CERN-এ উদ্ভাবন। <span class="badge">বারবার আসে</span>'},
+      {t:'<strong>HTTPS</strong>-এ SSL/TLS এনক্রিপশন থাকে — নিরাপদ লেনদেনের জন্য।'},
+      {t:'<strong>HTML</strong> ওয়েবপেজের কাঠামো তৈরি করে। CSS ডিজাইন, JS ইন্টারেক্টিভিটি।'},
+      {t:'<strong>Search Engine:</strong> Google, Bing, Yahoo — ওয়েব তথ্য খুঁজে দেয়।'}
+    ],
+    mcq:[
+      {q:'WWW-এর উদ্ভাবক কে?', opts:['Bill Gates','Tim Berners-Lee','Alan Turing','Vint Cerf'], ans:1, exp:'Tim Berners-Lee ১৯৮৯ সালে CERN-এ WWW উদ্ভাবন করেন।'},
+      {q:'HTTPS-এ "S" মানে কী?', opts:['Speed','System','Secure','Standard'], ans:2, exp:'HTTPS-এ S = Secure — SSL/TLS এনক্রিপশন ব্যবহার।'}
+    ],
+    bcs:[
+      {y:'৩৫তম BCS', q:'WWW কে উদ্ভাবন করেন?', opts:['Bill Gates','Tim Berners-Lee','Steve Jobs','Vint Cerf'], ans:1, exp:'Tim Berners-Lee ১৯৮৯ সালে WWW উদ্ভাবন করেন।'},
+      {y:'৩৯তম BCS', q:'HTTP-এর পূর্ণরূপ কী?', opts:['High Transfer Text Protocol','HyperText Transfer Protocol','High Tech Transfer Protocol','HyperText Transmission Protocol'], ans:1, exp:'HTTP = HyperText Transfer Protocol।'}
+    ]
+  },
+
+  i7:{
+    cls:'i-panel', eye:'INTERNET', title:'ইন্টারনেট', sub:'TCP/IP · ARPANET · ISP · IP Address · DNS',
+    intro:`<p class="intro-text"><strong>ইন্টারনেট</strong> বিশ্বের সমস্ত কম্পিউটার নেটওয়ার্কের সমন্বয়ে গঠিত বৈশ্বিক নেটওয়ার্ক।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">TCP/IP</div><div class="ic-val">ইন্টারনেটের মূল প্রোটোকল।</div></div>
+      <div class="info-card"><div class="ic-label">ARPANET (1969)</div><div class="ic-val">ইন্টারনেটের পূর্বপুরুষ।</div></div>
+      <div class="info-card"><div class="ic-label">IP Address</div><div class="ic-val">প্রতিটি ডিভাইসের অনন্য ঠিকানা।</div></div>
+      <div class="info-card"><div class="ic-label">DNS</div><div class="ic-val">Domain নামকে IP-তে রূপান্তর।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>ARPANET</strong> (1969) — মার্কিন প্রতিরক্ষা বিভাগের প্রকল্প, ইন্টারনেটের উৎস। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>বাংলাদেশে ইন্টারনেট:</strong> ১৯৯৩ সালে চালু। ২০০৬ সালে সাবমেরিন ক্যাবলে সংযুক্ত।'},
+      {t:'<strong>IPv4</strong> (32 bit) — যেমন 192.168.1.1। <strong>IPv6</strong> (128 bit) আধুনিক।'},
+      {t:'<strong>DNS</strong> (Domain Name System) — ইন্টারনেটের ফোনবুক।'},
+      {t:'<strong>ISP</strong> (Internet Service Provider) — ইন্টারনেট সংযোগ প্রদানকারী।'}
+    ],
+    mcq:[
+      {q:'ইন্টারনেটের পূর্বপুরুষ কোনটি?', opts:['WWW','ARPANET','Ethernet','Intranet'], ans:1, exp:'ARPANET (1969) — আধুনিক ইন্টারনেটের উৎস।'},
+      {q:'IPv4-এ কত বিটের IP Address?', opts:['16','32','64','128'], ans:1, exp:'IPv4 হলো 32-bit IP Address।'}
+    ],
+    bcs:[
+      {y:'৩৬তম BCS', q:'বাংলাদেশে ইন্টারনেট কখন চালু হয়?', opts:['1990','1993','1996','2000'], ans:1, exp:'বাংলাদেশে ইন্টারনেট ১৯৯৩ সালে চালু হয়।'},
+      {y:'৪২তম BCS', q:'IPv6-এ কত বিটের IP Address?', opts:['32','64','96','128'], ans:3, exp:'IPv6 হলো 128-bit IP Address।'}
+    ]
+  },
+
+  i8:{
+    cls:'i-panel', eye:'DAILY-USE COMPUTING', title:'নিত্যপ্রয়োজনীয় কম্পিউটিং', sub:'E-mail · Fax · VoIP · Digital Signature',
+    intro:`<p class="intro-text">প্রতিদিন আমরা যেসব কম্পিউটিং প্রযুক্তি ব্যবহার করি: <span class="hl">ই-মেইল, ফ্যাক্স, VoIP, Digital Signature</span>।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">E-mail</div><div class="ic-val">SMTP পাঠায়, IMAP/POP3 গ্রহণ করে।</div></div>
+      <div class="info-card"><div class="ic-label">Fax</div><div class="ic-val">ফোন লাইনে ডকুমেন্ট পাঠানো।</div></div>
+      <div class="info-card"><div class="ic-label">VoIP</div><div class="ic-val">ইন্টারনেটে ভয়েস কল। Skype, Zoom।</div></div>
+      <div class="info-card"><div class="ic-label">Digital Signature</div><div class="ic-val">ইলেকট্রনিক দস্তখত।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>SMTP</strong> (Simple Mail Transfer Protocol) ইমেইল পাঠাতে ব্যবহৃত। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>IMAP</strong> (Internet Message Access Protocol) সার্ভারে ইমেইল সংরক্ষণ।'},
+      {t:'<strong>POP3</strong> (Post Office Protocol v3) ইমেইল ডাউনলোড করে।'},
+      {t:'<strong>VoIP</strong> (Voice over Internet Protocol) — Skype, WhatsApp Call।'},
+      {t:'<strong>Digital Signature</strong> পাবলিক কী ক্রিপ্টোগ্রাফি ব্যবহার করে।'}
+    ],
+    mcq:[
+      {q:'ইমেইল পাঠাতে কোন প্রোটোকল ব্যবহৃত?', opts:['IMAP','POP3','SMTP','FTP'], ans:2, exp:'SMTP (Simple Mail Transfer Protocol) ইমেইল পাঠাতে ব্যবহৃত।'},
+      {q:'VoIP-এর পূর্ণরূপ কী?', opts:['Video over Internet Protocol','Voice over Internet Protocol','Virtual over IP','Voice Online IP'], ans:1, exp:'VoIP = Voice over Internet Protocol।'}
+    ],
+    bcs:[
+      {y:'৩৭তম BCS', q:'SMTP কী কাজে ব্যবহৃত?', opts:['ফাইল ট্রান্সফার','ওয়েব ব্রাউজিং','ইমেইল পাঠানো','ভিডিও স্ট্রিমিং'], ans:2, exp:'SMTP ইমেইল পাঠানোর প্রোটোকল।'},
+      {y:'৪১তম BCS', q:'Fax কোন মাধ্যমে ডকুমেন্ট পাঠায়?', opts:['ইন্টারনেট','টেলিফোন লাইন','WiFi','Bluetooth'], ans:1, exp:'Fax টেলিফোন লাইনের মাধ্যমে ডকুমেন্টের কপি পাঠায়।'}
+    ]
+  },
+
+  i9:{
+    cls:'i-panel', eye:'CLIENT-SERVER', title:'ক্লায়েন্ট-সার্ভার ম্যানেজমেন্ট', sub:'Request · Response · P2P · Server Types',
+    intro:`<p class="intro-text"><strong>ক্লায়েন্ট-সার্ভার মডেলে</strong> সার্ভার সেবা প্রদান করে এবং ক্লায়েন্ট সেই সেবা গ্রহণ করে।</p>
+    <div class="key-box"><h4>সার্ভারের ধরন</h4><div class="key-list">
+      <span class="key-item">Web Server — ওয়েবপেজ পরিবেশন</span>
+      <span class="key-item">File Server — ফাইল সংরক্ষণ</span>
+      <span class="key-item">Mail Server — ইমেইল পরিচালনা</span>
+      <span class="key-item">Database Server — ডেটাবেজ সেবা</span>
+      <span class="key-item">DNS Server — ডোমেইন রেজোলিউশন</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>Request-Response:</strong> Client → Request → Server → Response। <span class="badge">মূল ধারণা</span>'},
+      {t:'<strong>P2P</strong> (Peer-to-Peer) — সার্ভার ছাড়া সরাসরি ডিভাইস থেকে ডিভাইসে।'},
+      {t:'<strong>Apache, Nginx</strong> — জনপ্রিয় Web Server সফটওয়্যার।'},
+      {t:'<strong>Port:</strong> HTTP:80, HTTPS:443, FTP:21, SMTP:25।'}
+    ],
+    mcq:[
+      {q:'P2P নেটওয়ার্কে কী থাকে না?', opts:['Client','কেন্দ্রীয় Server','ডেটা','Connection'], ans:1, exp:'P2P-এ কেন্দ্রীয় সার্ভার থাকে না — সব ডিভাইস সমান।'},
+      {q:'HTTP-এর ডিফল্ট পোর্ট নম্বর কত?', opts:['21','25','80','443'], ans:2, exp:'HTTP-এর ডিফল্ট পোর্ট হলো 80।'}
+    ],
+    bcs:[
+      {y:'৩৯তম BCS', q:'BitTorrent কোন মডেল ব্যবহার করে?', opts:['Client-Server','P2P','Mainframe','Cloud'], ans:1, exp:'BitTorrent P2P (Peer-to-Peer) মডেল ব্যবহার করে।'},
+      {y:'৪০তম BCS', q:'HTTPS কোন পোর্টে চলে?', opts:['80','21','443','25'], ans:2, exp:'HTTPS পোর্ট 443-এ চলে।'}
+    ]
+  },
+
+  i10:{
+    cls:'i-panel', eye:'MOBILE FEATURES', title:'মোবাইল প্রযুক্তির বৈশিষ্ট্য', sub:'GPS · Bluetooth · NFC · Biometric · Sensor',
+    intro:`<p class="intro-text">আধুনিক স্মার্টফোনে অসংখ্য সেন্সর ও প্রযুক্তি রয়েছে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">GPS</div><div class="ic-val">স্যাটেলাইট ভিত্তিক অবস্থান। Google Maps।</div></div>
+      <div class="info-card"><div class="ic-label">Bluetooth</div><div class="ic-val">~10 মিটার বেতার সংযোগ।</div></div>
+      <div class="info-card"><div class="ic-label">NFC</div><div class="ic-val">~4 সেমি। মোবাইল পেমেন্ট।</div></div>
+      <div class="info-card"><div class="ic-label">Biometric</div><div class="ic-val">Fingerprint, Face ID নিরাপত্তা।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>GPS</strong> (Global Positioning System) — মার্কিন সামরিক স্যাটেলাইট সিস্টেম। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>NFC</strong> Near Field Communication — মাত্র 4 সেমির মধ্যে কাজ করে।'},
+      {t:'<strong>Bluetooth</strong> IEEE 802.15 স্ট্যান্ডার্ড। ~10 মিটার পর্যন্ত।'},
+      {t:'<strong>Accelerometer</strong> — ফোনের গতি ও কাত পরিমাপ।'},
+      {t:'<strong>Gyroscope</strong> — ফোনের ঘূর্ণন পরিমাপ। গেমিং ও AR-এ ব্যবহৃত।'}
+    ],
+    mcq:[
+      {q:'NFC কত দূর পর্যন্ত কাজ করে?', opts:['10 মিটার','100 মিটার','4 সেন্টিমিটার','1 কিলোমিটার'], ans:2, exp:'NFC মাত্র 4 সেন্টিমিটারের মধ্যে কাজ করে।'},
+      {q:'GPS কোন পদ্ধতিতে অবস্থান নির্ধারণ করে?', opts:['WiFi','স্যাটেলাইট','Bluetooth','সেলুলার টাওয়ার'], ans:1, exp:'GPS স্যাটেলাইটের সাথে যোগাযোগ করে অবস্থান নির্ধারণ করে।'}
+    ],
+    bcs:[
+      {y:'৪০তম BCS', q:'NFC-এর পূর্ণরূপ কী?', opts:['Network File Connection','Near Field Communication','New Frequency Channel','Node Frequency Code'], ans:1, exp:'NFC = Near Field Communication।'},
+      {y:'৩৮তম BCS', q:'GPS-এর পূর্ণরূপ কী?', opts:['General Position System','Global Positioning System','Geographic Place Sensor','Global Phone System'], ans:1, exp:'GPS = Global Positioning System।'}
+    ]
+  },
+
+  i11:{
+    cls:'i-panel', eye:'TECH-GIANTS', title:'টেক জায়ান্টস', sub:'Google · Microsoft · IBM · Apple · Meta',
+    intro:`<p class="intro-text">বিশ্বের শীর্ষ প্রযুক্তি প্রতিষ্ঠানগুলো সম্পর্কে জানা BCS প্রস্তুতির অংশ।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Google (1998)</div><div class="ic-val">Larry Page ও Sergey Brin। Search, YouTube, Android।</div></div>
+      <div class="info-card"><div class="ic-label">Microsoft (1975)</div><div class="ic-val">Bill Gates ও Paul Allen। Windows, Office, Azure।</div></div>
+      <div class="info-card"><div class="ic-label">IBM (1911)</div><div class="ic-val">সবচেয়ে পুরনো। Watson AI, Deep Blue।</div></div>
+      <div class="info-card"><div class="ic-label">Apple (1976)</div><div class="ic-label"></div><div class="ic-val">Steve Jobs। iPhone, Mac, iOS।</div></div>
+      <div class="info-card"><div class="ic-label">Meta (2004)</div><div class="ic-val">Mark Zuckerberg। Facebook, WhatsApp, Instagram।</div></div>
+      <div class="info-card"><div class="ic-label">Amazon (1994)</div><div class="ic-val">Jeff Bezos। AWS Cloud, E-commerce।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>IBM Deep Blue</strong> (১৯৯৭) দাবার বিশ্বচ্যাম্পিয়ন Kasparov-কে হারায়। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>FAANG:</strong> Facebook(Meta), Apple, Amazon, Netflix, Google — Big Tech।'},
+      {t:'<strong>Sundar Pichai</strong> — Google/Alphabet-এর CEO।'},
+      {t:'<strong>Satya Nadella</strong> — Microsoft-এর CEO (২০১৪ থেকে)।'}
+    ],
+    mcq:[
+      {q:'IBM Deep Blue কীসে বিখ্যাত?', opts:['মোবাইল তৈরিতে','দাবায় বিশ্বচ্যাম্পিয়নকে হারানোতে','ইন্টারনেট উদ্ভাবনে','প্রথম PC তৈরিতে'], ans:1, exp:'IBM Deep Blue ১৯৯৭ সালে দাবাচ্যাম্পিয়ন Garry Kasparov-কে পরাজিত করে।'},
+      {q:'Microsoft-এর প্রতিষ্ঠাতা কে?', opts:['Steve Jobs','Bill Gates ও Paul Allen','Mark Zuckerberg','Jeff Bezos'], ans:1, exp:'Bill Gates ও Paul Allen ১৯৭৫ সালে Microsoft প্রতিষ্ঠা করেন।'}
+    ],
+    bcs:[
+      {y:'৩৮তম BCS', q:'Google কত সালে প্রতিষ্ঠিত?', opts:['1994','1996','1998','2000'], ans:2, exp:'Google ১৯৯৮ সালে Larry Page ও Sergey Brin প্রতিষ্ঠা করেন।'},
+      {y:'৪৩তম BCS', q:'Facebook-এর প্রতিষ্ঠাতা কে?', opts:['Bill Gates','Steve Jobs','Mark Zuckerberg','Jack Dorsey'], ans:2, exp:'Mark Zuckerberg ২০০৪ সালে Facebook প্রতিষ্ঠা করেন।'}
+    ]
+  },
+
+  i12:{
+    cls:'i-panel', eye:'CLOUD COMPUTING', title:'ক্লাউড কম্পিউটিং', sub:'IaaS · PaaS · SaaS · AWS · Azure · GCP',
+    intro:`<p class="intro-text"><strong>ক্লাউড কম্পিউটিং</strong> ইন্টারনেটের মাধ্যমে কম্পিউটিং রিসোর্স সরবরাহ করে।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">IaaS</div><div class="ic-val">Infrastructure as a Service। ভার্চুয়াল সার্ভার ভাড়া। AWS EC2।</div></div>
+      <div class="info-card"><div class="ic-label">PaaS</div><div class="ic-val">Platform as a Service। অ্যাপ ডেভেলপমেন্ট। Google App Engine।</div></div>
+      <div class="info-card"><div class="ic-label">SaaS</div><div class="ic-val">Software as a Service। Gmail, Office 365।</div></div>
+      <div class="info-card"><div class="ic-label">Public Cloud</div><div class="ic-val">AWS, Azure, GCP — সবার জন্য।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>AWS</strong> (Amazon Web Services) — বিশ্বের সবচেয়ে বড় ক্লাউড প্রদানকারী। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Pay-as-you-go</strong> — ব্যবহৃত রিসোর্সের জন্যই শুধু অর্থ প্রদান।'},
+      {t:'<strong>SaaS</strong> উদাহরণ: Gmail, Google Docs, Office 365, Zoom।'},
+      {t:'<strong>Hybrid Cloud</strong> — Public ও Private Cloud-এর মিশ্রণ।'}
+    ],
+    mcq:[
+      {q:'Gmail কোন ক্লাউড সেবার উদাহরণ?', opts:['IaaS','PaaS','SaaS','HaaS'], ans:2, exp:'Gmail হলো SaaS — ইন্টারনেটে ব্যবহৃত সফটওয়্যার সেবা।'},
+      {q:'IaaS-এর পূর্ণরূপ কী?', opts:['Internet as a Service','Infrastructure as a Service','Integrated as a System','Internal Access Service'], ans:1, exp:'IaaS = Infrastructure as a Service।'}
+    ],
+    bcs:[
+      {y:'৪১তম BCS', q:'SaaS-এর উদাহরণ কোনটি?', opts:['Amazon EC2','Google App Engine','Gmail','OpenStack'], ans:2, exp:'Gmail হলো SaaS-এর উদাহরণ।'},
+      {y:'৪৩তম BCS', q:'বিশ্বের বৃহত্তম ক্লাউড সেবা প্রদানকারী কে?', opts:['Microsoft Azure','Google Cloud','AWS','IBM Cloud'], ans:2, exp:'AWS (Amazon Web Services) বিশ্বের বৃহত্তম ক্লাউড সেবা প্রদানকারী।'}
+    ]
+  },
+
+  i13:{
+    cls:'i-panel', eye:'SOCIAL NETWORKING', title:'সোশ্যাল নেটওয়ার্কিং', sub:'Facebook · Twitter/X · Instagram · YouTube',
+    intro:`<p class="intro-text"><strong>সোশ্যাল নেটওয়ার্কিং</strong> সাইট মানুষকে অনলাইনে সংযুক্ত করে ছবি, ভিডিও ও মতামত শেয়ার করতে দেয়।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Facebook (2004)</div><div class="ic-val">Mark Zuckerberg। ৩ বিলিয়ন+ ব্যবহারকারী।</div></div>
+      <div class="info-card"><div class="ic-label">Twitter / X (2006)</div><div class="ic-val">Jack Dorsey। ২৮০ ক্যারেক্টার Tweet।</div></div>
+      <div class="info-card"><div class="ic-label">Instagram (2010)</div><div class="ic-val">Kevin Systrom। Meta-র অংশ।</div></div>
+      <div class="info-card"><div class="ic-label">YouTube (2005)</div><div class="ic-val">Google-এর। ২য় বড় সার্চ ইঞ্জিন।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>Twitter</strong> ২০২২ সালে Elon Musk কিনে নিয়ে "X" নাম দেন। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Facebook</strong> ২০১২-তে Instagram এবং ২০১৪-তে WhatsApp কেনে।'},
+      {t:'<strong>LinkedIn</strong> পেশাদার নেটওয়ার্কিং সাইট — ২০১৬-তে Microsoft কেনে।'},
+      {t:'<strong>YouTube</strong> ২০০৬ সালে Google $1.65 বিলিয়নে কেনে।'}
+    ],
+    mcq:[
+      {q:'Twitter-এর নতুন নাম কী?', opts:['Meta','X','Thread','Bluesky'], ans:1, exp:'Elon Musk ২০২২ সালে Twitter কিনে "X" নাম দেন।'},
+      {q:'Instagram কোন কোম্পানির অংশ?', opts:['Google','Twitter','Meta','Microsoft'], ans:2, exp:'Facebook (Meta) ২০১২ সালে Instagram কিনে নেয়।'}
+    ],
+    bcs:[
+      {y:'৩৮তম BCS', q:'Facebook কত সালে প্রতিষ্ঠিত?', opts:['2002','2004','2006','2008'], ans:1, exp:'Facebook ২০০৪ সালে Harvard-এ Mark Zuckerberg প্রতিষ্ঠা করেন।'},
+      {y:'৪২তম BCS', q:'LinkedIn কোন কোম্পানি কেনে?', opts:['Google','Amazon','Microsoft','Apple'], ans:2, exp:'Microsoft ২০১৬ সালে LinkedIn কেনে।'}
+    ]
+  },
+
+  i14:{
+    cls:'i-panel', eye:'ROBOTICS', title:'রোবোটিক্স', sub:'AI · Automation · Drone · IoT · Boston Dynamics',
+    intro:`<p class="intro-text"><strong>রোবোটিক্স</strong> হলো রোবট ডিজাইন, নির্মাণ ও পরিচালনার বিজ্ঞান।</p>
+    <div class="key-box"><h4>প্রয়োগক্ষেত্র</h4><div class="key-list">
+      <span class="key-item">শিল্প — গাড়ি তৈরি, অ্যাসেম্বলি</span>
+      <span class="key-item">চিকিৎসা — Da Vinci রোবট সার্জারি</span>
+      <span class="key-item">মহাকাশ — NASA Rover</span>
+      <span class="key-item">কৃষি — Autonomous Tractor</span>
+      <span class="key-item">ডেলিভারি — Amazon Drone</span>
+      <span class="key-item">সামরিক — Unmanned Drone</span>
+    </div></div>`,
+    imp:[
+      {t:'<strong>Boston Dynamics</strong> — Spot ও Atlas রোবটের নির্মাতা। <span class="badge">BCS প্রিয়</span>'},
+      {t:'<strong>Sophia</strong> — Hanson Robotics-এর মানবিক রোবট। ২০১৬ সালে তৈরি।'},
+      {t:'<strong>Da Vinci Surgical System</strong> — রোবটিক অস্ত্রোপচারের জন্য।'},
+      {t:'<strong>Drone</strong> (UAV — Unmanned Aerial Vehicle) — কৃষি, ডেলিভারি, সামরিক।'},
+      {t:'<strong>বাংলাদেশ:</strong> WRO (World Robotics Olympiad) তে বাংলাদেশ অংশগ্রহণ করে।'}
+    ],
+    mcq:[
+      {q:'Boston Dynamics কোন রোবটের নির্মাতা?', opts:['Sophia','Spot ও Atlas','Watson','HAL'], ans:1, exp:'Boston Dynamics Spot ও Atlas রোবটের নির্মাতা।'},
+      {q:'UAV-এর পূর্ণরূপ কী?', opts:['Universal Aerial Vehicle','Unmanned Aerial Vehicle','Urban Air Vehicle','Unified Aerial View'], ans:1, exp:'UAV = Unmanned Aerial Vehicle — ড্রোনের প্রযুক্তিগত নাম।'}
+    ],
+    bcs:[
+      {y:'৪০তম BCS', q:'Sophia রোবট কোন কোম্পানির?', opts:['Boston Dynamics','Hanson Robotics','NASA','IBM'], ans:1, exp:'Sophia রোবট Hanson Robotics তৈরি করে।'},
+      {y:'৪৩তম BCS', q:'Da Vinci সিস্টেম কোন কাজে?', opts:['কার তৈরিতে','রোবটিক সার্জারিতে','মহাকাশ গবেষণায়','ড্রোন পরিচালনায়'], ans:1, exp:'Da Vinci Surgical System রোবটিক অস্ত্রোপচারের জন্য।'}
+    ]
+  },
+
+  i15:{
+    cls:'i-panel', eye:'CYBER CRIME', title:'সাইবার অপরাধ', sub:'Hacking · Phishing · Ransomware · আইন',
+    intro:`<p class="intro-text"><strong>সাইবার অপরাধ</strong> হলো কম্পিউটার বা ইন্টারনেটের মাধ্যমে সংঘটিত অপরাধ।</p>
+    <div class="info-grid">
+      <div class="info-card"><div class="ic-label">Hacking</div><div class="ic-val">অনুমতি ছাড়া সিস্টেমে প্রবেশ।</div></div>
+      <div class="info-card"><div class="ic-label">Phishing</div><div class="ic-val">ভুয়া সাইটে তথ্য চুরি।</div></div>
+      <div class="info-card"><div class="ic-label">Ransomware</div><div class="ic-val">ফাইল আটকে মুক্তিপণ দাবি।</div></div>
+      <div class="info-card"><div class="ic-label">Identity Theft</div><div class="ic-val">পরিচয় চুরি করে অপরাধ।</div></div>
+    </div>`,
+    imp:[
+      {t:'<strong>White Hat</strong> নৈতিক হ্যাকার, <strong>Black Hat</strong> অপরাধী হ্যাকার। <span class="badge">সংজ্ঞা</span>'},
+      {t:'<strong>WannaCry</strong> (২০১৭) — বিখ্যাত Ransomware, ১৫০+ দেশে আক্রমণ।'},
+      {t:'<strong>DDoS</strong> (Distributed Denial of Service) — সার্ভার অকেজো করার আক্রমণ।'},
+      {t:'<strong>বাংলাদেশ:</strong> ডিজিটাল নিরাপত্তা আইন ২০১৮। BGD e-GOV CIRT সাইবার নিরাপত্তা দল।'},
+      {t:'<strong>2FA</strong> (Two-Factor Authentication) — সাইবার নিরাপত্তার অতিরিক্ত স্তর।'}
+    ],
+    mcq:[
+      {q:'WannaCry কী ধরনের আক্রমণ?', opts:['Phishing','Ransomware','DDoS','Spyware'], ans:1, exp:'WannaCry ২০১৭ সালের একটি বিখ্যাত Ransomware আক্রমণ।'},
+      {q:'White Hat Hacker কী?', opts:['অপরাধী হ্যাকার','নৈতিক নিরাপত্তা গবেষক','সরকারি গোয়েন্দা','ভাইরাস তৈরিকারী'], ans:1, exp:'White Hat Hacker নৈতিক হ্যাকার — অনুমতি নিয়ে সিস্টেম পরীক্ষা করে।'}
+    ],
+    bcs:[
+      {y:'৩৬তম BCS', q:'বাংলাদেশের সাইবার নিরাপত্তা আইন কত সালের?', opts:['2016','2018','2020','2022'], ans:1, exp:'ডিজিটাল নিরাপত্তা আইন ২০১৮ সালে প্রণীত হয়।'},
+      {y:'৪২তম BCS', q:'Phishing কী?', opts:['ভাইরাস ছড়ানো','ভুয়া সাইটে তথ্য চুরি','সার্ভার আক্রমণ','নেটওয়ার্ক বন্ধ'], ans:1, exp:'Phishing-এ ভুয়া সাইটে ব্যবহারকারীকে প্রতারণা করে তথ্য চুরি করা হয়।'}
+    ]
+  }
+};
+
+/* ══════════════════════════════════════════
+   RENDER ENGINE
+   ══════════════════════════════════════════ */
+function buildPanel(id){
+  const d = D[id]; if(!d) return '';
+  // imp rows
+  const impH = d.imp.map((x,i)=>`<div class="imp-row"><span class="imp-num">${String(i+1).padStart(2,'0')}.</span><div class="imp-text">${x.t}</div></div>`).join('');
+  // mcq
+  const mcqH = d.mcq.map((q,qi)=>{
+    const opts = q.opts.map((o,oi)=>`<div class="mcq-opt" onclick="pickMCQ(this,${oi},${q.ans},'mexp-${id}-${qi}')"><span class="ol">${String.fromCharCode(65+oi)})</span>${o}</div>`).join('');
+    return `<div class="mcq-q"><div class="mcq-qnum">প্রশ্ন ${qi+1}</div><div class="mcq-qtext">${q.q}</div><div class="mcq-opts">${opts}</div><div class="mcq-exp" id="mexp-${id}-${qi}">💡 ${q.exp}</div></div>`;
+  }).join('');
+  // bcs
+  const bcsH = d.bcs.map((q,qi)=>{
+    const opts = q.opts.map((o,oi)=>`<div class="bcs-opt" onclick="pickBCS(this,${oi},${q.ans},'bans-${id}-${qi}')">${String.fromCharCode(65+oi)}) ${o}</div>`).join('');
+    return `<div class="bcs-q"><span class="bcs-year">${q.y}</span><div class="bcs-qtext">${q.q}</div><div class="bcs-opts">${opts}</div><div class="bcs-ans" id="bans-${id}-${qi}">✅ সঠিক: ${q.opts[q.ans]} — ${q.exp}</div></div>`;
+  }).join('');
+
+  return `<div id="panel-${id}" class="topic-panel ${d.cls}">
+    <div class="ph"><div class="ph-eye">${d.eye}</div><div class="ph-title">${d.title}</div><div class="ph-sub">${d.sub}</div></div>
+    <div class="tabs">
+      <div class="tab on" onclick="switchTab(this,'ti-${id}')">📖 পরিচিতি</div>
+      <div class="tab" onclick="switchTab(this,'tm-${id}')">⭐ গুরুত্বপূর্ণ</div>
+      <div class="tab" onclick="switchTab(this,'tq-${id}')">✏️ MCQ অনুশীলন</div>
+      <div class="tab" onclick="switchTab(this,'tb-${id}')">🏛️ বিসিএস প্রশ্ন</div>
+    </div>
+    <div class="tc">
+      <div class="tc-pane on" id="ti-${id}">${d.intro}</div>
+      <div class="tc-pane" id="tm-${id}">${impH}</div>
+      <div class="tc-pane" id="tq-${id}">${mcqH}</div>
+      <div class="tc-pane" id="tb-${id}">${bcsH}</div>
+    </div>
+  </div>`;
+}
+
+function initSection(sec){
+  const ids = sec==='c'
+    ? ['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10','c11']
+    : ['i1','i2','i3','i4','i5','i6','i7','i8','i9','i10','i11','i12','i13','i14','i15'];
+  document.getElementById('content-'+sec).innerHTML = ids.map(buildPanel).join('');
+}
+
+/* ══════════════════════════════════════════
+   NAVIGATION
+   ══════════════════════════════════════════ */
+let curSec='c', curTopic={c:'c1', i:'i1'};
+
+function switchSec(s){
+  curSec=s;
+  document.getElementById('sec-c').classList.toggle('on',s==='c');
+  document.getElementById('sec-i').classList.toggle('on',s==='i');
+  document.querySelector('.n-tab.c-tab').classList.toggle('on',s==='c');
+  document.querySelector('.n-tab.i-tab').classList.toggle('on',s==='i');
+  showPanel(s, curTopic[s]);
+}
+
+function openTopic(sec, id){
+  curTopic[sec]=id;
+  showPanel(sec,id);
+}
+
+function showPanel(sec,id){
+  const wrap = document.getElementById('sec-'+sec);
+  wrap.querySelectorAll('.topic-panel').forEach(p=>p.classList.remove('on'));
+  const panel = document.getElementById('panel-'+id);
+  if(panel) panel.classList.add('on');
+  wrap.querySelectorAll('.sb-item').forEach(s=>s.classList.remove('on'));
+  document.getElementById('si-'+id)?.classList.add('on');
+  if(window.innerWidth<769) document.getElementById('content-'+sec).scrollIntoView({behavior:'smooth'});
+}
+
+function switchTab(el, targetId){
+  const panel = el.closest('.topic-panel');
+  panel.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  panel.querySelectorAll('.tc-pane').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById(targetId)?.classList.add('on');
+}
+
+function pickMCQ(el, chosen, correct, expId){
+  const box = el.closest('.mcq-q');
+  if(box.querySelector('.correct')) return;
+  box.querySelectorAll('.mcq-opt').forEach((o,i)=>{
+    o.classList.add('locked');
+    if(i===correct) o.classList.add('correct');
+    else if(i===chosen) o.classList.add('wrong');
+  });
+  document.getElementById(expId)?.classList.add('show');
+}
+
+function pickBCS(el, chosen, correct, ansId){
+  const box = el.closest('.bcs-q');
+  if(box.querySelector('.correct')) return;
+  box.querySelectorAll('.bcs-opt').forEach((o,i)=>{
+    o.classList.add('locked');
+    if(i===correct) o.classList.add('correct');
+    else if(i===chosen) o.classList.add('wrong');
+  });
+  document.getElementById(ansId)?.classList.add('show');
+}
+
+/* ── INIT ── */
+window.addEventListener('DOMContentLoaded',()=>{
+  initSection('c');
+  initSection('i');
+  showPanel('c','c1');
+});
+</script>
+</body>
+</html>
