@@ -1147,6 +1147,85 @@
   z-index: 10;
   pointer-events: auto;
 }
+
+      .categories{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:24px;
+}
+
+.exam-card-link{
+  display:block;
+  text-decoration:none;
+  color:inherit;
+}
+
+.exam-card{
+  position:relative;
+  background:#fffdf8;
+  border:1px solid #e5d3aa;
+  border-radius:20px;
+  padding:28px 22px;
+  box-shadow:0 10px 26px rgba(0,0,0,0.08);
+  transition:0.3s ease;
+}
+
+.exam-card:hover{
+  transform:translateY(-5px);
+}
+
+.exam-card-link:hover{
+  text-decoration:none;
+  color:inherit;
+}
+
+.exam-card *{
+  position:relative;
+  z-index:2;
+}
+
+.exam-card::before,
+.exam-card::after{
+  pointer-events:none;
+}
+
+.exam-icon{
+  width:62px;
+  height:62px;
+  border-radius:16px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
+  background:linear-gradient(135deg,#f4ddb0,#d6a94f);
+  color:#4a3300;
+  font-size:24px;
+}
+
+.exam-card h3{
+  font-size:24px;
+  color:#1f2937;
+  margin-bottom:12px;
+}
+
+.exam-card p{
+  font-size:17px;
+  line-height:1.8;
+  color:#374151;
+  margin-bottom:18px;
+}
+
+.btn-outline{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:12px 18px;
+  border-radius:999px;
+  border:2px solid #d6a94f;
+  background:#fff;
+  color:#7a5200;
+  font-weight:700;
+}
     }
   </style>
 </head>
@@ -1358,18 +1437,21 @@
   </p>
 
   <div class="categories">
-    <div class="exam-card fade-in">
-      <div class="exam-icon">
-        <i class="fas fa-landmark"></i>
+
+    <a href="./bcs-ict.html" class="exam-card-link">
+      <div class="exam-card fade-in">
+        <div class="exam-icon">
+          <i class="fas fa-landmark"></i>
+        </div>
+        <h3>BCS Computer & Information</h3>
+        <p>
+          সম্পূর্ণ সিলেবাস, previous year question solution, ICT note এবং mock test।
+        </p>
+        <span class="btn-outline">
+          BCS part দেখুন <i class="fas fa-arrow-right"></i>
+        </span>
       </div>
-      <h3>BCS Computer & Information</h3>
-      <p>
-        সম্পূর্ণ সিলেবাস, previous year question solution, ICT note এবং mock test।
-      </p>
-      <a href="bcs-ict.html" class="btn-outline">
-        BCS part দেখুন <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
+    </a>
 
     <div class="exam-card fade-in">
       <div class="exam-icon">
@@ -1379,23 +1461,25 @@
       <p>
         বাংলাদেশ ব্যাংক ও অন্যান্য commercial bank exam-এর জন্য computer ও IT প্রস্তুতি।
       </p>
-      <a href="#" class="btn-outline">
+      <span class="btn-outline">
         Bank part দেখুন <i class="fas fa-arrow-right"></i>
-      </a>
+      </span>
     </div>
 
-    <div class="exam-card fade-in">
-      <div class="exam-icon">
-        <i class="fas fa-graduation-cap"></i>
+    <a href="./hsc-ict.html" class="exam-card-link">
+      <div class="exam-card fade-in">
+        <div class="exam-icon">
+          <i class="fas fa-graduation-cap"></i>
+        </div>
+        <h3>HSC ICT</h3>
+        <p>
+          অধ্যায়ভিত্তিক আলোচনা, C programming, HTML, board question এবং CQ/MCQ solution।
+        </p>
+        <span class="btn-outline">
+          HSC part দেখুন <i class="fas fa-arrow-right"></i>
+        </span>
       </div>
-      <h3>HSC ICT</h3>
-      <p>
-        অধ্যায়ভিত্তিক আলোচনা, C programming, HTML, board question এবং CQ/MCQ solution।
-      </p>
-      <a href="hsc-ict.html" class="btn-outline">
-        HSC part দেখুন <i class="fas fa-arrow-right"></i>
-      </a>
-    </div>
+    </a>
 
     <div class="exam-card fade-in">
       <div class="exam-icon">
@@ -1405,10 +1489,11 @@
       <p>
         NTRCA, primary, corporate চাকরি ও সাধারণ IT interview preparation-এর জন্য basic guide।
       </p>
-      <a href="#" class="btn-outline">
+      <span class="btn-outline">
         Others দেখুন <i class="fas fa-arrow-right"></i>
-      </a>
+      </span>
     </div>
+
   </div>
 </section>
 
